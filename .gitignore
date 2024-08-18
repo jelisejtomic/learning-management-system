@@ -1,0 +1,29 @@
+.metadata/
+.env
+HELP.md
+
+# Backupfiles from mergetools #
+*.orig
+
+# Java Class Files #
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.zip
+
+# Eclipse #
+.project
+.classpath
+.factorypath
+.settings/
+bin/**
+
+# Maven #
+target/
+/.mvn
+/.maven
+/.repository
+.flattened-pom.xml

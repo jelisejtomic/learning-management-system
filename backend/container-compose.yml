@@ -1,0 +1,38 @@
+version: '2'
+services:
+  eurekas:
+    ports:
+      - "8761:8761"
+    build:
+      context: ${EUREKA_CONTEXT}
+      dockerfile: Containerfile
+  mikrov:
+    build:
+      context: ${MIKRO_CONTEXT}
+      dockerfile: Containerfile
+    environment:
+      eureka.client.serviceUrl.defaultZone: http://eurekas:8761/eureka
+  app-nereg1:
+    build:
+      context: ${APP_NEREG1_CONTEXT}
+      dockerfile: Containerfile
+    environment:
+      eureka.client.serviceUrl.defaultZone: http://eurekas:8761/eureka
+    extra_hosts:
+      - "host.containers.internal:${HOST_IP}"
+  app-nereg2:
+    build:
+      context: ${APP_NEREG2_CONTEXT}
+      dockerfile: Containerfile
+    environment:
+      eureka.client.serviceUrl.defaultZone: http://eurekas:8761/eureka
+    extra_hosts:
+      - "host.containers.internal:${HOST_IP}"
+
+  nginx:
+    image: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+    restart: always
