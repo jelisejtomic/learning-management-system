@@ -20,6 +20,7 @@ HELP.md
 .factorypath
 .settings/
 bin/**
+db.properties
 
 # Maven #
 target/
