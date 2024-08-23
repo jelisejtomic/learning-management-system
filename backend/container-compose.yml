@@ -6,26 +6,54 @@ services:
     build:
       context: ${EUREKA_CONTEXT}
       dockerfile: Containerfile
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:25.0.4
+    ports:
+      - 9090:8080
+    environment:
+      KEYCLOAK_ADMIN: ${KEYCLOAK_ADMIN}
+      KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD}
+    command:
+      - 'start-dev'
+    volumes:
+      - ./keycloak-data:/opt/keycloak/data
+    extra_hosts:
+      - "host.containers.internal:${HOST_IP}"
+  
+  lms-security:
+    build:
+      context: ${APP_SECURITY_CONTEXT}
+      dockerfile: Containerfile
+    environment:
+      KEYCLOAK_URL: ${KEYCLOAK_URL}
+      eureka.client.serviceUrl.defaultZone: ${EUREKA_DEFAULT_ZONE}
+    depends_on:
+      keycloak
+    entrypoint: ["/app/cekaj.sh", "java", "-jar", "app.jar"]
+
   mikrov:
     build:
       context: ${MIKRO_CONTEXT}
       dockerfile: Containerfile
     environment:
-      eureka.client.serviceUrl.defaultZone: http://eurekas:8761/eureka
+      eureka.client.serviceUrl.defaultZone: ${EUREKA_DEFAULT_ZONE}
+
   app-nereg1:
     build:
       context: ${APP_NEREG1_CONTEXT}
       dockerfile: Containerfile
     environment:
-      eureka.client.serviceUrl.defaultZone: http://eurekas:8761/eureka
+      eureka.client.serviceUrl.defaultZone: ${EUREKA_DEFAULT_ZONE}
     extra_hosts:
       - "host.containers.internal:${HOST_IP}"
+
   app-nereg2:
     build:
       context: ${APP_NEREG2_CONTEXT}
       dockerfile: Containerfile
     environment:
-      eureka.client.serviceUrl.defaultZone: http://eurekas:8761/eureka
+      eureka.client.serviceUrl.defaultZone: ${EUREKA_DEFAULT_ZONE}
     extra_hosts:
       - "host.containers.internal:${HOST_IP}"
 

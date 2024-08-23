@@ -1,4 +1,5 @@
 .metadata/
+keycloak-data
 .env
 HELP.md
 
@@ -21,6 +22,7 @@ HELP.md
 .settings/
 bin/**
 db.properties
+security.properties
 
 # Maven #
 target/
