@@ -30,7 +30,7 @@ services:
       eureka.client.serviceUrl.defaultZone: ${EUREKA_DEFAULT_ZONE}
     depends_on:
       keycloak
-    entrypoint: ["/app/cekaj.sh", "java", "-jar", "app.jar"]
+    entrypoint: ["/app/cekaj.sh", "java", "-jar", "/app/app.jar"]
 
   mikrov:
     build:
