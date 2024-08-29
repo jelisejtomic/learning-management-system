@@ -2,7 +2,8 @@ package projekat.lms.dto;
 
 import java.time.LocalDateTime;
 
-public class FajlDTO {
+public class FajlDTO  extends BaseDTO implements Serializable{
+	private static final long serialVersionUID = 2196452011931993494L;
 	private Long id;
 	private String opis;
 	private String url;

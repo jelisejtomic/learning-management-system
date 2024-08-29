@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 
-public class UniverzitetDTO implements Serializable{
+public class UniverzitetDTO extends BaseDTO implements Serializable{
 	private static final long serialVersionUID = -5155900689286442503L;
 	private Long id;
 	private String naziv;

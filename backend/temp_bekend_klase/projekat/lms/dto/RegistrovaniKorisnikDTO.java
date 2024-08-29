@@ -3,7 +3,8 @@ package projekat.lms.dto;
 import java.util.Set;
 
 
-public class RegistrovaniKorisnikDTO{
+public class RegistrovaniKorisnikDTO  extends BaseDTO implements Serializable{
+	private static final long serialVersionUID = 6564050817281102873L;
 	private String koriscnikoIme;
 	private String lozinka;
 	private String email;

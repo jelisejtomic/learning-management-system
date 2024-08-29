@@ -3,7 +3,7 @@ package projekat.lms.dto;
 import java.io.Serializable;
 import java.util.Set;
 
-public class StudijskiProgramDTO implements Serializable{
+public class StudijskiProgramDTO extends BaseDTO implements Serializable{
 	private static final long serialVersionUID = -8750628979351199203L;
 	private Long id;
 	

@@ -3,7 +3,7 @@ package projekat.lms.dto;
 import java.io.Serializable;
 
 
-public class TipNastaveDTO implements Serializable{
+public class TipNastaveDTO extends BaseDTO implements Serializable{
 	private static final long serialVersionUID = 3460006282498418304L;
 	private Long id;
 	

@@ -1,6 +1,7 @@
 package projekat.lms.dto;
 
-public class KontaktDTO {
+public class KontaktDTO  extends BaseDTO implements Serializable{
+	private static final long serialVersionUID = 3063725557737610339L;
 	private String vrednost;
 	private TipKontaktaDTO tipKontakta;
 	public KontaktDTO(String vrednost, TipKontaktaDTO tipKontakta) {

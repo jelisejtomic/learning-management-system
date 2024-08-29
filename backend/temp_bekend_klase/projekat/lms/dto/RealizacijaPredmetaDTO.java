@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.Set;
 
 
-public class RealizacijaPredmetaDTO {
+public class RealizacijaPredmetaDTO  extends BaseDTO implements Serializable{
+	private static final long serialVersionUID = 5808492620063686504L;
 	private Long id;
 	private int godinaIzvodjenja;
 	private Set<NastavnikNaRealizacijiDTO> nastavnici;

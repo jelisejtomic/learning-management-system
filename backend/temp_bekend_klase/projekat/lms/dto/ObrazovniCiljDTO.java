@@ -2,7 +2,7 @@ package projekat.lms.dto;
 
 import java.io.Serializable;
 
-public class ObrazovniCiljDTO implements Serializable{
+public class ObrazovniCiljDTO extends BaseDTO implements Serializable{
 	private static final long serialVersionUID = -5808492620063686504L;
 	private Long id;
 	

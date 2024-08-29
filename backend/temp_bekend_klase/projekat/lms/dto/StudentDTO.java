@@ -4,7 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 
-public class StudentDTO{
+public class StudentDTO  extends BaseDTO implements Serializable{
+	private static final long serialVersionUID = 6564050817281102873L;
 	private String jmbg;
 	private LocalDate datumRodjenja;
 	private AdresaDTO adresa;

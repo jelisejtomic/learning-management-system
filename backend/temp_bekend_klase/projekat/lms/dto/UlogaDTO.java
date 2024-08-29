@@ -2,7 +2,8 @@ package projekat.lms.dto;
 
 import java.time.LocalDateTime;
 
-public class UlogaDTO{
+public class UlogaDTO extends BaseDTO implements Serializable{
+	private static final long serialVersionUID = 8797489694856711063L;
 	private String naziv;
 	private LocalDateTime datumDodeljivanja;
 	

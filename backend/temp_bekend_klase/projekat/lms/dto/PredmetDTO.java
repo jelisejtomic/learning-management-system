@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-public class PredmetDTO implements Serializable {
+public class PredmetDTO extends BaseDTO implements Serializable {
 	private static final long serialVersionUID = -6564050817281102873L;
 	private Long id;
 	private String akronim;

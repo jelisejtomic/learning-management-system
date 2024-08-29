@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-public class InstrumentEvaluacijeDTO implements Serializable{
+public class InstrumentEvaluacijeDTO extends BaseDTO implements Serializable{
 	private static final long serialVersionUID = 8797489694856711063L;
 	private Long id;
 	

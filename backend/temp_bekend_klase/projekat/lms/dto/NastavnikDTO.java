@@ -3,7 +3,8 @@ package projekat.lms.dto;
 import java.util.Set;
 
 
-public class NastavnikDTO{
+public class NastavnikDTO  extends BaseDTO implements Serializable{
+	private static final long serialVersionUID = 4404900526680285447L;
 	private String jmbg;
 	private String biografija;
 	private Set<ZvanjeDTO> zvanja;

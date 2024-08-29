@@ -2,7 +2,8 @@ package projekat.lms.dto;
 
 import java.util.Set;
 
-public class OsobljeStudentskeSluzbeDTO{
+public class OsobljeStudentskeSluzbeDTO  extends BaseDTO implements Serializable{
+	private static final long serialVersionUID = 4536364983632759397L;
 	private String biografija;
 	private Set<InventarDTO> inventar;
 	private Set<UdzbenikDTO> biblioteka;

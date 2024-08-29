@@ -2,7 +2,7 @@ package projekat.lms.dto;
 
 import java.io.Serializable;
 
-public class TipDokumentaDTO implements Serializable{
+public class TipDokumentaDTO extends BaseDTO implements Serializable{
 	private static final long serialVersionUID = 4500455139246379424L;
 	private Long id;
 	

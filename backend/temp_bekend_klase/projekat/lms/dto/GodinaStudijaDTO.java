@@ -4,7 +4,8 @@ import java.time.LocalDate;
 import java.util.Set;
 
 
-public class GodinaStudijaDTO {
+public class GodinaStudijaDTO  extends BaseDTO implements Serializable{
+	private static final long serialVersionUID = 2283502693035968042L;
 	private Long id;
 	private LocalDate godina;
 	private LocalDate pocetak;

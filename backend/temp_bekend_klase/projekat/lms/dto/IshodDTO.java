@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-public class IshodDTO implements Serializable {
+public class IshodDTO extends BaseDTO implements Serializable {
 	private static final long serialVersionUID = 2196452011931993494L;
 	private Long id;
 	private String opis;

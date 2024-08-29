@@ -1,6 +1,7 @@
 package projekat.lms.dto;
 
-public class AdresaDTO{
+public class AdresaDTO  extends BaseDTO implements Serializable{
+	private static final long serialVersionUID = 1480662552111659681L;
 	private String ulica;
 	private String broj;
 	private MestoDTO mesto;

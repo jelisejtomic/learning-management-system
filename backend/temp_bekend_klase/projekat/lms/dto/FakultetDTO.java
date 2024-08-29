@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.Set;
 
 
-public class FakultetDTO implements Serializable{
+public class FakultetDTO extends BaseDTO implements Serializable{
 	private static final long serialVersionUID = -1480662552111659681L;
 	private Long id;
 	

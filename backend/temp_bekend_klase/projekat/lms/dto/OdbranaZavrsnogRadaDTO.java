@@ -3,7 +3,7 @@ package projekat.lms.dto;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class OdbranaZavrsnogRadaDTO implements Serializable{
+public class OdbranaZavrsnogRadaDTO extends BaseDTO implements Serializable{
 	private static final long serialVersionUID = -180025944575860834L;
 	private Long id;
 	

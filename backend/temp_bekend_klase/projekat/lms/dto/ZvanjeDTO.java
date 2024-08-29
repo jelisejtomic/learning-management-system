@@ -3,7 +3,8 @@ package projekat.lms.dto;
 import java.time.LocalDate;
 
 
-public class ZvanjeDTO{
+public class ZvanjeDTO extends BaseDTO implements Serializable{
+	private static final long serialVersionUID = 7829136421241571165L;
 	private LocalDate datumIzbora;
 	private LocalDate datumPrestanka;
 	

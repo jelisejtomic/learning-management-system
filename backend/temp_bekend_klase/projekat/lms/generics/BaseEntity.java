@@ -11,15 +11,15 @@ public abstract class BaseEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected Long id;
 
-//	@Column(nullable = false, columnDefinition = "boolean default false")
-//	protected boolean deleted = false;
+	@Column(nullable = false, columnDefinition = "boolean default false")
+	protected boolean deleted = false;
 
 	public BaseEntity() {
 	}
 
-	public BaseEntity(Long id) { // , boolean deleted
+	public BaseEntity(Long id, boolean deleted) {
 		this.id = id;
-//		this.deleted = deleted;
+		this.deleted = deleted;
 	}
 
 	public Long getId() {
@@ -30,12 +30,12 @@ public abstract class BaseEntity {
 		this.id = id;
 	}
 
-//	public boolean isDeleted() {
-//		return deleted;
-//	}
-//
-//	public void setDeleted(boolean deleted) {
-//		this.deleted = deleted;
-//	}
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
+	}
 
 }

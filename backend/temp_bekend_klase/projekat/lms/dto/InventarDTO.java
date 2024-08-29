@@ -3,7 +3,7 @@ package projekat.lms.dto;
 import java.io.Serializable;
 
 
-public class InventarDTO implements Serializable{
+public class InventarDTO extends BaseDTO implements Serializable{
 	private static final long serialVersionUID = -4536364983632759397L;
 	private Long id;
 	

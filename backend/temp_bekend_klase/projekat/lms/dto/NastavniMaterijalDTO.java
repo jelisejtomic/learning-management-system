@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-public class NastavniMaterijalDTO implements Serializable {
+public class NastavniMaterijalDTO extends BaseDTO implements Serializable {
 	private static final long serialVersionUID = 356710044087597874L;
 	private Long id;
 	private String naziv;

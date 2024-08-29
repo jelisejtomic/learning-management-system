@@ -3,7 +3,8 @@ package projekat.lms.dto;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class StudentNaGodiniDTO {
+public class StudentNaGodiniDTO  extends BaseDTO implements Serializable{
+	private static final long serialVersionUID = 7533606543316934291L;
 	private Long id;
 	
 	private LocalDateTime datumUpisa;

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Set;
 
-public class EvaluacijaZnanjaDTO implements Serializable{
+public class EvaluacijaZnanjaDTO extends BaseDTO implements Serializable{
 	private static final long serialVersionUID = -2283502693035968042L;
 	private Long id;
 	

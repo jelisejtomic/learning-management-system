@@ -1,6 +1,7 @@
 package projekat.lms.dto;
 
-public class PohadjanjePredmetaDTO {	
+public class PohadjanjePredmetaDTO  extends BaseDTO implements Serializable{
+	private static final long serialVersionUID = 5155900689286442503L;
 	private Long id;
 	private int konacnaOcena;
 	private int bodovi;

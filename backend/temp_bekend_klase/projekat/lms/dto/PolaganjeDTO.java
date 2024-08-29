@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Set;
 
 
-public class PolaganjeDTO implements Serializable{
+public class PolaganjeDTO extends BaseDTO implements Serializable{
 	private static final long serialVersionUID = -7533606543316934291L;
 	private Long id;
 	

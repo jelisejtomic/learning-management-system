@@ -3,7 +3,8 @@ package projekat.lms.dto;
 import java.time.LocalDateTime;
 import java.util.Set;
 
-public class ObavestenjeDTO {
+public class ObavestenjeDTO  extends BaseDTO implements Serializable{
+	private static final long serialVersionUID = 4500455139246379424L;
 	private Long id;
 	private LocalDateTime vremePostavljanja;
 	private String sadrzaj;

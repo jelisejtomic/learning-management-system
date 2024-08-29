@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 
-public class DokumentDTO implements Serializable{
+public class DokumentDTO extends BaseDTO implements Serializable{
 	private static final long serialVersionUID = -3063725557737610339L;
 	private Long id;
 	

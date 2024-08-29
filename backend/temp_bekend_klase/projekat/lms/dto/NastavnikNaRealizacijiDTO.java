@@ -2,7 +2,8 @@ package projekat.lms.dto;
 
 import java.util.ArrayList;
 
-public class NastavnikNaRealizacijiDTO {
+public class NastavnikNaRealizacijiDTO  extends BaseDTO implements Serializable{
+	private static final long serialVersionUID = 4488826747600137876L;
 	private Long id;
 	private int brojCasova;
 	
