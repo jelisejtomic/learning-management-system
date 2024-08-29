@@ -19,8 +19,8 @@ public class Student extends BaseEntity{
 	@OneToOne
 	private Adresa adresa;
 	
-	@OneToMany(mappedBy = "student")
-	private ArrayList<StudentNaGodini> studentiNaGodini = new ArrayList<>();
+	@OneToMany(mappedBy = "student") 
+	private ArrayList<StudentNaGodini> studentNaGodinama = new ArrayList<>();
 
 	@OneToMany(mappedBy = "student")
 	private ArrayList<PohadjanjePredmeta> pohadjanjaPredmeta = new ArrayList<>();
@@ -30,12 +30,12 @@ public class Student extends BaseEntity{
 	}
 
 	public Student(Long id, String jmbg, LocalDate datumRodjenja, Adresa adresa,
-			ArrayList<StudentNaGodini> studentiNaGodini, ArrayList<PohadjanjePredmeta> pohadjanjaPredmeta) {
+			ArrayList<StudentNaGodini> studentNaGodinama, ArrayList<PohadjanjePredmeta> pohadjanjaPredmeta) {
 		super(id);
 		this.jmbg = jmbg;
 		this.datumRodjenja = datumRodjenja;
 		this.adresa = adresa;
-		this.studentiNaGodini = studentiNaGodini;
+		this.studentNaGodinama = studentNaGodinama;
 		this.pohadjanjaPredmeta = pohadjanjaPredmeta;
 	}
 
@@ -63,12 +63,12 @@ public class Student extends BaseEntity{
 		this.adresa = adresa;
 	}
 
-	public ArrayList<StudentNaGodini> getStudentiNaGodini() {
-		return studentiNaGodini;
+	public ArrayList<StudentNaGodini> getstudentNaGodinama() {
+		return studentNaGodinama;
 	}
 
-	public void setStudentiNaGodini(ArrayList<StudentNaGodini> studentiNaGodini) {
-		this.studentiNaGodini = studentiNaGodini;
+	public void setstudentNaGodinama(ArrayList<StudentNaGodini> studentNaGodinama) {
+		this.studentNaGodinama = studentNaGodinama;
 	}
 
 	public ArrayList<PohadjanjePredmeta> getPohadjanjaPredmeta() {

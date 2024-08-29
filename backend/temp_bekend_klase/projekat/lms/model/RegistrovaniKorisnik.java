@@ -21,7 +21,7 @@ public class RegistrovaniKorisnik extends BaseEntity{
 	@Column(columnDefinition = "TEXT")
 	private String prezime;
 	
-	@ManyToMany
+	@ManyToMany //!FIXME
 	private Set<Uloga> uloge;
 
 	public RegistrovaniKorisnik() {
