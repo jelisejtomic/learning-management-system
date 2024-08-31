@@ -3,6 +3,7 @@ package projekat.lms.dto;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 import projekat.lms.generics.BaseDTO;
 
@@ -13,11 +14,11 @@ public class StudentNaGodiniDTO  extends BaseDTO implements Serializable{
 	private String brojIndeksa;
 
 	private GodinaStudijaDTO godinaStudija;
-	private ArrayList<PolaganjeDTO> polaganja = new ArrayList<>();
+	private List<PolaganjeDTO> polaganja = new ArrayList<>();
 	private OdbranaZavrsnogRadaDTO odbranaZavrsnogRada;
 	private ZavrsniRadDTO zavrsniRad;
 	private StudentDTO student;
-	private ArrayList<PrijavaIspitaDTO> prijaveIspita;
+	private List<PrijavaIspitaDTO> prijaveIspita;
 
 
 	public StudentNaGodiniDTO() {
@@ -26,9 +27,9 @@ public class StudentNaGodiniDTO  extends BaseDTO implements Serializable{
 	
 
 	public StudentNaGodiniDTO(Long id, Boolean deleted, LocalDateTime datumUpisa, String brojIndeksa,
-			GodinaStudijaDTO godinaStudija, ArrayList<PolaganjeDTO> polaganja,
+			GodinaStudijaDTO godinaStudija, List<PolaganjeDTO> polaganja,
 			OdbranaZavrsnogRadaDTO odbranaZavrsnogRada, ZavrsniRadDTO zavrsniRad, StudentDTO student,
-			ArrayList<PrijavaIspitaDTO> prijaveIspita) {
+			List<PrijavaIspitaDTO> prijaveIspita) {
 		super(id, deleted);
 		this.datumUpisa = datumUpisa;
 		this.brojIndeksa = brojIndeksa;
@@ -41,27 +42,42 @@ public class StudentNaGodiniDTO  extends BaseDTO implements Serializable{
 	}
 
 
-	public ArrayList<PolaganjeDTO> getPolaganja() {
+	public LocalDateTime getDatumUpisa() {
+		return datumUpisa;
+	}
+
+
+	public void setDatumUpisa(LocalDateTime datumUpisa) {
+		this.datumUpisa = datumUpisa;
+	}
+
+
+	public String getBrojIndeksa() {
+		return brojIndeksa;
+	}
+
+
+	public void setBrojIndeksa(String brojIndeksa) {
+		this.brojIndeksa = brojIndeksa;
+	}
+
+
+	public GodinaStudijaDTO getGodinaStudija() {
+		return godinaStudija;
+	}
+
+
+	public void setGodinaStudija(GodinaStudijaDTO godinaStudija) {
+		this.godinaStudija = godinaStudija;
+	}
+
+
+	public List<PolaganjeDTO> getPolaganja() {
 		return polaganja;
 	}
 
 
-	public ArrayList<PrijavaIspitaDTO> getPrijaveIspita() {
-		return prijaveIspita;
-	}
-
-
-	public void setPrijaveIspita(ArrayList<PrijavaIspitaDTO> prijaveIspita) {
-		this.prijaveIspita = prijaveIspita;
-	}
-
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-
-	public void setPolaganja(ArrayList<PolaganjeDTO> polaganja) {
+	public void setPolaganja(List<PolaganjeDTO> polaganja) {
 		this.polaganja = polaganja;
 	}
 
@@ -96,27 +112,18 @@ public class StudentNaGodiniDTO  extends BaseDTO implements Serializable{
 	}
 
 
-	public LocalDateTime getDatumUpisa() {
-		return datumUpisa;
+	public List<PrijavaIspitaDTO> getPrijaveIspita() {
+		return prijaveIspita;
 	}
 
-	public void setDatumUpisa(LocalDateTime datumUpisa) {
-		this.datumUpisa = datumUpisa;
+
+	public void setPrijaveIspita(List<PrijavaIspitaDTO> prijaveIspita) {
+		this.prijaveIspita = prijaveIspita;
 	}
 
-	public String getBrojIndeksa() {
-		return brojIndeksa;
-	}
 
-	public void setBrojIndeksa(String brojIndeksa) {
-		this.brojIndeksa = brojIndeksa;
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
-
-	public GodinaStudijaDTO getGodinaStudija() {
-		return godinaStudija;
-	}
-
-	public void setGodinaStudija(GodinaStudijaDTO godinaStudija) {
-		this.godinaStudija = godinaStudija;
-	}
+	
 }

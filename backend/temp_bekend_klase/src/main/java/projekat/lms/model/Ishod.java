@@ -5,7 +5,6 @@ import java.util.Set;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-//import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import projekat.lms.generics.BaseEntity;
 
@@ -19,7 +18,11 @@ public class Ishod extends BaseEntity { // Moguce ga je kreirati samo pri kreaci
 	
 	@OneToMany
 	private Set<NastavniMaterijal> nastavniMaterijali;
-	
+
+	public Ishod() {
+		super();
+	}
+
 	public Ishod(Long id, Boolean deleted, String opis, Set<ObrazovniCilj> obrazovniCiljevi,
 			Set<NastavniMaterijal> nastavniMaterijali) {
 		super(id, deleted);
@@ -28,16 +31,12 @@ public class Ishod extends BaseEntity { // Moguce ga je kreirati samo pri kreaci
 		this.nastavniMaterijali = nastavniMaterijali;
 	}
 
-	public Ishod() {
-		super();
-	}
-	
-	public Set<NastavniMaterijal> getNastavniMaterijali() {
-		return nastavniMaterijali;
+	public String getOpis() {
+		return opis;
 	}
 
-	public void setNastavniMaterijali(Set<NastavniMaterijal> nastavniMaterijali) {
-		this.nastavniMaterijali = nastavniMaterijali;
+	public void setOpis(String opis) {
+		this.opis = opis;
 	}
 
 	public Set<ObrazovniCilj> getObrazovniCiljevi() {
@@ -48,19 +47,13 @@ public class Ishod extends BaseEntity { // Moguce ga je kreirati samo pri kreaci
 		this.obrazovniCiljevi = obrazovniCiljevi;
 	}
 
-	public Long getId() {
-		return id;
+	public Set<NastavniMaterijal> getNastavniMaterijal() {
+		return nastavniMaterijali;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setNastavniMaterijal(Set<NastavniMaterijal> nastavniMaterijali) {
+		this.nastavniMaterijali = nastavniMaterijali;
 	}
-
-	public String getOpis() {
-		return opis;
-	}
-
-	public void setOpis(String opis) {
-		this.opis = opis;
-	}
+	
+	
 }

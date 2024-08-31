@@ -2,6 +2,7 @@ package projekat.lms.model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -20,10 +21,10 @@ public class Student extends BaseEntity{
 	private Adresa adresa;
 	
 	@OneToMany(mappedBy = "student") 
-	private ArrayList<StudentNaGodini> studentNaGodinama = new ArrayList<>();
+	private List<StudentNaGodini> studentNaGodinama = new ArrayList<>();
 
 	@OneToMany(mappedBy = "student")
-	private ArrayList<PohadjanjePredmeta> pohadjanjaPredmeta = new ArrayList<>();
+	private List<PohadjanjePredmeta> pohadjanjaPredmeta = new ArrayList<>();
 
 	public Student() {
 		super();
@@ -32,7 +33,7 @@ public class Student extends BaseEntity{
 	
 
 	public Student(Long id, Boolean deleted, String jmbg, LocalDate datumRodjenja, Adresa adresa,
-			ArrayList<StudentNaGodini> studentNaGodinama, ArrayList<PohadjanjePredmeta> pohadjanjaPredmeta) {
+			List<StudentNaGodini> studentNaGodinama, List<PohadjanjePredmeta> pohadjanjaPredmeta) {
 		super(id, deleted);
 		this.jmbg = jmbg;
 		this.datumRodjenja = datumRodjenja;
@@ -66,24 +67,21 @@ public class Student extends BaseEntity{
 	public void setAdresa(Adresa adresa) {
 		this.adresa = adresa;
 	}
-	
-	public ArrayList<StudentNaGodini> getStudentNaGodinama() {
+	public List<PohadjanjePredmeta> getPohadjanjaPredmeta() {
+		return pohadjanjaPredmeta;
+	}
+
+	public List<StudentNaGodini> getStudentNaGodinama() {
 		return studentNaGodinama;
 	}
 
-
-
-	public void setStudentNaGodinama(ArrayList<StudentNaGodini> studentNaGodinama) {
+	public void setStudentNaGodinama(List<StudentNaGodini> studentNaGodinama) {
 		this.studentNaGodinama = studentNaGodinama;
 	}
 
 
 
-	public ArrayList<PohadjanjePredmeta> getPohadjanjaPredmeta() {
-		return pohadjanjaPredmeta;
-	}
-
-	public void setPohadjanjaPredmeta(ArrayList<PohadjanjePredmeta> pohadjanjaPredmeta) {
+	public void setPohadjanjaPredmeta(List<PohadjanjePredmeta> pohadjanjaPredmeta) {
 		this.pohadjanjaPredmeta = pohadjanjaPredmeta;
 	}
 	

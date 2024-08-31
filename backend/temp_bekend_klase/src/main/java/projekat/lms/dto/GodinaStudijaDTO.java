@@ -9,7 +9,7 @@ import projekat.lms.generics.BaseDTO;
 
 public class GodinaStudijaDTO  extends BaseDTO implements Serializable{
 	private static final long serialVersionUID = 2283502693035968042L;
-	private LocalDate godina;
+	private Integer godina;
 	private LocalDate pocetak;
 	private LocalDate kraj;
 	
@@ -20,8 +20,7 @@ public class GodinaStudijaDTO  extends BaseDTO implements Serializable{
 		super();
 	}
 	
-
-	public GodinaStudijaDTO(Long id, Boolean deleted, LocalDate godina, LocalDate pocetak, LocalDate kraj,
+	public GodinaStudijaDTO(Long id, Boolean deleted, Integer godina, LocalDate pocetak, LocalDate kraj,
 			StudijskiProgramDTO studijskiProgram, Set<PredmetDTO> predmeti) {
 		super(id, deleted);
 		this.godina = godina;
@@ -31,17 +30,13 @@ public class GodinaStudijaDTO  extends BaseDTO implements Serializable{
 		this.predmeti = predmeti;
 	}
 
-
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
-
-
 	public StudijskiProgramDTO getStudijskiProgram() {
 		return studijskiProgram;
 	}
-
 
 	public void setStudijskiProgram(StudijskiProgramDTO studijskiProgram) {
 		this.studijskiProgram = studijskiProgram;
@@ -55,12 +50,15 @@ public class GodinaStudijaDTO  extends BaseDTO implements Serializable{
 	public void setPredmeti(Set<PredmetDTO> predmeti) {
 		this.predmeti = predmeti;
 	}
-	public LocalDate getGodina() {
+	
+	public Integer getGodina() {
 		return godina;
 	}
-	public void setGodina(LocalDate godina) {
+
+	public void setGodina(Integer godina) {
 		this.godina = godina;
 	}
+
 	public LocalDate getPocetak() {
 		return pocetak;
 	}

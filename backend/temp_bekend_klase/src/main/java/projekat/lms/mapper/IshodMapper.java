@@ -10,5 +10,4 @@ public interface IshodMapper  extends BaseMapper<Ishod, IshodDTO, Long>{
 	Ishod toModel(IshodDTO dto);
 	
 	IshodDTO toDTO(Ishod model);
-	
 }

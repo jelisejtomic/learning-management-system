@@ -10,47 +10,42 @@ public class IshodDTO extends BaseDTO implements Serializable {
 	private static final long serialVersionUID = 2196452011931993494L;
 	private String opis;
 	private Set<ObrazovniCiljDTO> obrazovniCiljevi = new HashSet<>();
-	private Set<NastavniMaterijalDTO> nastavniMaterijal = new HashSet<>();
-
+	private Set<NastavniMaterijalDTO> nastavniMaterijali = new HashSet<>();
+	
 	public IshodDTO() {
 		super();
 	}
-
-	public IshodDTO(Long id, Boolean deleted, Long id2, String opis, Set<ObrazovniCiljDTO> obrazovniCiljevi,
-			Set<NastavniMaterijalDTO> nastavniMaterijal) {
+	
+	public IshodDTO(Long id, Boolean deleted, String opis, Set<ObrazovniCiljDTO> obrazovniCiljevi,
+			Set<NastavniMaterijalDTO> nastavniMaterijali) {
 		super(id, deleted);
-		id = id2;
 		this.opis = opis;
 		this.obrazovniCiljevi = obrazovniCiljevi;
-		this.nastavniMaterijal = nastavniMaterijal;
+		this.nastavniMaterijali = nastavniMaterijali;
 	}
-
+	
+	public String getOpis() {
+		return opis;
+	}
+	public void setOpis(String opis) {
+		this.opis = opis;
+	}
 	public Set<ObrazovniCiljDTO> getObrazovniCiljevi() {
 		return obrazovniCiljevi;
 	}
-
 	public void setObrazovniCiljevi(Set<ObrazovniCiljDTO> obrazovniCiljevi) {
 		this.obrazovniCiljevi = obrazovniCiljevi;
 	}
-
+	public Set<NastavniMaterijalDTO> getNastavniMaterijal() {
+		return nastavniMaterijali;
+	}
+	public void setNastavniMaterijal(Set<NastavniMaterijalDTO> nastavniMaterijali) {
+		this.nastavniMaterijali = nastavniMaterijali;
+	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
-	public String getOpis() {
-		return opis;
-	}
-
-	public void setOpis(String opis) {
-		this.opis = opis;
-	}
-
-	public Set<NastavniMaterijalDTO> getNastavniMaterijal() {
-		return nastavniMaterijal;
-	}
-
-	public void setNastavniMaterijal(Set<NastavniMaterijalDTO> nastavniMaterijal) {
-		this.nastavniMaterijal = nastavniMaterijal;
-	}
+	
 
 }

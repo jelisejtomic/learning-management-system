@@ -1,6 +1,6 @@
 package projekat.lms.model;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import jakarta.persistence.Column;
@@ -14,7 +14,7 @@ public class RealizacijaPredmeta extends BaseEntity{
 	@Column(nullable = false, columnDefinition = "Integer")
 	private Integer godinaIzvodjenja;
 	
-	@OneToMany
+	@OneToMany(mappedBy = "realizacijaPredmeta")
 	private Set<NastavnikNaRealizaciji> nastavnici;
 	
 	@ManyToOne
@@ -24,13 +24,13 @@ public class RealizacijaPredmeta extends BaseEntity{
 	private Set<TerminNastave> terminiNastave;
 	
 	@OneToMany
-	private ArrayList<Obavestenje> obavestenja;
+	private List<Obavestenje> obavestenja;
 	
 	@OneToMany
-	private ArrayList<EvaluacijaZnanja> evaluacijeZnanja;
+	private List<EvaluacijaZnanja> evaluacijeZnanja;
 	
 	@OneToMany(mappedBy = "realizacijaPredmeta")
-	private ArrayList<PrijavaIspita> prijaveIspita;
+	private List<PrijavaIspita> prijaveIspita;
 	
 	public RealizacijaPredmeta() {
 		super();
@@ -39,8 +39,8 @@ public class RealizacijaPredmeta extends BaseEntity{
 	
 	public RealizacijaPredmeta(Long id, Boolean deleted, Integer godinaIzvodjenja,
 			Set<NastavnikNaRealizaciji> nastavnici, Predmet predmet, Set<TerminNastave> terminiNastave,
-			ArrayList<Obavestenje> obavestenja, ArrayList<EvaluacijaZnanja> evaluacijeZnanja,
-			ArrayList<PrijavaIspita> prijaveIspita) {
+			List<Obavestenje> obavestenja, List<EvaluacijaZnanja> evaluacijeZnanja,
+			List<PrijavaIspita> prijaveIspita) {
 		super(id, deleted);
 		this.godinaIzvodjenja = godinaIzvodjenja;
 		this.nastavnici = nastavnici;
@@ -52,21 +52,21 @@ public class RealizacijaPredmeta extends BaseEntity{
 	}
 
 
-	public ArrayList<PrijavaIspita> getPrijaveIspita() {
+	public List<PrijavaIspita> getPrijaveIspita() {
 		return prijaveIspita;
 	}
 
 
-	public void setPrijaveIspita(ArrayList<PrijavaIspita> prijaveIspita) {
+	public void setPrijaveIspita(List<PrijavaIspita> prijaveIspita) {
 		this.prijaveIspita = prijaveIspita;
 	}
 
 
-	public ArrayList<EvaluacijaZnanja> getEvaluacijeZnanja() {
+	public List<EvaluacijaZnanja> getEvaluacijeZnanja() {
 		return evaluacijeZnanja;
 	}
 
-	public void setEvaluacijeZnanja(ArrayList<EvaluacijaZnanja> evaluacijeZnanja) {
+	public void setEvaluacijeZnanja(List<EvaluacijaZnanja> evaluacijeZnanja) {
 		this.evaluacijeZnanja = evaluacijeZnanja;
 	}
 
@@ -94,11 +94,11 @@ public class RealizacijaPredmeta extends BaseEntity{
 		this.terminiNastave = terminiNastave;
 	}
 
-	public ArrayList<Obavestenje> getObavestenja() {
+	public List<Obavestenje> getObavestenja() {
 		return obavestenja;
 	}
 
-	public void setObavestenja(ArrayList<Obavestenje> obavestenja) {
+	public void setObavestenja(List<Obavestenje> obavestenja) {
 		this.obavestenja = obavestenja;
 	}
 

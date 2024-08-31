@@ -2,6 +2,7 @@ package projekat.lms.model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -22,7 +23,7 @@ public class StudentNaGodini extends BaseEntity{
 	private GodinaStudija godinaStudija;
 	
 	@OneToMany(mappedBy = "studentNaGodini")
-	private ArrayList<Polaganje> polaganja = new ArrayList<>();
+	private List<Polaganje> polaganja = new ArrayList<Polaganje>();
 	
 	@OneToOne
 	private OdbranaZavrsnogRada odbranaZavrsnogRada;
@@ -34,7 +35,7 @@ public class StudentNaGodini extends BaseEntity{
 	private Student student;
 	
 	@OneToMany(mappedBy = "studentNaGodini")
-	private ArrayList<PrijavaIspita> prijaveIspita;
+	private List<PrijavaIspita> prijaveIspita;
 	
 
 	public StudentNaGodini() {
@@ -43,8 +44,8 @@ public class StudentNaGodini extends BaseEntity{
 	
 	
 	public StudentNaGodini(Long id, Boolean deleted, LocalDate datumUpisa, String brojIndeksa,
-			GodinaStudija godinaStudija, ArrayList<Polaganje> polaganja, OdbranaZavrsnogRada odbranaZavrsnogRada,
-			ZavrsniRad zavrsniRad, Student student, ArrayList<PrijavaIspita> prijaveIspita) {
+			GodinaStudija godinaStudija, List<Polaganje> polaganja, OdbranaZavrsnogRada odbranaZavrsnogRada,
+			ZavrsniRad zavrsniRad, Student student, List<PrijavaIspita> prijaveIspita) {
 		super(id, deleted);
 		this.datumUpisa = datumUpisa;
 		this.brojIndeksa = brojIndeksa;
@@ -57,71 +58,85 @@ public class StudentNaGodini extends BaseEntity{
 	}
 
 
-	public ArrayList<PrijavaIspita> getPrijaveIspita() {
-		return prijaveIspita;
-	}
-
-
-	public void setPrijaveIspita(ArrayList<PrijavaIspita> prijaveIspita) {
-		this.prijaveIspita = prijaveIspita;
-	}
-
-
-	public ArrayList<Polaganje> getPolaganja() {
-		return polaganja;
-	}
-
-	public void setPolaganja(ArrayList<Polaganje> polaganja) {
-		this.polaganja = polaganja;
-	}
-
-	public OdbranaZavrsnogRada getOdbranaZavrsnogRada() {
-		return odbranaZavrsnogRada;
-	}
-
-	public void setOdbranaZavrsnogRada(OdbranaZavrsnogRada odbranaZavrsnogRada) {
-		this.odbranaZavrsnogRada = odbranaZavrsnogRada;
-	}
-
-	public ZavrsniRad getZavrsniRad() {
-		return zavrsniRad;
-	}
-
-	public void setZavrsniRad(ZavrsniRad zavrsniRad) {
-		this.zavrsniRad = zavrsniRad;
-	}
-
-	public Student getStudent() {
-		return student;
-	}
-
-	public void setStudent(Student student) {
-		this.student = student;
-	}
-
 	public LocalDate getDatumUpisa() {
 		return datumUpisa;
 	}
+
 
 	public void setDatumUpisa(LocalDate datumUpisa) {
 		this.datumUpisa = datumUpisa;
 	}
 
+
 	public String getBrojIndeksa() {
 		return brojIndeksa;
 	}
+
 
 	public void setBrojIndeksa(String brojIndeksa) {
 		this.brojIndeksa = brojIndeksa;
 	}
 
+
 	public GodinaStudija getGodinaStudija() {
 		return godinaStudija;
 	}
 
+
 	public void setGodinaStudija(GodinaStudija godinaStudija) {
 		this.godinaStudija = godinaStudija;
 	}
+
+
+	public List<Polaganje> getPolaganja() {
+		return polaganja;
+	}
+
+
+	public void setPolaganja(List<Polaganje> polaganja) {
+		this.polaganja = polaganja;
+	}
+
+
+	public OdbranaZavrsnogRada getOdbranaZavrsnogRada() {
+		return odbranaZavrsnogRada;
+	}
+
+
+	public void setOdbranaZavrsnogRada(OdbranaZavrsnogRada odbranaZavrsnogRada) {
+		this.odbranaZavrsnogRada = odbranaZavrsnogRada;
+	}
+
+
+	public ZavrsniRad getZavrsniRad() {
+		return zavrsniRad;
+	}
+
+
+	public void setZavrsniRad(ZavrsniRad zavrsniRad) {
+		this.zavrsniRad = zavrsniRad;
+	}
+
+
+	public Student getStudent() {
+		return student;
+	}
+
+
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+
+
+	public List<PrijavaIspita> getPrijaveIspita() {
+		return prijaveIspita;
+	}
+
+
+	public void setPrijaveIspita(List<PrijavaIspita> prijaveIspita) {
+		this.prijaveIspita = prijaveIspita;
+	}
+
 	
 	
 }

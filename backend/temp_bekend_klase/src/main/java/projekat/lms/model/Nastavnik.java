@@ -5,7 +5,7 @@ import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToMany;
 import projekat.lms.generics.BaseEntity;
 
 @Entity
@@ -16,7 +16,7 @@ public class Nastavnik extends BaseEntity{
 	@Column(columnDefinition = "TEXT")
 	private String biografija;
 	
-	@OneToMany
+	@ManyToMany
 	private Set<Zvanje> zvanja;
 
 	public Nastavnik() {

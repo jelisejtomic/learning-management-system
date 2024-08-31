@@ -1,6 +1,6 @@
 package projekat.lms.model;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -23,7 +23,7 @@ public class NastavnikNaRealizaciji extends BaseEntity{
 	private RealizacijaPredmeta realizacijaPredmeta;
 	
 	@OneToMany
-	private ArrayList<Obavestenje> obavestenja;
+	private List<Obavestenje> obavestenja;
 	
 	
 	public NastavnikNaRealizaciji() {
@@ -33,7 +33,7 @@ public class NastavnikNaRealizaciji extends BaseEntity{
 	
 
 	public NastavnikNaRealizaciji(Long id, Boolean deleted, Integer brojCasova, Nastavnik predavac,
-			TipNastave tipNastave, RealizacijaPredmeta realizacijaPredmeta, ArrayList<Obavestenje> obavestenja) {
+			TipNastave tipNastave, RealizacijaPredmeta realizacijaPredmeta, List<Obavestenje> obavestenja) {
 		super(id, deleted);
 		this.brojCasova = brojCasova;
 		this.predavac = predavac;
@@ -64,12 +64,19 @@ public class NastavnikNaRealizaciji extends BaseEntity{
 	public void setRealizacijaPredmeta(RealizacijaPredmeta realizacijaPredmeta) {
 		this.realizacijaPredmeta = realizacijaPredmeta;
 	}
-	public ArrayList<Obavestenje> getObavestenja() {
+	
+	public List<Obavestenje> getObavestenja() {
 		return obavestenja;
 	}
-	public void setObavestenja(ArrayList<Obavestenje> obavestenja) {
+
+
+
+	public void setObavestenja(List<Obavestenje> obavestenja) {
 		this.obavestenja = obavestenja;
 	}
+
+
+
 	public Integer getBrojCasova() {
 		return brojCasova;
 	}

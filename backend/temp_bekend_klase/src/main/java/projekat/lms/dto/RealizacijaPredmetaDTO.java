@@ -1,7 +1,7 @@
 package projekat.lms.dto;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import projekat.lms.generics.BaseDTO;
@@ -15,9 +15,9 @@ public class RealizacijaPredmetaDTO  extends BaseDTO implements Serializable{
 	private Set<NastavnikNaRealizacijiDTO> nastavnici;
 	private PredmetDTO predmet;
 	private Set<TerminNastaveDTO> terminiNastave;
-	private ArrayList<ObavestenjeDTO> obavestenja;
-	private ArrayList<EvaluacijaZnanjaDTO> evaluacijeZnanja;
-	private ArrayList<PrijavaIspitaDTO> prijaveIspita;
+	private List<ObavestenjeDTO> obavestenja;
+	private List<EvaluacijaZnanjaDTO> evaluacijeZnanja;
+	private List<PrijavaIspitaDTO> prijaveIspita;
 	
 	public RealizacijaPredmetaDTO() {
 		super();
@@ -25,8 +25,8 @@ public class RealizacijaPredmetaDTO  extends BaseDTO implements Serializable{
 	
 	public RealizacijaPredmetaDTO(Long id, Boolean deleted, int godinaIzvodjenja,
 			Set<NastavnikNaRealizacijiDTO> nastavnici, PredmetDTO predmet, Set<TerminNastaveDTO> terminiNastave,
-			ArrayList<ObavestenjeDTO> obavestenja, ArrayList<EvaluacijaZnanjaDTO> evaluacijeZnanja,
-			ArrayList<PrijavaIspitaDTO> prijaveIspita) {
+			List<ObavestenjeDTO> obavestenja, List<EvaluacijaZnanjaDTO> evaluacijeZnanja,
+			List<PrijavaIspitaDTO> prijaveIspita) {
 		super(id, deleted);
 		this.godinaIzvodjenja = godinaIzvodjenja;
 		this.nastavnici = nastavnici;
@@ -37,11 +37,11 @@ public class RealizacijaPredmetaDTO  extends BaseDTO implements Serializable{
 		this.prijaveIspita = prijaveIspita;
 	}
 
-	public ArrayList<PrijavaIspitaDTO> getPrijaveIspita() {
+	public List<PrijavaIspitaDTO> getPrijaveIspita() {
 		return prijaveIspita;
 	}
 
-	public void setPrijaveIspita(ArrayList<PrijavaIspitaDTO> prijaveIspita) {
+	public void setPrijaveIspita(List<PrijavaIspitaDTO> prijaveIspita) {
 		this.prijaveIspita = prijaveIspita;
 	}
 
@@ -61,19 +61,19 @@ public class RealizacijaPredmetaDTO  extends BaseDTO implements Serializable{
 		this.terminiNastave = terminiNastave;
 	}
 
-	public ArrayList<ObavestenjeDTO> getObavestenja() {
+	public List<ObavestenjeDTO> getObavestenja() {
 		return obavestenja;
 	}
 
-	public void setObavestenja(ArrayList<ObavestenjeDTO> obavestenja) {
+	public void setObavestenja(List<ObavestenjeDTO> obavestenja) {
 		this.obavestenja = obavestenja;
 	}
 
-	public ArrayList<EvaluacijaZnanjaDTO> getEvaluacijeZnanja() {
+	public List<EvaluacijaZnanjaDTO> getEvaluacijeZnanja() {
 		return evaluacijeZnanja;
 	}
 
-	public void setEvaluacijeZnanja(ArrayList<EvaluacijaZnanjaDTO> evaluacijeZnanja) {
+	public void setEvaluacijeZnanja(List<EvaluacijaZnanjaDTO> evaluacijeZnanja) {
 		this.evaluacijeZnanja = evaluacijeZnanja;
 	}
 	public int getGodinaIzvodjenja() {

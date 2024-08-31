@@ -1,7 +1,7 @@
 package projekat.lms.dto;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.List;
 
 import projekat.lms.generics.BaseDTO;
 
@@ -11,7 +11,7 @@ public class NastavnikNaRealizacijiDTO  extends BaseDTO implements Serializable{
 	
 	private TipNastaveDTO tipNastave;
 	private RealizacijaPredmetaDTO realizacijaPredmeta;
-	private ArrayList<ObavestenjeDTO> obavestenja;
+	private List<ObavestenjeDTO> obavestenja;
 	private NastavnikDTO predavac;
 	
 	public NastavnikNaRealizacijiDTO() {
@@ -19,7 +19,7 @@ public class NastavnikNaRealizacijiDTO  extends BaseDTO implements Serializable{
 	}
 	
 	public NastavnikNaRealizacijiDTO(Long id, Boolean deleted, Long id2, int brojCasova, TipNastaveDTO tipNastave,
-			RealizacijaPredmetaDTO realizacijaPredmeta, ArrayList<ObavestenjeDTO> obavestenja, NastavnikDTO predavac) {
+			RealizacijaPredmetaDTO realizacijaPredmeta, List<ObavestenjeDTO> obavestenja, NastavnikDTO predavac) {
 		super(id, deleted);
 		id = id2;
 		this.brojCasova = brojCasova;
@@ -60,10 +60,10 @@ public class NastavnikNaRealizacijiDTO  extends BaseDTO implements Serializable{
 	public void setRealizacijaPredmeta(RealizacijaPredmetaDTO realizacijaPredmeta) {
 		this.realizacijaPredmeta = realizacijaPredmeta;
 	}
-	public ArrayList<ObavestenjeDTO> getObavestenja() {
+	public List<ObavestenjeDTO> getObavestenja() {
 		return obavestenja;
 	}
-	public void setObavestenja(ArrayList<ObavestenjeDTO> obavestenja) {
+	public void setObavestenja(List<ObavestenjeDTO> obavestenja) {
 		this.obavestenja = obavestenja;
 	}
 	

@@ -5,14 +5,14 @@ import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import projekat.lms.generics.BaseEntity;
 
 @Entity
 public class GodinaStudija extends BaseEntity{
-	@Column(nullable = false, columnDefinition = "DATE")
-	private LocalDate godina;
+	@Column(nullable = false)
+	private Integer godina;
 	
 	@Column(nullable = false, columnDefinition = "DATE")
 	private LocalDate pocetak;
@@ -23,7 +23,7 @@ public class GodinaStudija extends BaseEntity{
 	@ManyToOne(optional = false)
 	private StudijskiProgram studijskiProgram;
 	
-	@OneToMany
+	@ManyToMany
 	private Set<Predmet> predmeti;
 	
 	
@@ -31,9 +31,7 @@ public class GodinaStudija extends BaseEntity{
 		super();
 	}
 
-	
-
-	public GodinaStudija(Long id, Boolean deleted, LocalDate godina, LocalDate pocetak, LocalDate kraj,
+	public GodinaStudija(Long id, Boolean deleted, Integer godina, LocalDate pocetak, LocalDate kraj,
 			StudijskiProgram studijskiProgram, Set<Predmet> predmeti) {
 		super(id, deleted);
 		this.godina = godina;
@@ -42,8 +40,6 @@ public class GodinaStudija extends BaseEntity{
 		this.studijskiProgram = studijskiProgram;
 		this.predmeti = predmeti;
 	}
-
-
 
 	public StudijskiProgram getStudijskiProgram() {
 		return studijskiProgram;
@@ -57,12 +53,14 @@ public class GodinaStudija extends BaseEntity{
 	public void setPredmeti(Set<Predmet> predmeti) {
 		this.predmeti = predmeti;
 	}
-	public LocalDate getGodina() {
+	public Integer getGodina() {
 		return godina;
 	}
-	public void setGodina(LocalDate godina) {
+
+	public void setGodina(Integer godina) {
 		this.godina = godina;
 	}
+
 	public LocalDate getPocetak() {
 		return pocetak;
 	}
