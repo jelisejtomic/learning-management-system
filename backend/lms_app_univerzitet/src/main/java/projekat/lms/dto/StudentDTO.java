@@ -7,28 +7,37 @@ import java.util.List;
 
 import projekat.lms.generics.BaseDTO;
 
-
-public class StudentDTO  extends BaseDTO implements Serializable{
+public class StudentDTO extends BaseDTO implements Serializable {
 	private static final long serialVersionUID = 6564050817281102873L;
+	private RegistrovaniKorisnikDTO korisnik;
 	private String jmbg;
 	private LocalDate datumRodjenja;
-	
 	private AdresaDTO adresa;
 	private List<StudentNaGodiniDTO> studentNaGodinama = new ArrayList<>();
-	private List<PohadjanjePredmetaDTO> pohadjanjaPredmeta = new ArrayList<PohadjanjePredmetaDTO>();
-	
+	private List<PohadjanjePredmetaDTO> pohadjanjaPredmeta = new ArrayList<>();
+
 	public StudentDTO() {
 		super();
 	}
-	
-	public StudentDTO(Long id, Boolean deleted, String jmbg, LocalDate datumRodjenja, AdresaDTO adresa,
-			List<StudentNaGodiniDTO> studentNaGodinama, List<PohadjanjePredmetaDTO> pohadjanjaPredmeta) {
+
+	public StudentDTO(Long id, Boolean deleted, RegistrovaniKorisnikDTO korisnik, String jmbg, LocalDate datumRodjenja,
+			AdresaDTO adresa, List<StudentNaGodiniDTO> studentNaGodinama,
+			List<PohadjanjePredmetaDTO> pohadjanjaPredmeta) {
 		super(id, deleted);
+		this.korisnik = korisnik;
 		this.jmbg = jmbg;
 		this.datumRodjenja = datumRodjenja;
 		this.adresa = adresa;
 		this.studentNaGodinama = studentNaGodinama;
 		this.pohadjanjaPredmeta = pohadjanjaPredmeta;
+	}
+
+	public RegistrovaniKorisnikDTO getKorisnik() {
+		return korisnik;
+	}
+
+	public void setKorisnik(RegistrovaniKorisnikDTO korisnik) {
+		this.korisnik = korisnik;
 	}
 
 	public String getJmbg() {
@@ -74,6 +83,5 @@ public class StudentDTO  extends BaseDTO implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
-	
+
 }

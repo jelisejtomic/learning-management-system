@@ -1,6 +1,5 @@
 package projekat.lms.model;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import jakarta.persistence.CascadeType;

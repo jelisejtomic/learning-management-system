@@ -6,21 +6,25 @@ import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import projekat.lms.generics.BaseEntity;
 
 @Entity
-public class Student extends BaseEntity{
+public class Student extends BaseEntity {
+	@ManyToOne
+	private RegistrovaniKorisnik korisnik;
+
 	@Column(columnDefinition = "VARCHAR(13)")
 	private String jmbg;
-	
+
 	private LocalDate datumRodjenja;
-	
+
 	@OneToOne
 	private Adresa adresa;
-	
-	@OneToMany(mappedBy = "student") 
+
+	@OneToMany(mappedBy = "student")
 	private List<StudentNaGodini> studentNaGodinama = new ArrayList<>();
 
 	@OneToMany(mappedBy = "student")
@@ -30,11 +34,10 @@ public class Student extends BaseEntity{
 		super();
 	}
 
-	
-
-	public Student(Long id, Boolean deleted, String jmbg, LocalDate datumRodjenja, Adresa adresa,
-			List<StudentNaGodini> studentNaGodinama, List<PohadjanjePredmeta> pohadjanjaPredmeta) {
+	public Student(Long id, Boolean deleted, RegistrovaniKorisnik korisnik, String jmbg, LocalDate datumRodjenja,
+			Adresa adresa, List<StudentNaGodini> studentNaGodinama, List<PohadjanjePredmeta> pohadjanjaPredmeta) {
 		super(id, deleted);
+		this.korisnik = korisnik;
 		this.jmbg = jmbg;
 		this.datumRodjenja = datumRodjenja;
 		this.adresa = adresa;
@@ -42,7 +45,13 @@ public class Student extends BaseEntity{
 		this.pohadjanjaPredmeta = pohadjanjaPredmeta;
 	}
 
+	public RegistrovaniKorisnik getKorisnik() {
+		return korisnik;
+	}
 
+	public void setKorisnik(RegistrovaniKorisnik korisnik) {
+		this.korisnik = korisnik;
+	}
 
 	public String getJmbg() {
 		return jmbg;
@@ -67,6 +76,7 @@ public class Student extends BaseEntity{
 	public void setAdresa(Adresa adresa) {
 		this.adresa = adresa;
 	}
+
 	public List<PohadjanjePredmeta> getPohadjanjaPredmeta() {
 		return pohadjanjaPredmeta;
 	}
@@ -79,11 +89,9 @@ public class Student extends BaseEntity{
 		this.studentNaGodinama = studentNaGodinama;
 	}
 
-
-
 	public void setPohadjanjaPredmeta(List<PohadjanjePredmeta> pohadjanjaPredmeta) {
 		this.pohadjanjaPredmeta = pohadjanjaPredmeta;
 	}
-	
-	
+
 }
+
