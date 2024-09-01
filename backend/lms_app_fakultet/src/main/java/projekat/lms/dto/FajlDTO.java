@@ -11,17 +11,17 @@ public class FajlDTO  extends BaseDTO implements Serializable{
 	private String opis;
 	private String url;
 	private String tip;
-	private LocalDateTime createdAt;
+	private LocalDateTime vremeKreiranja;
 	public FajlDTO() {
 		super();
 	}
 	
-	public FajlDTO(Long id, Boolean deleted, String opis, String url, String tip, LocalDateTime createdAt) {
+	public FajlDTO(Long id, Boolean deleted, String opis, String url, String tip, LocalDateTime vremeKreiranja) {
 		super(id, deleted);
 		this.opis = opis;
 		this.url = url;
 		this.tip = tip;
-		this.createdAt = createdAt;
+		this.vremeKreiranja = vremeKreiranja;
 	}
 
 	public static long getSerialversionuid() {
@@ -46,11 +46,11 @@ public class FajlDTO  extends BaseDTO implements Serializable{
 	public void setTip(String tip) {
 		this.tip = tip;
 	}
-	public LocalDateTime getCreatedAt() {
-		return createdAt;
+	public LocalDateTime getVremeKreiranja() {
+		return vremeKreiranja;
 	}
-	public void setCreatedAt(LocalDateTime createdAt) {
-		this.createdAt = createdAt;
+	public void setVremeKreiranja(LocalDateTime vremeKreiranja) {
+		this.vremeKreiranja = vremeKreiranja;
 	}
 	
 	

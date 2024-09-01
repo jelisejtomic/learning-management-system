@@ -59,11 +59,11 @@ public class Fajl extends BaseEntity{
 		this.tip = tip;
 	}
 
-	public LocalDateTime getNapravljeno() {
+	public LocalDateTime getVremeKreiranja() {
 		return vremeKreiranja;
 	}
 
-	public void setNapravljeno(LocalDateTime vremeKreiranja) {
+	public void setVremeKreiranja(LocalDateTime vremeKreiranja) {
 		this.vremeKreiranja = vremeKreiranja;
 	} 
 	
