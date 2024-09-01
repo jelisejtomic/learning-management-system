@@ -6,5 +6,5 @@ import { BaseService } from './base.service';
     providedIn: 'root',
 })
 export class InstrumentEvaluacijeService extends BaseService<InstrumentEvaluacije> {
-    override url: string = `${this.url}/instrumentiEvaluacije`;
+    override url: string = `${this.url}/ispit/instrumentiEvaluacije`;
 }

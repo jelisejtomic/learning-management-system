@@ -6,6 +6,5 @@ import { BaseService } from './base.service';
     providedIn: 'root',
 })
 export class KontaktService extends BaseService<Kontakt> {
-    override url: string = `${this.url}/kontakti`;
+    override url: string = `${this.url}/univerzitet/kontakti`;
 }
-                

@@ -6,5 +6,5 @@ import { BaseService } from './base.service';
     providedIn: 'root',
 })
 export class PohadjanjePredmetaService extends BaseService<PohadjanjePredmeta> {
-    override url: string = `${this.url}/pohadjanjaPredmeta`;
+    override url: string = `${this.url}/fakultet/pohadjanjaPredmeta`;
 }

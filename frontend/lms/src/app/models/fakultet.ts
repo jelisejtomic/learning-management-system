@@ -8,7 +8,7 @@ import { Univerzitet } from "./univerzitet";
 export interface Fakultet extends Base {
     naziv?: string;
     dekan?: Nastavnik;
-    adresa?: Adresa; //!proveriti
+    adresa?: Adresa;
     kontakti?: Kontakt[];
     studijskiProgrami?: StudijskiProgram[];
     univerzitet?: Univerzitet;

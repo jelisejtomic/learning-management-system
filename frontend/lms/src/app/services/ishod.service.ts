@@ -6,6 +6,5 @@ import { BaseService } from './base.service';
     providedIn: 'root',
 })
 export class IshodService extends BaseService<Ishod> {
-    override url: string = `${this.url}/ishodi`;
+    override url: string = `${this.url}/fakultet/ishodi`;
 }
-                

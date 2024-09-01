@@ -6,5 +6,4 @@ export interface NastavniMaterijal extends Base {
     godinaIzdavanja?: number;
     autori?: string[];
     fajlovi?: Fajl[];
-
 }

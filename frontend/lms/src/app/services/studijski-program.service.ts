@@ -6,6 +6,5 @@ import { BaseService } from './base.service';
     providedIn: 'root',
 })
 export class StudijskiProgramService extends BaseService<StudijskiProgram> {
-    override url: string = `${this.url}/studijskiProgrami`;
+    override url: string = `${this.url}/fakultet/studijskiProgrami`;
 }
-                

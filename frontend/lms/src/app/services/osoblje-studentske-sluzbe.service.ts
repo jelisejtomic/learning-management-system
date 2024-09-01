@@ -6,5 +6,5 @@ import { BaseService } from './base.service';
     providedIn: 'root',
 })
 export class OsobljeStudentskeSluzbeService extends BaseService<OsobljeStudentskeSluzbe> {
-    override url: string = `${this.url}/studentskaSluzba`;
+    override url: string = `${this.url}/security/osobljeSluzbe`;
 }

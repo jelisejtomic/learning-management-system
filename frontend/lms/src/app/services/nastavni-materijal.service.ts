@@ -6,6 +6,5 @@ import { BaseService } from './base.service';
     providedIn: 'root',
 })
 export class NastavniMaterijalService extends BaseService<NastavniMaterijal> {
-    override url: string = `${this.url}/nastavniMaterijali`;
+    override url: string = `${this.url}/fakultet/nastavniMaterijali`;
 }
-                

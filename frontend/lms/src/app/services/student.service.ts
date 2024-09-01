@@ -6,6 +6,5 @@ import { BaseService } from './base.service';
     providedIn: 'root',
 })
 export class StudentService extends BaseService<Student> {
-    override url: string = `${this.url}/studenti`;
+    override url: string = `${this.url}/security/studenti`;
 }
-                

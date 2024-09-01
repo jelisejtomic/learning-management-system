@@ -6,5 +6,5 @@ import { BaseService } from './base.service';
     providedIn: 'root',
 })
 export class TerminNastaveService extends BaseService<TerminNastave> {
-    override url: string = `${this.url}/terminiNastave`;
+    override url: string = `${this.url}/fakultet/terminiNastave`;
 }

@@ -6,5 +6,5 @@ import { BaseService } from './base.service';
     providedIn: 'root',
 })
 export class DrzavaService extends BaseService<Drzava> {
-    override url: string = `${this.url}/drzave`;
+    override url: string = `${this.url}/univerzitet/drzave`;
 }

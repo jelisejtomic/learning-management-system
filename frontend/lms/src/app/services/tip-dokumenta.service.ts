@@ -6,5 +6,5 @@ import { BaseService } from './base.service';
     providedIn: 'root',
 })
 export class TipDokumentaService extends BaseService<TipDokumenta> {
-    override url: string = `${this.url}/tipoviDokumenta`;
+    override url: string = `${this.url}/univerzitet/tipoviDokumenta`;
 }

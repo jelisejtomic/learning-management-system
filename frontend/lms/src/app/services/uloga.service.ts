@@ -6,5 +6,5 @@ import { BaseService } from './base.service';
     providedIn: 'root',
 })
 export class UlogaService extends BaseService<Uloga> {
-    override url: string = `${this.url}/uloge`;
+    override url: string = `${this.url}/security/uloge`;
 }
