@@ -95,7 +95,7 @@
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<classpathPrefix>lib/</classpathPrefix>
-							<mainClass>lms_app_security.App</mainClass>
+							<mainClass>projekat.lms.App</mainClass>
 						</manifest>
 					</archive>
 				</configuration>

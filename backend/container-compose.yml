@@ -21,7 +21,7 @@ services:
     extra_hosts:
       - "host.containers.internal:${HOST_IP}"
   
-  lms-security:
+  lms-app-security:
     build:
       context: ${APP_SECURITY_CONTEXT}
       dockerfile: Containerfile
