@@ -1,0 +1,15 @@
+.first-image{
+    background-image: url("../../../assets/img/uni1.jpg");
+    background-color: lightslategrey;
+    background-attachment: fixed;
+}
+
+.second-image{
+    background-image: url("../../../assets/img/uni2.jpg");
+    background-color: lightslategrey;
+}
+
+.rektor{
+    background-image: url("../../../assets/img/rektor.png");
+    background-color: lightslategrey;
+}
