@@ -1,0 +1,17 @@
+<div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl p-4">
+    <div class="uppercase tracking-wide text-sm text-purple-400 font-semibold mb-4">Opšti kontakt</div>
+    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+        <mat-tab *ngFor="let adresa of univerzitet?.adrese" label="{{adresa.ulica}}">
+            <div class="mt-2 mb-2">
+                <span class="font-semibold">{{univerzitet?.naziv}}</span>
+            </div>
+            <div class="mb-2">
+                <span>Adresa: </span> <span class="font-medium">{{adresa.ulica}} {{adresa.broj}},
+                    {{adresa.mesto?.naziv}}</span>
+            </div>
+            <div *ngFor="let kontakt of univerzitet?.kontakti" class="mb-1">
+                <span>{{kontakt.tipKontakta?.naziv}}: </span> <span class="font-medium">{{kontakt.vrednost}}</span>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</div>

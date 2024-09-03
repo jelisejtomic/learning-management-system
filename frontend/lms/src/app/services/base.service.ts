@@ -7,16 +7,18 @@ import { environment } from '../../env/environment';
   providedIn: 'root'
 })
 export abstract class BaseService<T> {
-  url: string = environment.baseUrl;
+  protected url: string;
 
-  constructor(public http: HttpClient) { }
+  constructor(public http: HttpClient) {
+    this.url = environment.baseUrl;
+  }
 
   getAll(): Observable<T[]> {
     return this.http.get<T[]>(`${this.url}`);
   }
 
-  getById(id: number[]): Observable<T[]> {
-    return this.http.get<T[]>(`${this.url}/${id}`);
+  getById(id: number): Observable<T> {
+    return this.http.get<T>(`${this.url}/${id}`);
   }
 
   create(obj: T): Observable<T> {
