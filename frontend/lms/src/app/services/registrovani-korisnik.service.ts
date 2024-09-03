@@ -1,10 +1,15 @@
 import { Injectable } from '@angular/core';
 import { RegistrovaniKorisnik } from '../models/registrovani-korisnik';
 import { BaseService } from './base.service';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
     providedIn: 'root',
 })
 export class RegistrovaniKorisnikService extends BaseService<RegistrovaniKorisnik> {
-    override url: string = `${this.url}/security/registrovaniKorisnici`;
+
+    constructor(http: HttpClient) {
+        super(http);
+        this.url += `/security/registrovaniKorisnici`;
+    }
 }

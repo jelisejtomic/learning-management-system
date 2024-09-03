@@ -1,10 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Drzava } from '../models/drzava';
 import { BaseService } from './base.service';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
     providedIn: 'root',
 })
 export class DrzavaService extends BaseService<Drzava> {
-    override url: string = `${this.url}/univerzitet/drzave`;
+
+    constructor(http: HttpClient) {
+        super(http);
+        this.url += `/univerzitet/drzave`;
+    }
 }
