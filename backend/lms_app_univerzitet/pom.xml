@@ -84,7 +84,7 @@
 		          <manifest>
 		            <addClasspath>true</addClasspath>
 		            <classpathPrefix>lib/</classpathPrefix>
-		            <mainClass>projekat.lms.App</mainClass>
+		            <mainClass>projekat.lms.LmsUniverzitetApp</mainClass>
 		          </manifest>
 		        </archive>
 		      </configuration>

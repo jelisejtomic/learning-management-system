@@ -89,7 +89,7 @@
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<classpathPrefix>lib/</classpathPrefix>
-							<mainClass>projekat.lms.App</mainClass>
+							<mainClass>projekat.lms.LmsIspitApp</mainClass>
 						</manifest>
 					</archive>
 				</configuration>

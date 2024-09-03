@@ -28,6 +28,8 @@ services:
     environment:
       KEYCLOAK_URL: ${KEYCLOAK_URL}
       eureka.client.serviceUrl.defaultZone: ${EUREKA_DEFAULT_ZONE}
+    extra_hosts:
+      - "host.containers.internal:${HOST_IP}"
     depends_on:
       keycloak
     entrypoint: ["/app/cekaj.sh", "java", "-jar", "/app/app.jar"]
@@ -38,6 +40,8 @@ services:
       dockerfile: Containerfile
     environment:
       eureka.client.serviceUrl.defaultZone: ${EUREKA_DEFAULT_ZONE}
+    extra_hosts:
+      - "host.containers.internal:${HOST_IP}"
 
   lms-app-fakultet:
     build:
@@ -45,6 +49,8 @@ services:
       dockerfile: Containerfile
     environment:
       eureka.client.serviceUrl.defaultZone: ${EUREKA_DEFAULT_ZONE}
+    extra_hosts:
+      - "host.containers.internal:${HOST_IP}"
 
   lms-app-ispit:
     build:
@@ -52,31 +58,8 @@ services:
       dockerfile: Containerfile
     environment:
       eureka.client.serviceUrl.defaultZone: ${EUREKA_DEFAULT_ZONE}
-
-  # mikrov:
-  #   build:
-  #     context: ${MIKRO_CONTEXT}
-  #     dockerfile: Containerfile
-  #   environment:
-  #     eureka.client.serviceUrl.defaultZone: ${EUREKA_DEFAULT_ZONE}
-
-  # app-nereg1:
-  #   build:
-  #     context: ${APP_NEREG1_CONTEXT}
-  #     dockerfile: Containerfile
-  #   environment:
-  #     eureka.client.serviceUrl.defaultZone: ${EUREKA_DEFAULT_ZONE}
-  #   extra_hosts:
-  #     - "host.containers.internal:${HOST_IP}"
-
-  # app-nereg2:
-  #   build:
-  #     context: ${APP_NEREG2_CONTEXT}
-  #     dockerfile: Containerfile
-  #   environment:
-  #     eureka.client.serviceUrl.defaultZone: ${EUREKA_DEFAULT_ZONE}
-  #   extra_hosts:
-  #     - "host.containers.internal:${HOST_IP}"
+    extra_hosts:
+      - "host.containers.internal:${HOST_IP}"
 
   nginx:
     image: nginx
