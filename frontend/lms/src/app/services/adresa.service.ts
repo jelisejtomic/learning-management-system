@@ -12,3 +12,4 @@ export class AdresaService extends BaseService<Adresa> {
         super(http);
         this.url += `/univerzitet/adrese`;
     }
+}

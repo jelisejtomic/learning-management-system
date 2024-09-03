@@ -1,0 +1,25 @@
+<footer class="text-black shadow-mn w-full p-1 border-solid border-violet-950/75 border-t-[1px] end-0">
+    <div class="max-w-7xl mx-auto px-4 md:px-6 py-2 flex flex-col md:flex-column justify-between">
+
+        <div class="flex flex-wrap justify-center md:justify-start space-x-4 pt-4 pb-10">
+            <div class="pr-28">
+                <p class="py-2 text-xl text-violet-950/75 font-bold">Adrese</p>
+                <p *ngFor="let adresa of adrese" class="text-base font-small py-1">{{adresa.ulica}}, {{adresa?.mesto?.naziv}}</p>
+            </div>
+            <div class="pr-28">
+                <p class="py-2 text-xl text-violet-950/75 font-bold">Mejl adrese</p>
+                <p *ngFor="let mejl of mejlovi" class="text-base font-small py-1">{{mejl.vrednost}}</p>
+            </div>
+            <div>
+                <p class="py-2 text-xl text-violet-950/75 font-bold">Kontakti</p>
+                <p *ngFor="let kontakt of kontakti" class="text-base font-small py-1">{{kontakt.vrednost}}</p>
+            </div>
+        </div>
+        <div class="text-center text-xs inline-block align-baseline grid justify-center justify-items-center">
+            <div class="border-solid border-violet-950/25 border-t-[1px] pt-2 w-36"></div>
+            <p >
+                &#64; 2024 AOP
+            </p>
+        </div>
+    </div>
+</footer>
