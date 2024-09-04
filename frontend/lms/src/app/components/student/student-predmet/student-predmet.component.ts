@@ -28,7 +28,7 @@ export class StudentPredmetComponent implements AfterViewInit, OnInit{
   
 
   ngOnInit(): void {
-    //TODO popraviti, trenutno je zakucano
+    //TODO popraviti kako se dobavlja student - uvezati keycloak, trenutno je zakucano
     // popraviti i kako se povlaci ime univerziteta iznad imena studenta
     this.studentService.getById(1).subscribe(x=>{
       this.student = x;

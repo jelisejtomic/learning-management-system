@@ -3,7 +3,6 @@ import { KontaktComponent } from './components/kontakt/kontakt.component';
 import { ZaposleniComponent } from './components/zaposleni/zaposleni.component';
 import { HomeComponent } from './components/home/home.component';
 import { FakultetiComponent } from './components/fakulteti/fakulteti.component';
-import { EStudentComponent } from './components/e-student/e-student.component';
 import { AuthGuard } from './auth.guard';
 import { StudentPredmetComponent } from './components/student/student-predmet/student-predmet.component';
 import { PrijavaIspitaComponent } from './components/student/prijava-ispita/prijava-ispita.component';
@@ -21,13 +20,16 @@ export const routes: Routes = [
     { path: "zaposleni", component: ZaposleniComponent },
     { path: "fakulteti", component: FakultetiComponent },
 
+
+    //dodati guard na sve rute ispod
     { path: "obavestenjaPredmeti", component: ObavestenjaPredmetiComponent },
     { path: "studentPredmeti", component: StudentPredmetComponent },
     { path: "prijavaIspita", component: PrijavaIspitaComponent },
     { path: "istorijaStudiranja", component: IstorijaStudiranjaComponent },
-    {
-        path: "estudent", component: EStudentComponent,
-        data: { roles: ["ROLE_STUDENT"] },
-        canActivate: [AuthGuard]
-    }
+
+    // {
+    //     path: "estudent", component: EStudentComponent,
+    //     data: { roles: ["ROLE_STUDENT"] },
+    //     canActivate: [AuthGuard]
+    // }
 ];
