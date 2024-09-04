@@ -12,6 +12,7 @@ import { StudijskiProgramService } from '../../services/studijski-program.servic
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
 import { UniverzitetService } from '../../services/univerzitet.service';
+import { Ishod } from '../../models/ishod';
 
 interface TreeNode {
   name: string;
@@ -45,10 +46,11 @@ interface FlatNode {
 })
 export class FakultetiComponent implements OnInit {
   fakulteti: Fakultet[] = []; //odkomentarisati
+  studijskiProgrami: StudijskiProgram[] = []; //odkomentarisati
   showDetails: boolean = false;
   selectedProgramId?: number;
-  studijskiProgrami: StudijskiProgram[] = []; //odkomentarisati
   studijskiProgram?: StudijskiProgram;
+  selectedSilabus : Ishod[] = [];
 //   studijskiProgramData : StudijskiProgram[] = [{ //zakomentarisati
 //     "id": 5,
 //     "deleted": false,
@@ -78,7 +80,68 @@ export class FakultetiComponent implements OnInit {
 //             "drugiObliciNastave": 2,
 //             "istrazivackiRad": 0,
 //             "ostaliCasovi": 1,
-//             "silabus": []
+//             "silabus": [
+//               {
+//                 "id" : 22,
+//                 "opis" : "opis ishoda",
+//                 "obrazovniCiljevi" : [
+//                   {
+//                     "id" : 1,
+//                     "opis" : "opis obrazovnog cilja1"
+//                   },
+//                   {
+//                     "id" : 2,
+//                     "opis" : "opis obrazovnog cilja2"
+//                   }
+//                 ],
+//                 "nastavniMaterijali" : [
+//                   {
+//                     "id" : 12,
+//                     "naziv": "Naziv1",
+//                     "godinaIzdavanja" : 2020,
+//                     "autori" : [],
+//                     "fajlovi" : [],
+//                   },
+//                   {
+//                     "id" : 6,
+//                     "naziv": "Naziv nastavnog materijala",
+//                     "godinaIzdavanja" : 2019,
+//                     "autori" : [],
+//                     "fajlovi" : [],
+//                   }
+//                 ]
+//               },
+//               {
+//                 "id" : 22,
+//                 "opis" : "opis ishoda 2",
+//                 "obrazovniCiljevi" : [
+//                   {
+//                     "id" : 1,
+//                     "opis" : "opis obrazovnog cilja12"
+//                   },
+//                   {
+//                     "id" : 2,
+//                     "opis" : "opis obrazovnog cilja22"
+//                   }
+//                 ],
+//                 "nastavniMaterijali" : [
+//                   {
+//                     "id" : 12,
+//                     "naziv": "Naziv12",
+//                     "godinaIzdavanja" : 2020,
+//                     "autori" : [],
+//                     "fajlovi" : [],
+//                   },
+//                   {
+//                     "id" : 6,
+//                     "naziv": "Naziv nastavnog materijala2",
+//                     "godinaIzdavanja" : 2019,
+//                     "autori" : [],
+//                     "fajlovi" : [],
+//                   }
+//                 ]
+//               }
+//             ]
 //           },
 //           {
 //             "id": 37,
@@ -377,9 +440,11 @@ export class FakultetiComponent implements OnInit {
 //     },
 //   ]
 
-  treeControl!: FlatTreeControl<FlatNode>;
-  treeFlattener!: MatTreeFlattener<TreeNode, FlatNode>;
-  dataSource!: MatTreeFlatDataSource<TreeNode, FlatNode>;
+  predmetNaziv?: string;
+
+  treeControl: FlatTreeControl<FlatNode>;
+  treeFlattener: MatTreeFlattener<TreeNode, FlatNode>;
+  dataSource: MatTreeFlatDataSource<TreeNode, FlatNode>;
 
   constructor(private fakultetService: FakultetService, private studijskiProgramService: StudijskiProgramService, private uniService:UniverzitetService) {
     this.treeFlattener = new MatTreeFlattener<TreeNode, FlatNode>(
@@ -455,6 +520,29 @@ export class FakultetiComponent implements OnInit {
     this.showDetails = true;
     this.studijskiProgram = this.studijskiProgrami.find(program => program.id === id);
     this.selectedProgramId = id;
+  }
+
+  onSilabusButtonClick(predmetId: number, predmetNaziv: string) {
+    this.predmetNaziv = predmetNaziv;
+    const predmet = this.findSubjectById(predmetId);
+    this.selectedSilabus = predmet?.silabus || [];
+  }
+
+  findSubjectById(predmetId: number) {
+    if (this.studijskiProgrami?.length) {
+      for (const godina of this.studijskiProgrami[0].godineStudija || []) {
+        for (const predmet of godina.predmeti || []) {
+          if (predmet.id === predmetId) {
+            return predmet;
+          }
+        }
+      }
+    }
+    return null;
+  }
+
+  hideSilabus(){
+    this.selectedSilabus = [];
   }
 
   toggleDetails(): void {
