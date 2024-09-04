@@ -9,6 +9,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { StudijskiProgram } from '../../models/studijski-program';
 import { NgFor, NgIf } from '@angular/common';
 import { StudijskiProgramService } from '../../services/studijski-program.service';
+import { HeaderComponent } from '../header/header.component';
+import { FooterComponent } from '../footer/footer.component';
+import { UniverzitetService } from '../../services/univerzitet.service';
 
 interface TreeNode {
   name: string;
@@ -33,7 +36,9 @@ interface FlatNode {
     NgIf,
     MatTreeModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    HeaderComponent,
+    FooterComponent
   ],
   templateUrl: './fakulteti.component.html',
   styleUrl: './fakulteti.component.css'
@@ -376,7 +381,7 @@ export class FakultetiComponent implements OnInit {
   treeFlattener: MatTreeFlattener<TreeNode, FlatNode>;
   dataSource: MatTreeFlatDataSource<TreeNode, FlatNode>;
 
-  constructor(private fakultetService: FakultetService, private studijskiProgramService: StudijskiProgramService) {
+  constructor(private fakultetService: FakultetService, private studijskiProgramService: StudijskiProgramService, private uniService:UniverzitetService) {
     this.treeFlattener = new MatTreeFlattener<TreeNode, FlatNode>(
       (node, level) => ({
         ...node,
@@ -404,17 +409,28 @@ export class FakultetiComponent implements OnInit {
   }
 
   getFakulteti() { //odkomentarisati
-    this.fakultetService.getAll().subscribe(x => {
-      this.fakulteti = x;
-      console.log(x);
+    this.uniService.getById(1).subscribe(x => {
+      if(x.fakulteti)
+        this.fakulteti = x.fakulteti;
+      console.log("fakulteti");
+      console.log(this.fakulteti);
     });
   }
   
   getStudijskiProgrami(){ //odkomentarisati
-    this.studijskiProgramService.getAll().subscribe(x => {
-          this.studijskiProgrami = x;
-          console.log(x);
-        });
+    this.uniService.getById(1).subscribe(x => {
+      this.studijskiProgrami = [];
+      if(x.fakulteti && x.fakulteti){
+        for(let fakultet of this.fakulteti){
+          if(fakultet.studijskiProgrami){
+            for(let st of fakultet.studijskiProgrami)
+              this.studijskiProgrami.push({...st});
+          }
+        }
+      }
+      console.log("studijski");
+      console.log(this.studijskiProgrami);
+    });
   }
 
   mapFakultetiToTreeData(fakulteti: Fakultet[]): TreeNode[] {
