@@ -1,3 +1,11 @@
+<app-header></app-header>
+
+
+<div class="flex items-center justify-center h-screen bg-gray-100">
+    <div class="space-y-6 text-center bg-white p-8 rounded-lg shadow-lg w-full max-w-5xl mx-auto">
+        <h1 class="text-4xl font-bold text-gray-800">Fakulteti</h1>
+        <h2 class="text-3xl font-semibold text-gray-600">AOP Univerziteta</h2>
+        <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="w-full max-w-3xl mx-auto bg-gray-50 p-6 rounded-lg shadow-md">
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,31 +14,35 @@
     <title>Document</title>
 </head>
 <body>
-  <div class="flex items-center justify-center h-screen bg-gray-100">
-    <div class="space-y-6 text-center bg-white p-8 rounded-lg shadow-lg w-full max-w-5xl mx-auto">
+  <div class="flex items-center justify-center bg-gray-100">
+    <div class="space-y-6 text-center bg-white p-8 rounded-lg shadow-lg w-full max-w-8xl mx-auto">
         <h1 class="text-4xl font-bold text-gray-800">Fakulteti</h1>
         <h2 class="text-3xl font-semibold text-gray-600">AOP Univerziteta</h2>
 
-        <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="w-full max-w-3xl mx-auto bg-gray-50 p-6 rounded-lg shadow-md">
+        <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="w-full max-w-6xl mx-auto bg-gray-50 p-6 rounded-lg shadow-md">
             <mat-tree-node *matTreeNodeDef="let node;" matTreeNodePadding class="border-b border-gray-300 hover:bg-gray-100 transition duration-300 ease-in-out rounded-md p-4 last:border-b-0">
                 <button mat-icon-button disabled class="text-gray-400 hover:text-gray-600">
                     <mat-icon>info</mat-icon>
                 </button>
                 {{node.name}}
-                <button mat-button color="primary" *ngIf="isStudijskiProgramNode(node)" (click)="onNodeButtonClick(node.id, $event)" class="bg-blue-500 text-white hover:bg-blue-600 transition duration-300 ease-in-out ml-2">
+                <button *ngIf="isStudijskiProgramNode(node)" (click)="onNodeButtonClick(node.id, $event)" class="bg-[#8f7a99] text-white px-2 py-2 mx-4 rounded-full font-semi-bold hover:bg-purple-800 transition-colors duration-200">
                     Predmeti
                 </button>
                 
-                <div *ngIf="selectedProgramId === node.id && studijskiProgram && showDetails" class="mt-4 bg-gray-100 p-8 max-w-5xl mx-auto rounded-lg">
-                    <button mat-button color="warn" (click)="toggleDetails()" class="bg-red-500 text-white hover:bg-red-600 transition duration-300 ease-in-out mb-4">
+                <div *ngIf="selectedProgramId === node.id && studijskiProgram && showDetails" class="mt-4 bg-gray-100 p-8 max-w-8xl mx-auto rounded-lg">
+                    <button (click)="toggleDetails()" class="bg-[#8f7a99] text-white px-2 py-1 mx-2 mb-6 rounded-full font-thin hover:bg-purple-800 transition-colors duration-200 text-sm float-left">
                         Nazad
                     </button>
-                    <ul class="list-disc pl-6">
-                        <li *ngFor="let godina of studijskiProgram.godineStudija" class="mb-4">
+                    <ul class="pl-6">
+                        <li *ngFor="let godina of studijskiProgram.godineStudija ?? []" class="mb-4">
                             <h4 class="font-semibold text-gray-800">Godina : {{godina.godina}}</h4>
-                            <ul class="list-decimal pl-6">
-                                <li *ngFor="let predmet of godina.predmeti; index as i" class="text-gray-700">
-                                    {{predmet.naziv}}
+                            <ul class="pl-6">
+                                <li *ngFor="let predmet of godina.predmeti ?? []; index as i" class="text-gray-700 text-left my-4 flex items-center">
+                                    <span class="flex-grow text-left">{{i+1}}. {{predmet.naziv}}</span>
+                                    <button class="bg-[#8f7a99] text-white px-2 py-1 mx-4 rounded-full font-thin hover:bg-purple-800 transition-colors duration-200 text-sm" (click)="onSilabusButtonClick(predmet.id!, predmet.naziv!)">
+                                        Silabus
+                                    </button>
+
                                 </li>
                             </ul>
                         </li>
@@ -48,8 +60,34 @@
             </mat-tree-node>
         </mat-tree>
     </div>
+    
 </div>
 
+<div *ngIf="selectedSilabus.length > 0" class="flex flex-col items-center mt-8 pb-8">
+    <div class="flex items-center mb-4">
+      <button (click)="hideSilabus()" class="bg-[#8f7a99] text-white px-2 py-2 mx-4 rounded-full font-semi-bold hover:bg-purple-800 transition-colors duration-200">Sakrij</button>
+      <h1 class="text-2xl font-bold">{{predmetNaziv}}</h1>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow-lg max-w-3xl w-full">
+      <ul class="space-y-4">
+        <li *ngFor="let silabus of selectedSilabus" class="mb-6">
+          <h6 class="font-semibold text-lg text-gray-800 mb-4 text-center">{{ silabus.opis }}</h6>
+          <ul class="space-y-2 pl-4">
+            <li *ngFor="let cilj of silabus.obrazovniCiljevi || []" class="text-gray-600">
+              <span class="font-medium">Cilj: </span> <span class="text-left">{{ cilj.opis }}</span>
+            </li>
+            <li *ngFor="let materijal of silabus.nastavniMaterijali || []" class="text-gray-600">
+              <span class="font-medium">Materijal: </span> {{ materijal.naziv }} ({{ materijal.godinaIzdavanja }})
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+  
+  
+  
 
 </body>
 </html>
