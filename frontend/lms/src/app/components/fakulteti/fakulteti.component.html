@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="placeholder-card">
+        <h1 class="placeholder-title">Fakulteti</h1>
+        <h2 class="placeholder-subtitle">AOP Univerziteta</h2>
+        
+        <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
+            <!-- Leaf Node Template -->
+            <mat-tree-node *matTreeNodeDef="let node;" matTreeNodePadding>
+                <button mat-icon-button disabled></button>
+                {{node.name}}
+                <button mat-button color="primary" *ngIf="isStudijskiProgramNode(node)" (click)="onNodeButtonClick(node.id, $event)">Predmeti</button>
+                
+                <!-- Display Predmeti for Selected Studijski Program -->
+                <div *ngIf="selectedProgramId === node.id && studijskiProgram && showDetails">
+                    <button mat-button color="warn" (click)="toggleDetails()">Nazad</button>
+                    <ul>
+              <li *ngFor="let godina of studijskiProgram.godineStudija">
+                  <h4>Godina :  {{godina.godina}}</h4>
+                  <ul>
+                      <li *ngFor="let predmet of godina.predmeti, index as i">
+                          {{i+1}}. {{predmet.naziv}}
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </mat-tree-node>
+
+      
+        <!-- Parent Node Template -->
+        <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
+          <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle ' + node.name">
+            <mat-icon>
+              {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+            </mat-icon>
+          </button>
+          {{node.name}}
+        </mat-tree-node>
+      </mat-tree>
+    </div>
+</body>
+</html>

@@ -1,0 +1,95 @@
+/* Basic styling for the mat-tree container */
+.example-tree {
+  width: 100%;
+  max-width: 600px; /* Adjust width as needed */
+  margin: 20px auto;
+  background: #f5f5f5;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* Styling for tree nodes */
+.mat-tree-node {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  border-bottom: 1px solid #ddd;
+}
+
+.mat-tree-node:hover {
+  background-color: #e0f7fa; /* Light blue background on hover */
+}
+
+/* Styling for buttons within tree nodes */
+.mat-tree-node button {
+  margin-left: 8px;
+  font-size: 14px;
+}
+
+/* Styling for parent nodes */
+.mat-tree-node.mat-tree-node-children {
+  background: #ffffff;
+  font-weight: bold;
+}
+
+.mat-tree-node.mat-tree-node-children .mat-icon {
+  color: #2196f3; /* Blue color for icons */
+}
+
+.selected-program {
+  margin-top: 16px;
+  padding: 16px;
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.selected-program h4 {
+  margin: 0 0 8px;
+  color: #333;
+}
+
+.selected-program ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.selected-program li {
+  padding: 4px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.selected-program li:last-child {
+  border-bottom: none;
+}
+
+.placeholder-card {
+  max-width: 600px; /* Adjust width as needed */
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.placeholder-title {
+  font-size: 24px;
+  margin: 0 0 10px;
+  color: #333;
+}
+
+.placeholder-subtitle {
+  font-size: 18px;
+  margin: 0 0 15px;
+  color: #666;
+}
+
+.placeholder-body {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #444;
+}
