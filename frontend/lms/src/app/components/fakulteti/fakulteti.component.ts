@@ -377,9 +377,9 @@ export class FakultetiComponent implements OnInit {
 //     },
 //   ]
 
-  treeControl: FlatTreeControl<FlatNode>;
-  treeFlattener: MatTreeFlattener<TreeNode, FlatNode>;
-  dataSource: MatTreeFlatDataSource<TreeNode, FlatNode>;
+  treeControl!: FlatTreeControl<FlatNode>;
+  treeFlattener!: MatTreeFlattener<TreeNode, FlatNode>;
+  dataSource!: MatTreeFlatDataSource<TreeNode, FlatNode>;
 
   constructor(private fakultetService: FakultetService, private studijskiProgramService: StudijskiProgramService, private uniService:UniverzitetService) {
     this.treeFlattener = new MatTreeFlattener<TreeNode, FlatNode>(
@@ -402,16 +402,17 @@ export class FakultetiComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const treeData = this.mapFakultetiToTreeData(this.fakulteti);
-    this.dataSource.data = treeData;
     this.getFakulteti(); //odkomentarisati
     this.getStudijskiProgrami(); //odkomentarisati
   }
-
+  
   getFakulteti() { //odkomentarisati
     this.uniService.getById(1).subscribe(x => {
-      if(x.fakulteti)
+      if(x.fakulteti){
         this.fakulteti = x.fakulteti;
+        const treeData = this.mapFakultetiToTreeData(this.fakulteti);
+        this.dataSource.data = treeData;
+      }
       console.log("fakulteti");
       console.log(this.fakulteti);
     });
