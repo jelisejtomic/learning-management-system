@@ -3,7 +3,7 @@ import { Predmet } from "./predmet";
 import { StudijskiProgram } from "./studijski-program";
 
 export interface GodinaStudija extends Base {
-    godina?: Date;
+    godina?: number;
     pocetak?: Date;
     kraj?: Date;
     studijskiProgram?: StudijskiProgram;

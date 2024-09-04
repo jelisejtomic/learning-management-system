@@ -3,12 +3,14 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { Univerzitet } from '../../models/univerzitet';
 import { UniverzitetService } from '../../services/univerzitet.service';
 import { NgFor } from '@angular/common';
+import { HeaderComponent } from '../header/header.component';
+import { FooterComponent } from '../footer/footer.component';
 
 
 @Component({
   selector: 'app-kontakt',
   standalone: true,
-  imports: [MatTabsModule, NgFor],
+  imports: [MatTabsModule, NgFor, HeaderComponent, FooterComponent],
   templateUrl: './kontakt.component.html',
   styleUrl: './kontakt.component.css'
 })

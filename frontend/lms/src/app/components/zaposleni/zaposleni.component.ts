@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FooterComponent } from '../footer/footer.component';
+import { HeaderComponent } from '../header/header.component';
 import { Nastavnik } from '../../models/nastavnik';
 import { NgFor } from '@angular/common';
 import { MatListModule } from '@angular/material/list';
@@ -7,7 +9,7 @@ import { UniverzitetService } from '../../services/univerzitet.service';
 @Component({
   selector: 'app-zaposleni',
   standalone: true,
-  imports: [NgFor, MatListModule],
+  imports: [HeaderComponent, FooterComponent, NgFor, MatListModule],
   templateUrl: './zaposleni.component.html',
   styleUrl: './zaposleni.component.css'
 })
