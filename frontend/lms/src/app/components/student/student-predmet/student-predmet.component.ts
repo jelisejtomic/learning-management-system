@@ -36,13 +36,15 @@ export class StudentPredmetComponent implements AfterViewInit, OnInit{
         this.brojIndeksa = this.student.studentNaGodinama[0].brojIndeksa;
 
         this.predmeti = [];
-        for(let sng of this.student.studentNaGodinama){
-          if(sng.godinaStudija?.predmeti){
-            for(let predmet of sng.godinaStudija.predmeti){
+        // for(let sng of this.student.studentNaGodinama){
+          // let poslednjaGodinaStudija = this.student.studentNaGodinama[this.student.studentNaGodinama.length-1].godinaStudija;
+          let poslednjaGodinaStudija = this.student.studentNaGodinama[0].godinaStudija;
+          if(poslednjaGodinaStudija){
+            for(let predmet of poslednjaGodinaStudija.predmeti){
               this.predmeti.push(predmet);
             }
           }
-        }
+        // }
         console.log(this.predmeti);
       }
       
