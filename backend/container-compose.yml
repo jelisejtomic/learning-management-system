@@ -16,6 +16,13 @@ services:
       KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD}
     command:
       - 'start-dev'
+      - '-Dkeycloak.migration.action=import'
+      - '-Dkeycloak.migration.provider=singleFile'
+      - '-Dkeycloak.migration.file=/opt/keycloak/data/realm-lms-tim1.json'
+      - '-Dkeycloak.migration.action=export'
+      - '-Dkeycloak.migration.provider=singleFile'
+      - '-Dkeycloak.migration.file=/opt/keycloak/data/realm-lms-tim1.json'
+      - '-Dkeycloak.migration.realmName=LMS-TIM1'
     volumes:
       - ./keycloak-data:/opt/keycloak/data
     extra_hosts:
