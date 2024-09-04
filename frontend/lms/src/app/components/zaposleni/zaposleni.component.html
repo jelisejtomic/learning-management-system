@@ -1,1 +1,16 @@
-<p>zaposleni works!</p>
+<div class="min-h-screen flex justify-center items-center bg-gray-100">
+    <div class="w-full max-w-3xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden p-6 space-y-6">
+        <div class="uppercase tracking-wide text-lg text-violet-950/75 font-bold text-center mb-6">Nastavni kadar
+            Univerziteta AOP</div>
+        <mat-list *ngFor="let nastavnik of zaposleni" class="text-center space-y-4">
+            <mat-list-item>
+                <span class="text font-semibold">
+                    {{nastavnik.korisnik?.ime}} {{nastavnik.korisnik?.prezime}}
+                </span>
+                <span *ngFor="let zvanje of nastavnik.zvanja">
+                    {{zvanje.tipZvanja?.naziv}} {{" "}}
+                </span>
+            </mat-list-item>
+        </mat-list>
+    </div>
+</div>

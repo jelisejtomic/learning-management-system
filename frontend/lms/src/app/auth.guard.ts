@@ -29,6 +29,12 @@ export class AuthGuard extends KeycloakAuthGuard {
       return true;
     }
 
-    return requiredRoles.every((role) => this.roles.includes(role));
+    const hasAccess = requiredRoles.some((role) => this.roles.includes(role));
+    if (!hasAccess) {
+      console.log('Access denied: User does not have a required role');
+      this.router.navigate(['/']);
+    }
+
+    return hasAccess;
   }
 }
