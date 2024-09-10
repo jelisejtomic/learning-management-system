@@ -10,26 +10,30 @@ import { ObavestenjaPredmetiComponent } from './components/student/obavestenja-p
 import { IstorijaStudiranjaComponent } from './components/student/istorija-studiranja/istorija-studiranja.component';
 
 export const routes: Routes = [
-    //https://angular.dev/reference/migrations/route-lazy-loading
-    // {
-    //     path: "/resoruce", component: ResoruceComponent,
-    //     data: { roles: "admin" }, canActivate: [AuthGuard]
-    // }
     { path: "", component: HomeComponent },
     { path: "kontakti", component: KontaktComponent },
     { path: "zaposleni", component: ZaposleniComponent },
     { path: "fakulteti", component: FakultetiComponent },
 
 
-    //dodati guard na sve rute ispod
-    { path: "obavestenjaPredmeti", component: ObavestenjaPredmetiComponent },
-    { path: "studentPredmeti", component: StudentPredmetComponent },
-    { path: "prijavaIspita", component: PrijavaIspitaComponent },
-    { path: "istorijaStudiranja", component: IstorijaStudiranjaComponent },
-
-    // {
-    //     path: "estudent", component: EStudentComponent,
-    //     data: { roles: ["ROLE_STUDENT"] },
-    //     canActivate: [AuthGuard]
-    // }
+    {
+        path: "obavestenjaPredmeti", component: ObavestenjaPredmetiComponent,
+        data: { roles: ["ROLE_STUDENT"] },
+        canActivate: [AuthGuard]
+    },
+    {
+        path: "studentPredmeti", component: StudentPredmetComponent,
+        data: { roles: ["ROLE_STUDENT"] },
+        canActivate: [AuthGuard]
+    },
+    {
+        path: "prijavaIspita", component: PrijavaIspitaComponent,
+        data: { roles: ["ROLE_STUDENT"] },
+        canActivate: [AuthGuard]
+    },
+    {
+        path: "istorijaStudiranja", component: IstorijaStudiranjaComponent,
+        data: { roles: ["ROLE_STUDENT"] },
+        canActivate: [AuthGuard]
+    },
 ];

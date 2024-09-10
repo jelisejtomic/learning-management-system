@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { KeycloakService } from 'keycloak-angular';
 
 @Component({
   selector: 'app-e-student-header',
@@ -10,4 +11,9 @@ import { RouterLink } from '@angular/router';
 })
 export class EStudentHeaderComponent {
 
+  constructor(private keycloakService: KeycloakService) { }
+
+  logout() {
+    this.keycloakService.logout('http://localhost:80/');
+  }
 }

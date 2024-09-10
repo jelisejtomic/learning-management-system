@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
 import { KeycloakAuthGuard, KeycloakService } from 'keycloak-angular';
+import { KeycloakLoginOptions } from 'keycloak-js';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,8 @@ export class AuthGuard extends KeycloakAuthGuard {
   ) {
     if (!this.authenticated) {
       await this.keycloak.login({
-        redirectUri: window.location.origin + state.url
+        redirectUri: window.location.origin
+        // + state.url
       });
     }
 

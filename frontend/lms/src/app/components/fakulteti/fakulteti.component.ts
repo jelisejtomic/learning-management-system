@@ -16,13 +16,13 @@ import { Ishod } from '../../models/ishod';
 
 interface TreeNode {
   name: string;
-  id? : number;
+  id?: number;
   children?: TreeNode[];
 }
 
 interface FlatNode {
   name: string;
-  id? : number;
+  id?: number;
   level: number;
   expandable: boolean;
 }
@@ -50,395 +50,7 @@ export class FakultetiComponent implements OnInit {
   showDetails: boolean = false;
   selectedProgramId?: number;
   studijskiProgram?: StudijskiProgram;
-  selectedSilabus : Ishod[] = [];
-//   studijskiProgramData : StudijskiProgram[] = [{ //zakomentarisati
-//     "id": 5,
-//     "deleted": false,
-//     "akronim": "SII",
-//     "naziv": "Softversko inženjerstvo i informacione tehnologije",
-//     "opis": "Ovaj studijski program obezbeđuje najšira znanja iz oblasti softverskog i informacionog inženjerstva. Na studijama se izučavaju metodološki aspekti razvoja složenih softverskih i informacionih sistema i najsavremenije prateće, posebno softverske tehnologije za primenu softverskog i informacionog inženjerstva u različitim domenskim oblastima.",
-//     "fakultet": {
-//       "id": 3
-//     },
-//     "godineStudija": [
-//       {
-//         "id": 75,
-//         "deleted": false,
-//         "godina": 3,
-//         "predmeti": [
-//           {
-//             "id": 38,
-//             "deleted": false,
-//             "akronim": "LMS3LPRS",
-//             "naziv": "Osnovi računarske tehnike - LPRS",
-//             "espb": 5,
-//             "obavezan": true,
-//             "semestar": 5,
-//             "semestarTrajanje": 1,
-//             "brojPredavanja": 3,
-//             "brojVezbi": 0,
-//             "drugiObliciNastave": 2,
-//             "istrazivackiRad": 0,
-//             "ostaliCasovi": 1,
-//             "silabus": [
-//               {
-//                 "id" : 22,
-//                 "opis" : "opis ishoda",
-//                 "obrazovniCiljevi" : [
-//                   {
-//                     "id" : 1,
-//                     "opis" : "opis obrazovnog cilja1"
-//                   },
-//                   {
-//                     "id" : 2,
-//                     "opis" : "opis obrazovnog cilja2"
-//                   }
-//                 ],
-//                 "nastavniMaterijali" : [
-//                   {
-//                     "id" : 12,
-//                     "naziv": "Naziv1",
-//                     "godinaIzdavanja" : 2020,
-//                     "autori" : [],
-//                     "fajlovi" : [],
-//                   },
-//                   {
-//                     "id" : 6,
-//                     "naziv": "Naziv nastavnog materijala",
-//                     "godinaIzdavanja" : 2019,
-//                     "autori" : [],
-//                     "fajlovi" : [],
-//                   }
-//                 ]
-//               },
-//               {
-//                 "id" : 22,
-//                 "opis" : "opis ishoda 2",
-//                 "obrazovniCiljevi" : [
-//                   {
-//                     "id" : 1,
-//                     "opis" : "opis obrazovnog cilja12"
-//                   },
-//                   {
-//                     "id" : 2,
-//                     "opis" : "opis obrazovnog cilja22"
-//                   }
-//                 ],
-//                 "nastavniMaterijali" : [
-//                   {
-//                     "id" : 12,
-//                     "naziv": "Naziv12",
-//                     "godinaIzdavanja" : 2020,
-//                     "autori" : [],
-//                     "fajlovi" : [],
-//                   },
-//                   {
-//                     "id" : 6,
-//                     "naziv": "Naziv nastavnog materijala2",
-//                     "godinaIzdavanja" : 2019,
-//                     "autori" : [],
-//                     "fajlovi" : [],
-//                   }
-//                 ]
-//               }
-//             ]
-//           },
-//           {
-//             "id": 37,
-//             "deleted": false,
-//             "akronim": "LMS3SNUS1",
-//             "naziv": "Softver nadzorno-upravljačkih sistema",
-//             "espb": 5,
-//             "obavezan": true,
-//             "semestar": 5,
-//             "semestarTrajanje": 1,
-//             "brojPredavanja": 3,
-//             "brojVezbi": 0,
-//             "drugiObliciNastave": 2,
-//             "istrazivackiRad": 0,
-//             "ostaliCasovi": 1,
-//             "silabus": []
-//           },
-//           {
-//             "id": 35,
-//             "deleted": false,
-//             "akronim": "LMS3VP",
-//             "naziv": "Veb programiranje",
-//             "espb": 7,
-//             "obavezan": true,
-//             "semestar": 5,
-//             "semestarTrajanje": 1,
-//             "brojPredavanja": 3,
-//             "brojVezbi": 0,
-//             "drugiObliciNastave": 2,
-//             "istrazivackiRad": 0,
-//             "ostaliCasovi": 1,
-//             "silabus": []
-//           },
-//           {
-//             "id": 36,
-//             "deleted": false,
-//             "akronim": "LMS3ST",
-//             "naziv": "Statistika",
-//             "espb": 6,
-//             "obavezan": true,
-//             "semestar": 5,
-//             "semestarTrajanje": 1,
-//             "brojPredavanja": 3,
-//             "brojVezbi": 1,
-//             "drugiObliciNastave": 2,
-//             "istrazivackiRad": 0,
-//             "ostaliCasovi": 0,
-//             "silabus": []
-//           },
-//           {
-//             "id": 44,
-//             "deleted": false,
-//             "akronim": "LMS3DS",
-//             "naziv": "Distribuirani sistemi u geomatici",
-//             "espb": 8,
-//             "obavezan": false,
-//             "semestar": 6,
-//             "semestarTrajanje": 1,
-//             "brojPredavanja": 4,
-//             "brojVezbi": 0,
-//             "drugiObliciNastave": 3,
-//             "istrazivackiRad": 0,
-//             "ostaliCasovi": 1,
-//             "silabus": []
-//           },
-//           {
-//             "id": 39,
-//             "deleted": false,
-//             "akronim": "LMS3PGK",
-//             "naziv": "Pisana i govorna komunikacija u tehnici",
-//             "espb": 4,
-//             "obavezan": true,
-//             "semestar": 6,
-//             "semestarTrajanje": 1,
-//             "brojPredavanja": 0,
-//             "brojVezbi": 0,
-//             "drugiObliciNastave": 0,
-//             "istrazivackiRad": 0,
-//             "ostaliCasovi": 0,
-//             "silabus": []
-//           },
-//           {
-//             "id": 45,
-//             "deleted": false,
-//             "akronim": "LMS3SNUS2",
-//             "naziv": "Softver nadzorno-upravljačkih sistema",
-//             "espb": 8,
-//             "obavezan": false,
-//             "semestar": 6,
-//             "semestarTrajanje": 1,
-//             "brojPredavanja": 4,
-//             "brojVezbi": 0,
-//             "drugiObliciNastave": 3,
-//             "istrazivackiRad": 0,
-//             "ostaliCasovi": 0,
-//             "silabus": []
-//           },
-//           {
-//             "id": 34,
-//             "deleted": false,
-//             "akronim": "LMS3SO",
-//             "naziv": "Softverski obrasci i komponente",
-//             "espb": 7,
-//             "obavezan": true,
-//             "semestar": 5,
-//             "semestarTrajanje": 1,
-//             "brojPredavanja": 3,
-//             "brojVezbi": 0,
-//             "drugiObliciNastave": 2,
-//             "istrazivackiRad": 0,
-//             "ostaliCasovi": 1,
-//             "silabus": []
-//           },
-//           {
-//             "id": 42,
-//             "deleted": false,
-//             "akronim": "LMS3PP",
-//             "naziv": "Programski prevodioci",
-//             "espb": 4,
-//             "obavezan": true,
-//             "semestar": 6,
-//             "semestarTrajanje": 1,
-//             "brojPredavanja": 2,
-//             "brojVezbi": 0,
-//             "drugiObliciNastave": 2,
-//             "istrazivackiRad": 0,
-//             "ostaliCasovi": 0,
-//             "silabus": []
-//           },
-//           {
-//             "id": 43,
-//             "deleted": false,
-//             "akronim": "LMS3MRS",
-//             "naziv": "Metodologije razvoja softvera",
-//             "espb": 5,
-//             "obavezan": true,
-//             "semestar": 6,
-//             "semestarTrajanje": 1,
-//             "brojPredavanja": 2,
-//             "brojVezbi": 0,
-//             "drugiObliciNastave": 2,
-//             "istrazivackiRad": 0,
-//             "ostaliCasovi": 1,
-//             "silabus": []
-//           },
-//           {
-//             "id": 41,
-//             "deleted": false,
-//             "akronim": "LMS3IČR",
-//             "naziv": "Interakcija čovek računar",
-//             "espb": 4,
-//             "obavezan": true,
-//             "semestar": 6,
-//             "semestarTrajanje": 1,
-//             "brojPredavanja": 2,
-//             "brojVezbi": 0,
-//             "drugiObliciNastave": 1,
-//             "istrazivackiRad": 0,
-//             "ostaliCasovi": 1,
-//             "silabus": []
-//           }
-//         ]
-//       },
-//       {
-//         "id": 80,
-//         "deleted": false,
-//         "godina": 4,
-//         "predmeti": [
-//           {
-//             "id": 46,
-//             "deleted": false,
-//             "akronim": "LMS4SP",
-//             "naziv": "Stručna praksa - projekat",
-//             "espb": 6,
-//             "obavezan": true,
-//             "semestar": 7,
-//             "semestarTrajanje": 2,
-//             "brojPredavanja": 0,
-//             "brojVezbi": 0,
-//             "drugiObliciNastave": 0,
-//             "istrazivackiRad": 0,
-//             "ostaliCasovi": 6,
-//             "silabus": []
-//           },
-//           {
-//             "id": 47,
-//             "deleted": false,
-//             "akronim": "LMS4PGK",
-//             "naziv": "Pisana i govorna komunikacija u tehnici",
-//             "espb": 4,
-//             "obavezan": true,
-//             "semestar": 8,
-//             "semestarTrajanje": 1,
-//             "brojPredavanja": 2,
-//             "brojVezbi": 0,
-//             "drugiObliciNastave": 1,
-//             "istrazivackiRad": 0,
-//             "ostaliCasovi": 0,
-//             "silabus": []
-//           }
-//         ]
-//       }
-//     ]
-// }];
-// hardcodedFakulteti : Fakultet[] = [ //zakomentarisati
-//     {
-//       "id": 1,
-//       "deleted": false,
-//       "naziv": "Poslovni fakultet",
-//       "studijskiProgrami": [],
-//       "univerzitet": {
-//         "id": 1,
-//         "deleted": false,
-//         "naziv": "Univerzitet u Beogradu",
-//         "opis": "Jedan od vodećih univerziteta u regionu. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam nibh massa, tincidunt porta tristique eu, fringilla non ante. Sed posuere purus enim, in efficitur metus."
-//       }
-//     },
-//     {
-//       "id": 2,
-//       "deleted": false,
-//       "naziv": "Fakultet za informatiku i računarstvo",
-//       "studijskiProgrami": [
-//         {
-//           "id": 2,
-//           "deleted": false,
-//           "akronim": "IT",
-//           "naziv": "Informacione tehnologije",
-//           "opis": "Studijski program Informacione tehnologije je usaglašen sa dostignutim stepenom razvoja informacionih tehnologija, savremenih veb servisa, internet marketinga, savremenih menadžerskih pristupa i u skladu je sa zahtevima koji proizilaze iz praktične primene saznanja iz ovih oblasti u poslovnim sistemima. Glavna odlika studijskog programa Informacione tehnologije je posvećivanje pažnje internet tehnologijama i veb servisima što je u skladu sa brzim tehnološkim promenama u ovoj oblasti."
-//         },
-//         {
-//           "id": 1,
-//           "deleted": false,
-//           "akronim": "RN",
-//           "naziv": "Računarske nauke",
-//           "opis": "Fakultet za Informatiku i računarstvo već više od jedne decenije školuje programere i informatičare specijalizovane za razvoj softvera i informacionu bezbednost. Studenti na ovom studijskom programu, kroz izborne predmete na 3. i 4. godini, mogu izabrati jedno od dva usmerenja: razvoj veb i mobilnih aplikacija ili bezbednost u sajber prostoru."
-//         }
-//       ],
-//       "univerzitet": {
-//         "id": 1,
-//         "deleted": false,
-//         "naziv": "Univerzitet u Beogradu",
-//         "opis": "Jedan od vodećih univerziteta u regionu. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam nibh massa, tincidunt porta tristique eu, fringilla non ante. Sed posuere purus enim, in efficitur metus."
-//       }
-//     },
-//     {
-//       "id": 3,
-//       "deleted": false,
-//       "naziv": "Tehnički fakultet",
-//       "studijskiProgrami": [
-//         {
-//           "id": 5,
-//           "deleted": false,
-//           "akronim": "SII",
-//           "naziv": "Softversko inženjerstvo i informacione tehnologije",
-//           "opis": "Ovaj studijski program obezbeđuje najšira znanja iz oblasti softverskog i informacionog inženjerstva. Na studijama se izučavaju metodološki aspekti razvoja složenih softverskih i informacionih sistema i najsavremenije prateće, posebno softverske tehnologije za primenu softverskog i informacionog inženjerstva u različitim domenskim oblastima."
-//         }
-//       ],
-//       "univerzitet": {
-//         "id": 1,
-//         "deleted": false,
-//         "naziv": "Univerzitet u Beogradu",
-//         "opis": "Jedan od vodećih univerziteta u regionu. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam nibh massa, tincidunt porta tristique eu, fringilla non ante. Sed posuere purus enim, in efficitur metus."
-//       }
-//     },
-//     {
-//       "id": 4,
-//       "deleted": false,
-//       "naziv": "Fakultet za kulturu i menadžment u sportu",
-//       "studijskiProgrami": [],
-//       "univerzitet": {
-//         "id": 1,
-//         "deleted": false,
-//         "naziv": "Univerzitet u Beogradu",
-//         "opis": "Jedan od vodećih univerziteta u regionu. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam nibh massa, tincidunt porta tristique eu, fringilla non ante. Sed posuere purus enim, in efficitur metus."
-//       }
-//     },
-//     {
-//       "id": 5,
-//       "deleted": false,
-//       "naziv": "Farmacija",
-//       "studijskiProgrami": [
-//         {
-//           "id": 7,
-//           "deleted": false,
-//           "akronim": "FF",
-//           "naziv": "Farmacija",
-//           "opis": "Karijera u farmaciji je jedna od najprestižnijih karijera u svetu. Raznolikost karijernih puteva, koji postoje u farmaciji je jedan od razloga zašto upisati farmaciju. Od razvoja leka, kliničkog ispitivanja leka, do izdavanja leka odnosno pružanja farmaceutske zdravstvene usluge u apoteci, lako se može odabrati profesionalni put, koji Vas najviše zanima. Nakon završetka studijskog programa Farmacija stičete zvanje Magistar farmacije. Važno je imati na umu da ne morate odmah znati šta tačno želite da radite, jer posedovati diplomu Magistra farmacije je prestižno i otvara Vam vrata nebrojenim mogućnostima za obavljanje profesije farmaceuta."
-//         }
-//       ],
-//       "univerzitet": {
-//         "id": 2,
-//         "deleted": false,
-//         "naziv": "Univerzitet u Novom Sadu",
-//         "opis": "Najveći univerzitet u Srbiji. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vel turpis convallis, scelerisque odio non, mollis mauris. Phasellus sit amet posuere urna. Suspendisse id risus."
-//       }
-//     },
-//   ]
+  selectedSilabus: Ishod[] = [];
 
   predmetNaziv?: string;
 
@@ -446,7 +58,7 @@ export class FakultetiComponent implements OnInit {
   treeFlattener: MatTreeFlattener<TreeNode, FlatNode>;
   dataSource: MatTreeFlatDataSource<TreeNode, FlatNode>;
 
-  constructor(private fakultetService: FakultetService, private studijskiProgramService: StudijskiProgramService, private uniService:UniverzitetService) {
+  constructor(private fakultetService: FakultetService, private studijskiProgramService: StudijskiProgramService, private uniService: UniverzitetService) {
     this.treeFlattener = new MatTreeFlattener<TreeNode, FlatNode>(
       (node, level) => ({
         ...node,
@@ -457,12 +69,12 @@ export class FakultetiComponent implements OnInit {
       node => node.expandable,
       node => node.children || []
     );
-    
+
     this.treeControl = new FlatTreeControl<FlatNode>(
       (node) => node.level,
       (node) => node.expandable
     );
-    
+
     this.dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
   }
 
@@ -470,10 +82,10 @@ export class FakultetiComponent implements OnInit {
     this.getFakulteti(); //odkomentarisati
     this.getStudijskiProgrami(); //odkomentarisati
   }
-  
+
   getFakulteti() { //odkomentarisati
     this.uniService.getById(1).subscribe(x => {
-      if(x.fakulteti){
+      if (x.fakulteti) {
         this.fakulteti = x.fakulteti;
         const treeData = this.mapFakultetiToTreeData(this.fakulteti);
         this.dataSource.data = treeData;
@@ -482,15 +94,15 @@ export class FakultetiComponent implements OnInit {
       console.log(this.fakulteti);
     });
   }
-  
-  getStudijskiProgrami(){ //odkomentarisati
+
+  getStudijskiProgrami() { //odkomentarisati
     this.uniService.getById(1).subscribe(x => {
       this.studijskiProgrami = [];
-      if(x.fakulteti && x.fakulteti){
-        for(let fakultet of this.fakulteti){
-          if(fakultet.studijskiProgrami){
-            for(let st of fakultet.studijskiProgrami)
-              this.studijskiProgrami.push({...st});
+      if (x.fakulteti && x.fakulteti) {
+        for (let fakultet of this.fakulteti) {
+          if (fakultet.studijskiProgrami) {
+            for (let st of fakultet.studijskiProgrami)
+              this.studijskiProgrami.push({ ...st });
           }
         }
       }
@@ -507,14 +119,14 @@ export class FakultetiComponent implements OnInit {
           id: program.id
         };
       }) || [];
-  
+
       return {
         name: fakultet.naziv || 'Unnamed Fakultet',
         children
       };
     });
   }
-  
+
   onNodeButtonClick(id: number, event: MouseEvent) {
     event.stopPropagation();
     this.showDetails = true;
@@ -541,7 +153,7 @@ export class FakultetiComponent implements OnInit {
     return null;
   }
 
-  hideSilabus(){
+  hideSilabus() {
     this.selectedSilabus = [];
   }
 
@@ -554,4 +166,393 @@ export class FakultetiComponent implements OnInit {
   }
 
   hasChild = (_: number, node: FlatNode) => node.expandable;
+
+  //   studijskiProgramData : StudijskiProgram[] = [{ //zakomentarisati
+  //     "id": 5,
+  //     "deleted": false,
+  //     "akronim": "SII",
+  //     "naziv": "Softversko inženjerstvo i informacione tehnologije",
+  //     "opis": "Ovaj studijski program obezbeđuje najšira znanja iz oblasti softverskog i informacionog inženjerstva. Na studijama se izučavaju metodološki aspekti razvoja složenih softverskih i informacionih sistema i najsavremenije prateće, posebno softverske tehnologije za primenu softverskog i informacionog inženjerstva u različitim domenskim oblastima.",
+  //     "fakultet": {
+  //       "id": 3
+  //     },
+  //     "godineStudija": [
+  //       {
+  //         "id": 75,
+  //         "deleted": false,
+  //         "godina": 3,
+  //         "predmeti": [
+  //           {
+  //             "id": 38,
+  //             "deleted": false,
+  //             "akronim": "LMS3LPRS",
+  //             "naziv": "Osnovi računarske tehnike - LPRS",
+  //             "espb": 5,
+  //             "obavezan": true,
+  //             "semestar": 5,
+  //             "semestarTrajanje": 1,
+  //             "brojPredavanja": 3,
+  //             "brojVezbi": 0,
+  //             "drugiObliciNastave": 2,
+  //             "istrazivackiRad": 0,
+  //             "ostaliCasovi": 1,
+  //             "silabus": [
+  //               {
+  //                 "id" : 22,
+  //                 "opis" : "opis ishoda",
+  //                 "obrazovniCiljevi" : [
+  //                   {
+  //                     "id" : 1,
+  //                     "opis" : "opis obrazovnog cilja1"
+  //                   },
+  //                   {
+  //                     "id" : 2,
+  //                     "opis" : "opis obrazovnog cilja2"
+  //                   }
+  //                 ],
+  //                 "nastavniMaterijali" : [
+  //                   {
+  //                     "id" : 12,
+  //                     "naziv": "Naziv1",
+  //                     "godinaIzdavanja" : 2020,
+  //                     "autori" : [],
+  //                     "fajlovi" : [],
+  //                   },
+  //                   {
+  //                     "id" : 6,
+  //                     "naziv": "Naziv nastavnog materijala",
+  //                     "godinaIzdavanja" : 2019,
+  //                     "autori" : [],
+  //                     "fajlovi" : [],
+  //                   }
+  //                 ]
+  //               },
+  //               {
+  //                 "id" : 22,
+  //                 "opis" : "opis ishoda 2",
+  //                 "obrazovniCiljevi" : [
+  //                   {
+  //                     "id" : 1,
+  //                     "opis" : "opis obrazovnog cilja12"
+  //                   },
+  //                   {
+  //                     "id" : 2,
+  //                     "opis" : "opis obrazovnog cilja22"
+  //                   }
+  //                 ],
+  //                 "nastavniMaterijali" : [
+  //                   {
+  //                     "id" : 12,
+  //                     "naziv": "Naziv12",
+  //                     "godinaIzdavanja" : 2020,
+  //                     "autori" : [],
+  //                     "fajlovi" : [],
+  //                   },
+  //                   {
+  //                     "id" : 6,
+  //                     "naziv": "Naziv nastavnog materijala2",
+  //                     "godinaIzdavanja" : 2019,
+  //                     "autori" : [],
+  //                     "fajlovi" : [],
+  //                   }
+  //                 ]
+  //               }
+  //             ]
+  //           },
+  //           {
+  //             "id": 37,
+  //             "deleted": false,
+  //             "akronim": "LMS3SNUS1",
+  //             "naziv": "Softver nadzorno-upravljačkih sistema",
+  //             "espb": 5,
+  //             "obavezan": true,
+  //             "semestar": 5,
+  //             "semestarTrajanje": 1,
+  //             "brojPredavanja": 3,
+  //             "brojVezbi": 0,
+  //             "drugiObliciNastave": 2,
+  //             "istrazivackiRad": 0,
+  //             "ostaliCasovi": 1,
+  //             "silabus": []
+  //           },
+  //           {
+  //             "id": 35,
+  //             "deleted": false,
+  //             "akronim": "LMS3VP",
+  //             "naziv": "Veb programiranje",
+  //             "espb": 7,
+  //             "obavezan": true,
+  //             "semestar": 5,
+  //             "semestarTrajanje": 1,
+  //             "brojPredavanja": 3,
+  //             "brojVezbi": 0,
+  //             "drugiObliciNastave": 2,
+  //             "istrazivackiRad": 0,
+  //             "ostaliCasovi": 1,
+  //             "silabus": []
+  //           },
+  //           {
+  //             "id": 36,
+  //             "deleted": false,
+  //             "akronim": "LMS3ST",
+  //             "naziv": "Statistika",
+  //             "espb": 6,
+  //             "obavezan": true,
+  //             "semestar": 5,
+  //             "semestarTrajanje": 1,
+  //             "brojPredavanja": 3,
+  //             "brojVezbi": 1,
+  //             "drugiObliciNastave": 2,
+  //             "istrazivackiRad": 0,
+  //             "ostaliCasovi": 0,
+  //             "silabus": []
+  //           },
+  //           {
+  //             "id": 44,
+  //             "deleted": false,
+  //             "akronim": "LMS3DS",
+  //             "naziv": "Distribuirani sistemi u geomatici",
+  //             "espb": 8,
+  //             "obavezan": false,
+  //             "semestar": 6,
+  //             "semestarTrajanje": 1,
+  //             "brojPredavanja": 4,
+  //             "brojVezbi": 0,
+  //             "drugiObliciNastave": 3,
+  //             "istrazivackiRad": 0,
+  //             "ostaliCasovi": 1,
+  //             "silabus": []
+  //           },
+  //           {
+  //             "id": 39,
+  //             "deleted": false,
+  //             "akronim": "LMS3PGK",
+  //             "naziv": "Pisana i govorna komunikacija u tehnici",
+  //             "espb": 4,
+  //             "obavezan": true,
+  //             "semestar": 6,
+  //             "semestarTrajanje": 1,
+  //             "brojPredavanja": 0,
+  //             "brojVezbi": 0,
+  //             "drugiObliciNastave": 0,
+  //             "istrazivackiRad": 0,
+  //             "ostaliCasovi": 0,
+  //             "silabus": []
+  //           },
+  //           {
+  //             "id": 45,
+  //             "deleted": false,
+  //             "akronim": "LMS3SNUS2",
+  //             "naziv": "Softver nadzorno-upravljačkih sistema",
+  //             "espb": 8,
+  //             "obavezan": false,
+  //             "semestar": 6,
+  //             "semestarTrajanje": 1,
+  //             "brojPredavanja": 4,
+  //             "brojVezbi": 0,
+  //             "drugiObliciNastave": 3,
+  //             "istrazivackiRad": 0,
+  //             "ostaliCasovi": 0,
+  //             "silabus": []
+  //           },
+  //           {
+  //             "id": 34,
+  //             "deleted": false,
+  //             "akronim": "LMS3SO",
+  //             "naziv": "Softverski obrasci i komponente",
+  //             "espb": 7,
+  //             "obavezan": true,
+  //             "semestar": 5,
+  //             "semestarTrajanje": 1,
+  //             "brojPredavanja": 3,
+  //             "brojVezbi": 0,
+  //             "drugiObliciNastave": 2,
+  //             "istrazivackiRad": 0,
+  //             "ostaliCasovi": 1,
+  //             "silabus": []
+  //           },
+  //           {
+  //             "id": 42,
+  //             "deleted": false,
+  //             "akronim": "LMS3PP",
+  //             "naziv": "Programski prevodioci",
+  //             "espb": 4,
+  //             "obavezan": true,
+  //             "semestar": 6,
+  //             "semestarTrajanje": 1,
+  //             "brojPredavanja": 2,
+  //             "brojVezbi": 0,
+  //             "drugiObliciNastave": 2,
+  //             "istrazivackiRad": 0,
+  //             "ostaliCasovi": 0,
+  //             "silabus": []
+  //           },
+  //           {
+  //             "id": 43,
+  //             "deleted": false,
+  //             "akronim": "LMS3MRS",
+  //             "naziv": "Metodologije razvoja softvera",
+  //             "espb": 5,
+  //             "obavezan": true,
+  //             "semestar": 6,
+  //             "semestarTrajanje": 1,
+  //             "brojPredavanja": 2,
+  //             "brojVezbi": 0,
+  //             "drugiObliciNastave": 2,
+  //             "istrazivackiRad": 0,
+  //             "ostaliCasovi": 1,
+  //             "silabus": []
+  //           },
+  //           {
+  //             "id": 41,
+  //             "deleted": false,
+  //             "akronim": "LMS3IČR",
+  //             "naziv": "Interakcija čovek računar",
+  //             "espb": 4,
+  //             "obavezan": true,
+  //             "semestar": 6,
+  //             "semestarTrajanje": 1,
+  //             "brojPredavanja": 2,
+  //             "brojVezbi": 0,
+  //             "drugiObliciNastave": 1,
+  //             "istrazivackiRad": 0,
+  //             "ostaliCasovi": 1,
+  //             "silabus": []
+  //           }
+  //         ]
+  //       },
+  //       {
+  //         "id": 80,
+  //         "deleted": false,
+  //         "godina": 4,
+  //         "predmeti": [
+  //           {
+  //             "id": 46,
+  //             "deleted": false,
+  //             "akronim": "LMS4SP",
+  //             "naziv": "Stručna praksa - projekat",
+  //             "espb": 6,
+  //             "obavezan": true,
+  //             "semestar": 7,
+  //             "semestarTrajanje": 2,
+  //             "brojPredavanja": 0,
+  //             "brojVezbi": 0,
+  //             "drugiObliciNastave": 0,
+  //             "istrazivackiRad": 0,
+  //             "ostaliCasovi": 6,
+  //             "silabus": []
+  //           },
+  //           {
+  //             "id": 47,
+  //             "deleted": false,
+  //             "akronim": "LMS4PGK",
+  //             "naziv": "Pisana i govorna komunikacija u tehnici",
+  //             "espb": 4,
+  //             "obavezan": true,
+  //             "semestar": 8,
+  //             "semestarTrajanje": 1,
+  //             "brojPredavanja": 2,
+  //             "brojVezbi": 0,
+  //             "drugiObliciNastave": 1,
+  //             "istrazivackiRad": 0,
+  //             "ostaliCasovi": 0,
+  //             "silabus": []
+  //           }
+  //         ]
+  //       }
+  //     ]
+  // }];
+  // hardcodedFakulteti : Fakultet[] = [ //zakomentarisati
+  //     {
+  //       "id": 1,
+  //       "deleted": false,
+  //       "naziv": "Poslovni fakultet",
+  //       "studijskiProgrami": [],
+  //       "univerzitet": {
+  //         "id": 1,
+  //         "deleted": false,
+  //         "naziv": "Univerzitet u Beogradu",
+  //         "opis": "Jedan od vodećih univerziteta u regionu. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam nibh massa, tincidunt porta tristique eu, fringilla non ante. Sed posuere purus enim, in efficitur metus."
+  //       }
+  //     },
+  //     {
+  //       "id": 2,
+  //       "deleted": false,
+  //       "naziv": "Fakultet za informatiku i računarstvo",
+  //       "studijskiProgrami": [
+  //         {
+  //           "id": 2,
+  //           "deleted": false,
+  //           "akronim": "IT",
+  //           "naziv": "Informacione tehnologije",
+  //           "opis": "Studijski program Informacione tehnologije je usaglašen sa dostignutim stepenom razvoja informacionih tehnologija, savremenih veb servisa, internet marketinga, savremenih menadžerskih pristupa i u skladu je sa zahtevima koji proizilaze iz praktične primene saznanja iz ovih oblasti u poslovnim sistemima. Glavna odlika studijskog programa Informacione tehnologije je posvećivanje pažnje internet tehnologijama i veb servisima što je u skladu sa brzim tehnološkim promenama u ovoj oblasti."
+  //         },
+  //         {
+  //           "id": 1,
+  //           "deleted": false,
+  //           "akronim": "RN",
+  //           "naziv": "Računarske nauke",
+  //           "opis": "Fakultet za Informatiku i računarstvo već više od jedne decenije školuje programere i informatičare specijalizovane za razvoj softvera i informacionu bezbednost. Studenti na ovom studijskom programu, kroz izborne predmete na 3. i 4. godini, mogu izabrati jedno od dva usmerenja: razvoj veb i mobilnih aplikacija ili bezbednost u sajber prostoru."
+  //         }
+  //       ],
+  //       "univerzitet": {
+  //         "id": 1,
+  //         "deleted": false,
+  //         "naziv": "Univerzitet u Beogradu",
+  //         "opis": "Jedan od vodećih univerziteta u regionu. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam nibh massa, tincidunt porta tristique eu, fringilla non ante. Sed posuere purus enim, in efficitur metus."
+  //       }
+  //     },
+  //     {
+  //       "id": 3,
+  //       "deleted": false,
+  //       "naziv": "Tehnički fakultet",
+  //       "studijskiProgrami": [
+  //         {
+  //           "id": 5,
+  //           "deleted": false,
+  //           "akronim": "SII",
+  //           "naziv": "Softversko inženjerstvo i informacione tehnologije",
+  //           "opis": "Ovaj studijski program obezbeđuje najšira znanja iz oblasti softverskog i informacionog inženjerstva. Na studijama se izučavaju metodološki aspekti razvoja složenih softverskih i informacionih sistema i najsavremenije prateće, posebno softverske tehnologije za primenu softverskog i informacionog inženjerstva u različitim domenskim oblastima."
+  //         }
+  //       ],
+  //       "univerzitet": {
+  //         "id": 1,
+  //         "deleted": false,
+  //         "naziv": "Univerzitet u Beogradu",
+  //         "opis": "Jedan od vodećih univerziteta u regionu. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam nibh massa, tincidunt porta tristique eu, fringilla non ante. Sed posuere purus enim, in efficitur metus."
+  //       }
+  //     },
+  //     {
+  //       "id": 4,
+  //       "deleted": false,
+  //       "naziv": "Fakultet za kulturu i menadžment u sportu",
+  //       "studijskiProgrami": [],
+  //       "univerzitet": {
+  //         "id": 1,
+  //         "deleted": false,
+  //         "naziv": "Univerzitet u Beogradu",
+  //         "opis": "Jedan od vodećih univerziteta u regionu. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam nibh massa, tincidunt porta tristique eu, fringilla non ante. Sed posuere purus enim, in efficitur metus."
+  //       }
+  //     },
+  //     {
+  //       "id": 5,
+  //       "deleted": false,
+  //       "naziv": "Farmacija",
+  //       "studijskiProgrami": [
+  //         {
+  //           "id": 7,
+  //           "deleted": false,
+  //           "akronim": "FF",
+  //           "naziv": "Farmacija",
+  //           "opis": "Karijera u farmaciji je jedna od najprestižnijih karijera u svetu. Raznolikost karijernih puteva, koji postoje u farmaciji je jedan od razloga zašto upisati farmaciju. Od razvoja leka, kliničkog ispitivanja leka, do izdavanja leka odnosno pružanja farmaceutske zdravstvene usluge u apoteci, lako se može odabrati profesionalni put, koji Vas najviše zanima. Nakon završetka studijskog programa Farmacija stičete zvanje Magistar farmacije. Važno je imati na umu da ne morate odmah znati šta tačno želite da radite, jer posedovati diplomu Magistra farmacije je prestižno i otvara Vam vrata nebrojenim mogućnostima za obavljanje profesije farmaceuta."
+  //         }
+  //       ],
+  //       "univerzitet": {
+  //         "id": 2,
+  //         "deleted": false,
+  //         "naziv": "Univerzitet u Novom Sadu",
+  //         "opis": "Najveći univerzitet u Srbiji. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vel turpis convallis, scelerisque odio non, mollis mauris. Phasellus sit amet posuere urna. Suspendisse id risus."
+  //       }
+  //     },
+  //   ]
 }
