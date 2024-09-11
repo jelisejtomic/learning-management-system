@@ -1,6 +1,6 @@
 package projekat.lms.model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,16 +12,16 @@ public class IspitniRok extends BaseEntity {
 	private String naziv;
 
 	@Column(nullable = false)
-	private LocalDateTime pocetakRoka;
+	private LocalDate pocetakRoka;
 
 	@Column(nullable = false)
-	private LocalDateTime krajRoka;
+	private LocalDate krajRoka;
 
 	public IspitniRok() {
 		super();
 	}
 
-	public IspitniRok(Long id, Boolean deleted, String naziv, LocalDateTime pocetakRoka, LocalDateTime krajRoka) {
+	public IspitniRok(Long id, Boolean deleted, String naziv, LocalDate pocetakRoka, LocalDate krajRoka) {
 		super(id, deleted);
 		this.naziv = naziv;
 		this.pocetakRoka = pocetakRoka;
@@ -36,19 +36,19 @@ public class IspitniRok extends BaseEntity {
 		this.naziv = naziv;
 	}
 
-	public LocalDateTime getPocetakRoka() {
+	public LocalDate getPocetakRoka() {
 		return pocetakRoka;
 	}
 
-	public void setPocetakRoka(LocalDateTime pocetakRoka) {
+	public void setPocetakRoka(LocalDate pocetakRoka) {
 		this.pocetakRoka = pocetakRoka;
 	}
 
-	public LocalDateTime getKrajRoka() {
+	public LocalDate getKrajRoka() {
 		return krajRoka;
 	}
 
-	public void setKrajRoka(LocalDateTime krajRoka) {
+	public void setKrajRoka(LocalDate krajRoka) {
 		this.krajRoka = krajRoka;
 	}
 
