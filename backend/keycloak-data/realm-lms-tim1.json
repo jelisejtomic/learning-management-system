@@ -709,6 +709,8 @@
     "attributes" : {
       "oidc.ciba.grant.enabled" : "false",
       "backchannel.logout.session.required" : "true",
+      "login_theme" : "keycloak",
+      "frontchannel.logout.url" : "http://localhost/",
       "post.logout.redirect.uris" : "http://localhost/*",
       "oauth2.device.authorization.grant.enabled" : "false",
       "display.on.consent.screen" : "false",
