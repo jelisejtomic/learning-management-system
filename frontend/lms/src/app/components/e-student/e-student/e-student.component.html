@@ -1,0 +1,11 @@
+<div *ngIf="userProfile">
+    <ng-container [ngSwitch]="userRole">
+        <app-student *ngSwitchCase="'ROLE_STUDENT'" [username]="userProfile.username ?? ''"></app-student>
+
+        <app-nastavnik *ngSwitchCase="'ROLE_TEACHER'" [username]="userProfile.username ?? ''"></app-nastavnik>
+
+        <app-studentska-sluzba *ngSwitchCase="'ROLE_STAFF'"></app-studentska-sluzba>
+
+        <app-admin *ngSwitchCase="'ROLE_ADMIN'"></app-admin>
+    </ng-container>
+</div>

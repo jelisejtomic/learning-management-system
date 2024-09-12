@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { KeycloakService } from 'keycloak-angular';
+import { AuthService } from '../../../auth/auth.service';
 
 @Component({
   selector: 'app-e-student-header',
@@ -11,9 +11,9 @@ import { KeycloakService } from 'keycloak-angular';
 })
 export class EStudentHeaderComponent {
 
-  constructor(private keycloakService: KeycloakService) { }
+  constructor(private authService: AuthService) { }
 
   logout() {
-    this.keycloakService.logout('http://localhost:80/');
+    this.authService.logout();
   }
 }
