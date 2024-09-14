@@ -8,7 +8,7 @@ import { StudentPredmetComponent } from './components/e-student/student/student-
 import { PrijavaIspitaComponent } from './components/e-student/student/prijava-ispita/prijava-ispita.component';
 import { ObavestenjaPredmetiComponent } from './components/e-student/student/obavestenja-predmeti/obavestenja-predmeti.component';
 import { IstorijaStudiranjaComponent } from './components/e-student/student/istorija-studiranja/istorija-studiranja.component';
-import { EStudentComponent } from './components/e-student/e-student/e-student.component';
+import { EStudentComponent } from './components/e-student/e-student.component';
 import { StudentComponent } from './components/e-student/student/student.component';
 import { NastavnikComponent } from './components/e-student/nastavnik/nastavnik.component';
 import { StudentskaSluzbaComponent } from './components/e-student/studentska-sluzba/studentska-sluzba.component';
@@ -23,6 +23,11 @@ import { IzdavanjeUdzbenikaComponent } from './components/e-student/studentska-s
 import { ObjavljivanjeObavestenjaComponent } from './components/e-student/studentska-sluzba/objavljivanje-obavestenja/objavljivanje-obavestenja.component';
 import { StudentskaSluzbaPodesavanjaComponent } from './components/e-student/studentska-sluzba/studentska-sluzba-podesavanja/studentska-sluzba-podesavanja.component';
 import { UpisStudenataComponent } from './components/e-student/studentska-sluzba/upis-studenata/upis-studenata.component';
+import { AdminKorisnikaComponent } from './components/e-student/admin/admin-korisnika/admin-korisnika.component';
+import { AdminOrganizacijeComponent } from './components/e-student/admin/admin-organizacije/admin-organizacije.component';
+import { AdminSifarnikaComponent } from './components/e-student/admin/admin-sifarnika/admin-sifarnika.component';
+import { AdminStudijskihProgramaComponent } from './components/e-student/admin/admin-studijskih-programa/admin-studijskih-programa.component';
+import { AdminNastavnikaOsobljaComponent } from './components/e-student/admin/admin-nastavnika-osoblja/admin-nastavnika-osoblja.component';
 
 export const routes: Routes = [
     { path: "", component: HomeComponent },
@@ -78,6 +83,13 @@ export const routes: Routes = [
 
     {
         path: "admin", component: AdminComponent,
+        children: [
+            { path: 'administracija-sifarnika', component: AdminSifarnikaComponent },
+            { path: 'administracija-korisnika', component: AdminKorisnikaComponent },
+            { path: 'administracija-studijskih-programa', component: AdminStudijskihProgramaComponent },
+            { path: 'administracija-organizacije', component: AdminOrganizacijeComponent },
+            { path: 'dodavanje-nastavnika-osoblja', component: AdminNastavnikaOsobljaComponent },
+        ],
         data: { roles: ["ROLE_ADMIN"] },
         canActivate: [AuthGuard],
     },

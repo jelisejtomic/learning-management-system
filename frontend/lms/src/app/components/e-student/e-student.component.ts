@@ -1,12 +1,12 @@
 import { NgSwitch, NgIf, NgSwitchCase } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
-import { AdminComponent } from "../admin/admin.component";
-import { EStudentHeaderComponent } from "../e-student-header/e-student-header.component";
-import { NastavnikComponent } from "../nastavnik/nastavnik.component";
-import { StudentskaSluzbaComponent } from "../studentska-sluzba/studentska-sluzba.component";
-import { StudentComponent } from "../student/student.component";
+import { AdminComponent } from "./admin/admin.component";
+import { EStudentHeaderComponent } from "./e-student-header/e-student-header.component";
+import { NastavnikComponent } from "./nastavnik/nastavnik.component";
+import { StudentskaSluzbaComponent } from "./studentska-sluzba/studentska-sluzba.component";
+import { StudentComponent } from "./student/student.component";
 import { RouterOutlet } from "@angular/router";
-import { AuthService } from "../../../auth/auth.service";
+import { AuthService } from "../../auth/auth.service";
 import { KeycloakProfile } from "keycloak-js";
 
 @Component({

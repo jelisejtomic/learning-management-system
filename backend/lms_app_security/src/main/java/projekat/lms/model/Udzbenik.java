@@ -1,5 +1,7 @@
 package projekat.lms.model;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 
 import jakarta.persistence.Column;
@@ -8,9 +10,8 @@ import projekat.lms.generics.BaseEntity;
 
 @Entity
 public class Udzbenik extends BaseEntity {
-
 	@Column(nullable = true, columnDefinition = "VARCHAR(256)")
-	private Set<String> autori;
+	private String autori;
 
 	@Column(nullable = false)
 	private Integer godinaIzdavanja;
@@ -24,7 +25,7 @@ public class Udzbenik extends BaseEntity {
 	@Column(columnDefinition = "int default 0")
 	private Integer stanje;
 
-	public Udzbenik(Long id, Boolean deleted, Set<String> autori, Integer godinaIzdavanja, String naziv, String isbn,
+	public Udzbenik(Long id, Boolean deleted, String autori, Integer godinaIzdavanja, String naziv, String isbn,
 			Integer stanje) {
 		super(id, deleted);
 		this.autori = autori;
@@ -39,11 +40,18 @@ public class Udzbenik extends BaseEntity {
 	}
 
 	public Set<String> getAutori() {
-		return autori;
+		if (this.autori == null || this.autori.isEmpty()) {
+			return new HashSet<>();
+		}
+		return new HashSet<>(Arrays.asList(this.autori.split(",")));
 	}
 
 	public void setAutori(Set<String> autori) {
-		this.autori = autori;
+		if (autori == null || autori.isEmpty()) {
+			this.autori = null;
+		} else {
+			this.autori = String.join(",", autori);
+		}
 	}
 
 	public Integer getGodinaIzdavanja() {

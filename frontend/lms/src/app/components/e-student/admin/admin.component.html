@@ -1,1 +1,9 @@
-<p>admin works!</p>
+<app-e-student-header></app-e-student-header>
+
+<div class="w-full px-4 md:px-6">
+    <div class="max-w-7xl py-1 mx-auto flex flex-col md:flex-row gap-4">
+        <app-sidenav [items]="sidenavItems" [user]="admin">
+            <router-outlet></router-outlet>
+        </app-sidenav>
+    </div>
+</div>
