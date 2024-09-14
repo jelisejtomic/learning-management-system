@@ -14,6 +14,8 @@ import { NastavnikComponent } from './components/e-student/nastavnik/nastavnik.c
 import { StudentskaSluzbaComponent } from './components/e-student/studentska-sluzba/studentska-sluzba.component';
 import { AdminComponent } from './components/e-student/admin/admin.component';
 import { PodesavanjaComponent } from './components/e-student/student/podesavanja/podesavanja.component';
+import { NastavnikPredmetComponent } from './components/e-student/nastavnik/nastavnik-predmet/nastavnik-predmet.component';
+import { NastavnikPodesavanjaComponent } from './components/e-student/nastavnik/nastavnik-podesavanja/nastavnik-podesavanja.component';
 
 export const routes: Routes = [
     { path: "", component: HomeComponent },
@@ -43,6 +45,11 @@ export const routes: Routes = [
 
     {
         path: "nastavnik", component: NastavnikComponent,
+        children: [
+            { path: "predmeti", component: NastavnikPredmetComponent },
+            { path: "podesavanja", component: NastavnikPodesavanjaComponent }
+
+        ],
         data: { roles: ["ROLE_TEACHER"] },
         canActivate: [AuthGuard],
     },
