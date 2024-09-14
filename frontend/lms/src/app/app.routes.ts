@@ -9,13 +9,20 @@ import { PrijavaIspitaComponent } from './components/e-student/student/prijava-i
 import { ObavestenjaPredmetiComponent } from './components/e-student/student/obavestenja-predmeti/obavestenja-predmeti.component';
 import { IstorijaStudiranjaComponent } from './components/e-student/student/istorija-studiranja/istorija-studiranja.component';
 import { EStudentComponent } from './components/e-student/e-student/e-student.component';
-import { StudentComponent } from './components/e-student/student/student/student.component';
+import { StudentComponent } from './components/e-student/student/student.component';
 import { NastavnikComponent } from './components/e-student/nastavnik/nastavnik.component';
 import { StudentskaSluzbaComponent } from './components/e-student/studentska-sluzba/studentska-sluzba.component';
 import { AdminComponent } from './components/e-student/admin/admin.component';
 import { PodesavanjaComponent } from './components/e-student/student/podesavanja/podesavanja.component';
 import { NastavnikPredmetComponent } from './components/e-student/nastavnik/nastavnik-predmet/nastavnik-predmet.component';
 import { NastavnikPodesavanjaComponent } from './components/e-student/nastavnik/nastavnik-podesavanja/nastavnik-podesavanja.component';
+import { FormiranjeRasporedaComponent } from './components/e-student/studentska-sluzba/formiranje-rasporeda/formiranje-rasporeda.component';
+import { InventarComponent } from './components/e-student/studentska-sluzba/inventar/inventar.component';
+import { IzdavanjePotvrdaComponent } from './components/e-student/studentska-sluzba/izdavanje-potvrda/izdavanje-potvrda.component';
+import { IzdavanjeUdzbenikaComponent } from './components/e-student/studentska-sluzba/izdavanje-udzbenika/izdavanje-udzbenika.component';
+import { ObjavljivanjeObavestenjaComponent } from './components/e-student/studentska-sluzba/objavljivanje-obavestenja/objavljivanje-obavestenja.component';
+import { StudentskaSluzbaPodesavanjaComponent } from './components/e-student/studentska-sluzba/studentska-sluzba-podesavanja/studentska-sluzba-podesavanja.component';
+import { UpisStudenataComponent } from './components/e-student/studentska-sluzba/upis-studenata/upis-studenata.component';
 
 export const routes: Routes = [
     { path: "", component: HomeComponent },
@@ -53,11 +60,22 @@ export const routes: Routes = [
         data: { roles: ["ROLE_TEACHER"] },
         canActivate: [AuthGuard],
     },
+
     {
         path: "studentska-sluzba", component: StudentskaSluzbaComponent,
+        children: [
+            { path: "upis-studenata", component: UpisStudenataComponent },
+            { path: "izdavanje-potvrda", component: IzdavanjePotvrdaComponent },
+            { path: "formiranje-rasporeda", component: FormiranjeRasporedaComponent },
+            { path: "objavljivanje-obavestenja", component: ObjavljivanjeObavestenjaComponent },
+            { path: "izdavanje-udzbenika", component: IzdavanjeUdzbenikaComponent },
+            { path: "inventar", component: InventarComponent },
+            { path: "podesavanja", component: StudentskaSluzbaPodesavanjaComponent }
+        ],
         data: { roles: ["ROLE_STAFF"] },
         canActivate: [AuthGuard],
     },
+
     {
         path: "admin", component: AdminComponent,
         data: { roles: ["ROLE_ADMIN"] },

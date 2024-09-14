@@ -7,6 +7,6 @@
         <app-studentska-sluzba *ngSwitchCase="'ROLE_STAFF'"
             [username]="userProfile.username ?? ''"></app-studentska-sluzba>
 
-        <app-admin *ngSwitchCase="'ROLE_ADMIN'" [username]="userProfile.username ?? ''"></app-admin>
+        <app-admin *ngSwitchCase="'ROLE_ADMIN'"></app-admin>
     </ng-container>
 </div>

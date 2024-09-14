@@ -1,10 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { StudentService } from '../../../../services/student.service';
-import { Student } from '../../../../models/student';
+import { StudentService } from '../../../services/student.service';
+import { Student } from '../../../models/student';
 import { RouterOutlet } from '@angular/router';
-import { EStudentHeaderComponent } from '../../e-student-header/e-student-header.component';
-import { SidenavComponent, SidenavItem } from '../../../sidenav/sidenav.component';
-import { AuthService } from '../../../../auth/auth.service';
+import { EStudentHeaderComponent } from '../e-student-header/e-student-header.component';
+import { SidenavComponent, SidenavItem } from '../../sidenav/sidenav.component';
+import { AuthService } from '../../../auth/auth.service';
 
 @Component({
   selector: 'app-student',
