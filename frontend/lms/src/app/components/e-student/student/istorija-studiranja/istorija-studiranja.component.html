@@ -8,22 +8,22 @@
       </ng-container>
 
       <ng-container matColumnDef="naziv">
-        <th mat-header-cell *matHeaderCellDef> naziv </th>
+        <th mat-header-cell *matHeaderCellDef> Naziv </th>
         <td mat-cell *matCellDef="let element"> {{element["naziv"]}} </td>
       </ng-container>
 
       <ng-container matColumnDef="espb">
-        <th mat-header-cell *matHeaderCellDef> espb </th>
+        <th mat-header-cell *matHeaderCellDef> ESPB </th>
         <td mat-cell *matCellDef="let element"> {{element["espb"]}} </td>
       </ng-container>
 
       <ng-container matColumnDef="konacniBodovi">
-        <th mat-header-cell *matHeaderCellDef> konacniBodovi </th>
+        <th mat-header-cell *matHeaderCellDef> Poeni </th>
         <td mat-cell *matCellDef="let element"> {{element["konacniBodovi"]}} </td>
       </ng-container>
 
       <ng-container matColumnDef="ocena">
-        <th mat-header-cell *matHeaderCellDef> ocena </th>
+        <th mat-header-cell *matHeaderCellDef> Ocena </th>
         <td mat-cell *matCellDef="let element"> {{element["ocena"]}} </td>
       </ng-container>
 
@@ -32,9 +32,16 @@
 
     </table>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 20, 50]" showFirstLastButtons
+    <div class="bg-gray-200 p-4 mt-4">
+      <div class="flex justify-between font-bold">
+        <span>Prosečna ocena: {{ averageGrade}}</span>
+        <span>Zbir ESPB poena: {{ totalESPB }}</span>
+      </div>
+    </div>
+
+    <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20, 50]" showFirstLastButtons
       aria-label="Select page of periodic elements">
-    </mat-paginator>
+    </mat-paginator> -->
   </div>
 
 </div>
