@@ -1,0 +1,27 @@
+<h1 mat-dialog-title class="px-6 text-2xl font-semibold text-center mb-4">
+  Prijava ispita
+</h1>
+<div mat-dialog-content class="px-6 pb-4 space-y-2">
+  <p class="text-lg"><strong>Predmet:</strong> {{selectedPredmet!.naziv}}</p>
+  <p class="text-lg"><strong>Akronim:</strong> {{selectedPredmet!.akronim}}</p>
+  <p class="text-lg"><strong>ESPB:</strong> {{selectedPredmet!.espb}}</p>
+  <p class="text-lg"><strong>Obavezan:</strong> {{selectedPredmet!.obavezan == true ? "Da" : "Ne"}}</p>
+
+  <form class="space-y-4" (ngSubmit)="prijaviIspit()">
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>ispitni rok</mat-label>
+      <mat-select [(ngModel)]="selectedIspitniRokId" name="selectedIspitniRokId" required>
+        <mat-option *ngFor="let rok of filteredIspitniRokovi" [value]="rok.id">
+          {{ rok.naziv }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="text-center">
+      <button mat-raised-button color="primary" type="submit" class="w-32">Prijavi</button>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions class="justify-between px-6">
+  <button mat-button (click)="closeDialog()" class="text-red-500">Nazad</button>
+</div>

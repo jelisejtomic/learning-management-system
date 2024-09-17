@@ -82,22 +82,19 @@ export class FakultetiComponent implements OnInit {
     });
 
     return Array.from(uniqueGodine.values()).sort((a, b) => {
-      const godinaA = a.godina ?? Number.MAX_SAFE_INTEGER; // Handle undefined values
-      const godinaB = b.godina ?? Number.MAX_SAFE_INTEGER; // Handle undefined values
+      const godinaA = a.godina ?? Number.MAX_SAFE_INTEGER;
+      const godinaB = b.godina ?? Number.MAX_SAFE_INTEGER;
       return godinaA - godinaB;
   });
   }
 
-  // Method to get predmeti based on godina and studijskiProgram
   getFilteredPredmeti(godina: GodinaStudija, studijskiProgram: StudijskiProgram): Predmet[] {
     if (!godina || !studijskiProgram) return [];
     
-    // Ensure godina.godinaStudija is present in studijskiProgram.godineStudija
     if (!studijskiProgram.godineStudija?.some(g => g.id === godina.id)) {
       return [];
     }
 
-    // Deduplicate predmeti
     const uniquePredmeti = new Map<number, Predmet>();
     
     godina.predmeti?.forEach(predmet => {

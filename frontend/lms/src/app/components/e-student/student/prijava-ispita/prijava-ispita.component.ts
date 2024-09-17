@@ -1,26 +1,83 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Student } from '../../../../models/student';
 import { StudentService } from '../../../../services/student.service';
 import { take } from 'rxjs';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { RouterLink } from '@angular/router';
+import { Predmet } from '../../../../models/predmet';
+import { IspitniRok } from '../../../../models/ispitni-rok';
+import { MatDialogModule } from '@angular/material/dialog';
+import { PopupService } from '../../../prijava-ispita-popup/popup.service';
+import { DataService } from '../../../../services/data.service';
 
 @Component({
   selector: 'app-prijava-ispita',
   standalone: true,
-  imports: [],
+  imports: [MatPaginatorModule, MatTableModule, RouterLink, MatDialogModule],
   templateUrl: './prijava-ispita.component.html',
   styleUrl: './prijava-ispita.component.css'
 })
 export class PrijavaIspitaComponent implements OnInit {
-  constructor(private studentService: StudentService) { }
   @Input() student!: Student;
+  predmeti!: Predmet[];
+  ispitniRokovi!: IspitniRok[];
+  displayedColumns: string[] = ['akronim', 'naziv', 'espb', 'obavezan',  'prijavaIspita'];
+  dataSource: MatTableDataSource<Predmet> = new MatTableDataSource<Predmet>(this.predmeti);
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  constructor(private studentService: StudentService, private popupService: PopupService, private dataService : DataService) { }
 
   ngOnInit(): void {
     if (!this.student) {
       this.studentService.student$.pipe(take(1)).subscribe(student => {
         this.student = student!;
-        console.log("PrijavaIspitaComponent student: " + this.student.korisnik?.koriscnikoIme)
+        console.log("StudentPredmetComponent student: " + this.student.korisnik?.koriscnikoIme)
       });
     }
+    this.processStudentData();
+  }
+
+  ngAfterViewInit(): void {
+    this.initializeTable();
+  }
+
+  setData(predmet: Predmet){
+    this.dataService.setData(predmet)
+  }
+
+  processStudentData() {
+    if (this.student && this.student.studentNaGodinama) {
+      const poslednjaGodinaStudija = this.student.studentNaGodinama[this.student.studentNaGodinama.length - 1].godinaStudija;
+
+      if (poslednjaGodinaStudija) {
+        this.predmeti = poslednjaGodinaStudija.predmeti;
+      }
+
+      if (this.student.pohadjanjaPredmeta) {
+        for (let p of this.student.pohadjanjaPredmeta) {
+          for (let pr of this.predmeti) {
+            if (p.realizacijaPredmeta?.predmet?.id === pr.id) {
+              const index = this.predmeti.findIndex(item => item.id === pr.id);
+      
+              if (index !== -1) {
+                this.predmeti.splice(index, 1);
+                console.log(this.predmeti)
+              }
+            }
+          }
+        }
+      }
+  }
+  }
+
+  initializeTable() {
+    this.dataSource = new MatTableDataSource<Predmet>(this.predmeti);
+    this.dataSource.paginator = this.paginator;
+  }
+
+  openPopup() {
+    this.popupService.openPopup();
   }
 
 }
