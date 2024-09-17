@@ -1,0 +1,27 @@
+<app-header></app-header>
+
+<div class="flex justify-center">
+    <div class="w-full max-w-4xl">
+        <div class="text-center mb-4">
+            <span class="text-lg font-semibold">Predmet: {{predmet.naziv}} ({{predmet.akronim}})</span>
+        </div>
+
+        <div>
+            <mat-tab-group>
+                <mat-tab label="Osnovne informacije">
+                    <div>ESPB: {{predmet.espb}}</div>
+                    <div>Obavezan: {{ predmet.obavezan ? 'Da' : 'Ne' }}</div>
+                </mat-tab>
+                <mat-tab label="Cilj">
+                    <div *ngFor="let ishod of predmet.silabus">{{ishod.obrazovniCiljevi}}</div>
+                </mat-tab>
+                <mat-tab label="Silabus">
+                    <div *ngFor="let ishod of predmet.silabus">{{ishod.opis}}</div>
+                </mat-tab>
+                <mat-tab label="Formiranje ocene"></mat-tab>
+                <mat-tab label="Izvodjaci nastave"> </mat-tab>
+            </mat-tab-group>
+
+        </div>
+    </div>
+</div>

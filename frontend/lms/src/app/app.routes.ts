@@ -28,12 +28,15 @@ import { AdminOrganizacijeComponent } from './components/e-student/admin/admin-o
 import { AdminSifarnikaComponent } from './components/e-student/admin/admin-sifarnika/admin-sifarnika.component';
 import { AdminStudijskihProgramaComponent } from './components/e-student/admin/admin-studijskih-programa/admin-studijskih-programa.component';
 import { AdminNastavnikaOsobljaComponent } from './components/e-student/admin/admin-nastavnika-osoblja/admin-nastavnika-osoblja.component';
+import { PredmetDetaljiComponent } from './components/predmet-detalji/predmet-detalji.component';
 
 export const routes: Routes = [
     { path: "", component: HomeComponent },
     { path: "kontakti", component: KontaktComponent },
     { path: "zaposleni", component: ZaposleniComponent },
     { path: "fakulteti", component: FakultetiComponent },
+    { path: 'predmeti/:id', component: PredmetDetaljiComponent },
+
 
     {
         path: "e-student", component: EStudentComponent,
