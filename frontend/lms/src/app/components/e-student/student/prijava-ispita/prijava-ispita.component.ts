@@ -68,7 +68,6 @@ export class PrijavaIspitaComponent implements OnInit {
       
               if (index !== -1) {
                 this.predmeti.splice(index, 1);
-                console.log(this.predmeti)
               }
             }
           }
@@ -82,7 +81,6 @@ export class PrijavaIspitaComponent implements OnInit {
       for(let e of data){
         if (this.student && this.student.studentNaGodinama){
           if(e.studentNaGodini?.id == this.student.studentNaGodinama[this.student.studentNaGodinama.length - 1].id){
-            console.log(e)
             this.prijaveIspita?.push(e)
           }
         }

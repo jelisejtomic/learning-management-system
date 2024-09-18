@@ -17,17 +17,19 @@ import { DataService } from '../../../../../services/data.service';
 import { Predmet } from '../../../../../models/predmet';
 import { RealizacijaPredmeta } from '../../../../../models/realizacija-predmeta';
 import { RealizacijaPredmetaService } from '../../../../../services/realizacija-predmeta.service';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-prijava-ispita-popup',
   standalone: true,
-  imports: [NgFor, NgIf, FormsModule, MatFormFieldModule,MatSelectModule,MatButtonModule],
+  imports: [NgFor, NgIf, FormsModule, MatFormFieldModule,MatSelectModule,MatButtonModule, MatSnackBarModule],
   templateUrl: './prijava-ispita-popup.component.html',
   styleUrl: './prijava-ispita-popup.component.css'
 })
 export class PrijavaIspitaPopupComponent {
   @Input() student!: Student;
   ispitniRokovi : IspitniRok[] = [];
+  prijaveIspita! : PrijavaIspita[];
   filteredIspitniRokovi: IspitniRok[] = [];
   realizacijePredmeta? : RealizacijaPredmeta[];
   currentDate : Date = new Date();
@@ -42,6 +44,7 @@ export class PrijavaIspitaPopupComponent {
             private studentService: StudentService,
             private prijavaIspitaService: PrijavaIspitaService,
             private realizacijaPredmetaService: RealizacijaPredmetaService,
+            private snackBar: MatSnackBar
     ) {}
 
   ngOnInit() {
@@ -52,26 +55,23 @@ export class PrijavaIspitaPopupComponent {
         console.log("StudentPredmetComponent student: " + this.student.korisnik?.koriscnikoIme)
       });
     }
-    this.dialogRef.updateSize('60%', '40%');
+    this.dialogRef.updateSize('65%', '40%');
     this.ispitniRokService.getAll().subscribe(data => {
       this.ispitniRokovi = data.map(rok => ({
         ...rok,
-        krajRoka: new Date(rok.krajRoka) // Convert string to Date object
+        krajRoka: new Date(rok.krajRoka)
       }));
       this.filterIspitniRokovi();
-      console.log(this.filteredIspitniRokovi)
-      console.log(this.currentDate)
       })
 
     this.realizacijaPredmetaService.getAll().subscribe(data =>{
-      console.log(data)
       this.realizacijePredmeta = data
   })
     this.getData();
-    this.selectRealizacijaPredmeta;
+    this.izaberiRealizacijaPredmeta;
   }
 
-  selectRealizacijaPredmeta() : RealizacijaPredmeta | undefined{
+  izaberiRealizacijaPredmeta() : RealizacijaPredmeta | undefined{
     for(let r of this.realizacijePredmeta!){
       if(r.predmet?.id == this.selectedPredmet?.id){
         return this.selectedRealizacijaPredmeta = r
@@ -94,19 +94,47 @@ export class PrijavaIspitaPopupComponent {
 
   prijaviIspit(): void {
     if (this.selectedIspitniRokId && this.studentNaGodini) {
+      // Fetch the selected ispitni rok
       const ispitniRok = this.ispitniRokovi.find(rok => rok.id === this.selectedIspitniRokId);
+
       if (ispitniRok) {
-        console.log(this.selectedRealizacijaPredmeta?.predmet?.naziv)
-        const prijavaIspita: PrijavaIspita = {
-          realizacijaPredmeta: this.selectRealizacijaPredmeta(), // Adjust this as needed
-          evaluacijaZnanja: undefined,   // Adjust this as needed
-          ispitniRok: ispitniRok,
-          studentNaGodini: this.studentNaGodini,
-          vremePrijave: this.currentDate
-        };
-        this.prijavaIspitaService.create(prijavaIspita).subscribe(response => {
-          console.log('Prijava ispita created:', response);
-          this.dialogRef.close();
+        // Fetch existing prijave ispita
+        this.prijavaIspitaService.getAll().subscribe(data => {
+          this.prijaveIspita = data;
+
+          // Define the new prijava ispita
+          const newPrijavaIspita: PrijavaIspita = {
+            realizacijaPredmeta: this.izaberiRealizacijaPredmeta(),
+            evaluacijaZnanja: undefined,
+            ispitniRok: ispitniRok,
+            studentNaGodini: this.studentNaGodini,
+            vremePrijave: this.currentDate
+          };
+
+          console.log('New prijavaIspita:', newPrijavaIspita);
+
+          // Check for duplicates
+          const exists = this.prijaveIspita.some(prijava => {
+            return prijava.studentNaGodini?.id === newPrijavaIspita.studentNaGodini?.id &&
+                   prijava.ispitniRok?.id === newPrijavaIspita.ispitniRok?.id &&
+                   prijava.realizacijaPredmeta?.id === newPrijavaIspita.realizacijaPredmeta?.id;
+          });
+
+          if (exists) {
+            console.log('Prijava ispita already exists');
+            this.snackBar.open('Ispit je vec prijavljen u ovom roku.', 'Nazad', {
+              duration: 3000,
+              verticalPosition: 'top',
+              horizontalPosition: 'center'
+            });
+          } else {
+            this.prijavaIspitaService.create(newPrijavaIspita).subscribe({
+              next: response => {
+                console.log('Prijava ispita created:', response);
+                this.dialogRef.close();
+              },
+            });
+          }
         });
       }
     }
