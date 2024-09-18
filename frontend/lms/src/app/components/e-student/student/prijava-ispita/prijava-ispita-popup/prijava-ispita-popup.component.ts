@@ -1,22 +1,22 @@
 import { Component, Input } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { IspitniRok } from '../../models/ispitni-rok';
-import { IspitniRokService } from '../../services/ispitni-rok.service';
+import { IspitniRok } from '../../../../../models/ispitni-rok';
+import { IspitniRokService } from '../../../../../services/ispitni-rok.service';
 import { NgFor, NgIf } from '@angular/common';
-import { Student } from '../../models/student';
+import { Student } from '../../../../../models/student';
 import { take } from 'rxjs';
-import { StudentService } from '../../services/student.service';
-import { StudentNaGodini } from '../../models/student-na-godini';
-import { PrijavaIspita } from '../../models/prijava-ispita';
-import { PrijavaIspitaService } from '../../services/prijava-ispita.service';
+import { StudentService } from '../../../../../services/student.service';
+import { StudentNaGodini } from '../../../../../models/student-na-godini';
+import { PrijavaIspita } from '../../../../../models/prijava-ispita';
+import { PrijavaIspitaService } from '../../../../../services/prijava-ispita.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
-import { DataService } from '../../services/data.service';
-import { Predmet } from '../../models/predmet';
-import { RealizacijaPredmeta } from '../../models/realizacija-predmeta';
-import { RealizacijaPredmetaService } from '../../services/realizacija-predmeta.service';
+import { DataService } from '../../../../../services/data.service';
+import { Predmet } from '../../../../../models/predmet';
+import { RealizacijaPredmeta } from '../../../../../models/realizacija-predmeta';
+import { RealizacijaPredmetaService } from '../../../../../services/realizacija-predmeta.service';
 
 @Component({
   selector: 'app-prijava-ispita-popup',
@@ -36,7 +36,13 @@ export class PrijavaIspitaPopupComponent {
   selectedPredmet? : Predmet;
   selectedRealizacijaPredmeta? : RealizacijaPredmeta;
 
-  constructor(public dialogRef: MatDialogRef<PrijavaIspitaPopupComponent>,private dataService : DataService, private ispitniRokService : IspitniRokService, private studentService: StudentService, private prijavaIspitaService: PrijavaIspitaService, private realizacijaPredmetaService: RealizacijaPredmetaService) {}
+  constructor(public dialogRef: MatDialogRef<PrijavaIspitaPopupComponent>,
+            private dataService : DataService,
+            private ispitniRokService : IspitniRokService,
+            private studentService: StudentService,
+            private prijavaIspitaService: PrijavaIspitaService,
+            private realizacijaPredmetaService: RealizacijaPredmetaService,
+    ) {}
 
   ngOnInit() {
     if (!this.student) {

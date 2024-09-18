@@ -38,6 +38,31 @@
         aria-label="Select page of periodic elements">
       </mat-paginator>
     </div>
-  
+    <br>
+    <p class="text-lg font-semibold px-4">Prijavljeni ispiti</p>
+    <div class="overflow-x-auto shadow-md rounded-lg">
+      <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-white-100">
+          <tr>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ispitni rok</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Naziv predmeta</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Akronim</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ESPB</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"></th>
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+          <ng-container *ngFor="let prijava of prijaveIspita">
+            <tr *ngIf="isKrajRokaValid(prijava)">
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ prijava.ispitniRok?.naziv }}</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ prijava.realizacijaPredmeta?.predmet?.naziv }}</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ prijava.realizacijaPredmeta?.predmet?.akronim }}</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ prijava.realizacijaPredmeta?.predmet?.espb }}</td>
+            </tr>
+          </ng-container>
+        </tbody>
+        
+      </table>
+    </div>
   
   </div>

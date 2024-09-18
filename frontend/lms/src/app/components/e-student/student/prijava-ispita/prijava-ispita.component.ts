@@ -8,25 +8,29 @@ import { RouterLink } from '@angular/router';
 import { Predmet } from '../../../../models/predmet';
 import { IspitniRok } from '../../../../models/ispitni-rok';
 import { MatDialogModule } from '@angular/material/dialog';
-import { PopupService } from '../../../prijava-ispita-popup/popup.service';
+import { PopupService } from './prijava-ispita-popup/popup.service';
 import { DataService } from '../../../../services/data.service';
+import { PrijavaIspita } from '../../../../models/prijava-ispita';
+import { PrijavaIspitaService } from '../../../../services/prijava-ispita.service';
+import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-prijava-ispita',
   standalone: true,
-  imports: [MatPaginatorModule, MatTableModule, RouterLink, MatDialogModule],
+  imports: [MatPaginatorModule, MatTableModule, RouterLink, MatDialogModule, NgFor, NgIf],
   templateUrl: './prijava-ispita.component.html',
   styleUrl: './prijava-ispita.component.css'
 })
 export class PrijavaIspitaComponent implements OnInit {
   @Input() student!: Student;
   predmeti!: Predmet[];
-  ispitniRokovi!: IspitniRok[];
+  prijaveIspita : PrijavaIspita[] = [];
+  currentDate : Date = new Date();
   displayedColumns: string[] = ['akronim', 'naziv', 'espb', 'obavezan',  'prijavaIspita'];
   dataSource: MatTableDataSource<Predmet> = new MatTableDataSource<Predmet>(this.predmeti);
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private studentService: StudentService, private popupService: PopupService, private dataService : DataService) { }
+  constructor(private studentService: StudentService, private popupService: PopupService, private dataService : DataService,  private prijavaIspitaService: PrijavaIspitaService) { }
 
   ngOnInit(): void {
     if (!this.student) {
@@ -36,6 +40,8 @@ export class PrijavaIspitaComponent implements OnInit {
       });
     }
     this.processStudentData();
+    this.getPrijaveIspita();
+    console.log(this.prijaveIspita)
   }
 
   ngAfterViewInit(): void {
@@ -71,6 +77,19 @@ export class PrijavaIspitaComponent implements OnInit {
   }
   }
 
+  getPrijaveIspita(){
+    this.prijavaIspitaService.getAll().subscribe(data => {
+      for(let e of data){
+        if (this.student && this.student.studentNaGodinama){
+          if(e.studentNaGodini?.id == this.student.studentNaGodinama[this.student.studentNaGodinama.length - 1].id){
+            console.log(e)
+            this.prijaveIspita?.push(e)
+          }
+        }
+      }
+    })
+  }
+
   initializeTable() {
     this.dataSource = new MatTableDataSource<Predmet>(this.predmeti);
     this.dataSource.paginator = this.paginator;
@@ -78,6 +97,11 @@ export class PrijavaIspitaComponent implements OnInit {
 
   openPopup() {
     this.popupService.openPopup();
+  }
+
+  isKrajRokaValid(prijava: any): boolean {
+    let tempKrajRoka = new Date(prijava.ispitniRok?.krajRoka)
+    return tempKrajRoka > this.currentDate;
   }
 
 }
