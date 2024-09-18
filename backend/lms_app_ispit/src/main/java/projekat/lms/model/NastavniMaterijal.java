@@ -1,5 +1,7 @@
 package projekat.lms.model;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 
 import jakarta.persistence.Column;
@@ -13,10 +15,10 @@ public class NastavniMaterijal extends BaseEntity {
 	private String naziv;
 
 	@Column(nullable = false)
-	private Integer godinaIzdavanja;
+	private Integer godinaIzdavanja; // mozda YEAR
 
 	@Column(nullable = true, columnDefinition = "VARCHAR(256)")
-	private Set<String> autori;
+	private String autori;
 
 	@OneToMany
 	private Set<Fajl> fajlovi;
@@ -25,20 +27,12 @@ public class NastavniMaterijal extends BaseEntity {
 		super();
 	}
 
-	public NastavniMaterijal(Long id, Boolean deleted, String naziv, Integer godinaIzdavanja, Set<String> autori,
+	public NastavniMaterijal(Long id, Boolean deleted, String naziv, Integer godinaIzdavanja, String autori,
 			Set<Fajl> fajlovi) {
 		super(id, deleted);
 		this.naziv = naziv;
 		this.godinaIzdavanja = godinaIzdavanja;
 		this.autori = autori;
-		this.fajlovi = fajlovi;
-	}
-
-	public Set<Fajl> getFajlovi() {
-		return fajlovi;
-	}
-
-	public void setFajlovi(Set<Fajl> fajlovi) {
 		this.fajlovi = fajlovi;
 	}
 
@@ -59,10 +53,25 @@ public class NastavniMaterijal extends BaseEntity {
 	}
 
 	public Set<String> getAutori() {
-		return autori;
+		if (this.autori == null || this.autori.isEmpty()) {
+			return new HashSet<>();
+		}
+		return new HashSet<>(Arrays.asList(this.autori.split(",")));
 	}
 
 	public void setAutori(Set<String> autori) {
-		this.autori = autori;
+		if (autori == null || autori.isEmpty()) {
+			this.autori = null;
+		} else {
+			this.autori = String.join(",", autori);
+		}
+	}
+
+	public Set<Fajl> getFajlovi() {
+		return fajlovi;
+	}
+
+	public void setFajlovi(Set<Fajl> fajlovi) {
+		this.fajlovi = fajlovi;
 	}
 }

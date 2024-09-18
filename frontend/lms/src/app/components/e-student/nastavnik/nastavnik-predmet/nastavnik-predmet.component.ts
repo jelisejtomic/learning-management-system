@@ -19,7 +19,7 @@ export class NastavnikPredmetComponent implements AfterViewInit, OnInit {
   @Input() nastavnik!: Nastavnik;
   predmeti!: NastavnikNaRealizaciji[];
 
-  displayedColumns: string[] = ['predmet', 'brojCasova', 'godinaIzvodjenja', 'tipNastave'];
+  displayedColumns: string[] = ['predmet', 'brojCasova', 'godinaIzvodjenja', 'tipNastave', 'silabus'];
   dataSource = new MatTableDataSource<NastavnikNaRealizaciji>();
 
   constructor(private nastavnikService: NastavnikService, private nastavnikNaRealizacijiService: NastavnikNaRealizacijiService) { }

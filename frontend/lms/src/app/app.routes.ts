@@ -35,8 +35,6 @@ export const routes: Routes = [
     { path: "kontakti", component: KontaktComponent },
     { path: "zaposleni", component: ZaposleniComponent },
     { path: "fakulteti", component: FakultetiComponent },
-    { path: 'predmeti/:id', component: PredmetDetaljiComponent },
-
 
     {
         path: "e-student", component: EStudentComponent,
@@ -62,8 +60,8 @@ export const routes: Routes = [
         path: "nastavnik", component: NastavnikComponent,
         children: [
             { path: "predmeti", component: NastavnikPredmetComponent },
-            { path: "podesavanja", component: NastavnikPodesavanjaComponent }
-
+            { path: "podesavanja", component: NastavnikPodesavanjaComponent },
+            { path: 'predmeti/:id', component: PredmetDetaljiComponent },
         ],
         data: { roles: ["ROLE_TEACHER"] },
         canActivate: [AuthGuard],

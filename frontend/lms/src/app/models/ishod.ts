@@ -5,5 +5,5 @@ import { ObrazovniCilj } from "./obrazovni-cilj";
 export interface Ishod extends Base {
     opis?: string;
     obrazovniCiljevi?: ObrazovniCilj[];
-    nastavniMaterijali?: NastavniMaterijal[];
+    nastavniMaterijal?: NastavniMaterijal[];
 }
