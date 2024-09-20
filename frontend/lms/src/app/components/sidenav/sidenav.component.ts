@@ -6,6 +6,7 @@ import { NgFor, NgIf } from '@angular/common';
 import { OsobljeStudentskeSluzbe } from '../../models/osoblje-studentske-sluzbe';
 import { Administrator } from '../../models/administrator';
 import { Nastavnik } from '../../models/nastavnik';
+import { RegistrovaniKorisnik } from '../../models/registrovani-korisnik';
 
 @Component({
   selector: 'app-sidenav',
@@ -15,9 +16,13 @@ import { Nastavnik } from '../../models/nastavnik';
   styleUrl: './sidenav.component.css'
 })
 export class SidenavComponent {
-  @Input() user?: Student | Nastavnik | OsobljeStudentskeSluzbe | Administrator;
+  @Input() user?: RegistrovaniKorisnik | Student | Nastavnik | OsobljeStudentskeSluzbe | Administrator;
   @Input() id?: string;
   @Input() items: (SidenavItem | '-')[] = [];
+
+  hasKorisnik(user: any): user is Student | Nastavnik | OsobljeStudentskeSluzbe | Administrator {
+    return user !== undefined && user !== null && 'korisnik' in user;
+  }
 }
 
 export interface SidenavItem {

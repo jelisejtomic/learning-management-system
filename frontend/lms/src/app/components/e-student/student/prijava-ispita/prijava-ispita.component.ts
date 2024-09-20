@@ -24,19 +24,19 @@ import { NgFor, NgIf } from '@angular/common';
 export class PrijavaIspitaComponent implements OnInit {
   @Input() student!: Student;
   predmeti!: Predmet[];
-  prijaveIspita : PrijavaIspita[] = [];
-  currentDate : Date = new Date();
-  displayedColumns: string[] = ['akronim', 'naziv', 'espb', 'obavezan',  'prijavaIspita'];
+  prijaveIspita: PrijavaIspita[] = [];
+  currentDate: Date = new Date();
+  displayedColumns: string[] = ['akronim', 'naziv', 'espb', 'obavezan', 'prijavaIspita'];
   dataSource: MatTableDataSource<Predmet> = new MatTableDataSource<Predmet>(this.predmeti);
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private studentService: StudentService, private popupService: PopupService, private dataService : DataService,  private prijavaIspitaService: PrijavaIspitaService) { }
+  constructor(private studentService: StudentService, private popupService: PopupService, private dataService: DataService, private prijavaIspitaService: PrijavaIspitaService) { }
 
   ngOnInit(): void {
     if (!this.student) {
       this.studentService.student$.pipe(take(1)).subscribe(student => {
         this.student = student!;
-        console.log("StudentPredmetComponent student: " + this.student.korisnik?.koriscnikoIme)
+        console.log("StudentPredmetComponent student: " + this.student.korisnik?.korisnickoIme)
       });
     }
     this.processStudentData();
@@ -48,7 +48,7 @@ export class PrijavaIspitaComponent implements OnInit {
     this.initializeTable();
   }
 
-  setData(predmet: Predmet){
+  setData(predmet: Predmet) {
     this.dataService.setData(predmet)
   }
 
@@ -65,7 +65,7 @@ export class PrijavaIspitaComponent implements OnInit {
           for (let pr of this.predmeti) {
             if (p.realizacijaPredmeta?.predmet?.id === pr.id) {
               const index = this.predmeti.findIndex(item => item.id === pr.id);
-      
+
               if (index !== -1) {
                 this.predmeti.splice(index, 1);
               }
@@ -73,14 +73,14 @@ export class PrijavaIspitaComponent implements OnInit {
           }
         }
       }
-  }
+    }
   }
 
-  getPrijaveIspita(){
+  getPrijaveIspita() {
     this.prijavaIspitaService.getAll().subscribe(data => {
-      for(let e of data){
-        if (this.student && this.student.studentNaGodinama){
-          if(e.studentNaGodini?.id == this.student.studentNaGodinama[this.student.studentNaGodinama.length - 1].id){
+      for (let e of data) {
+        if (this.student && this.student.studentNaGodinama) {
+          if (e.studentNaGodini?.id == this.student.studentNaGodinama[this.student.studentNaGodinama.length - 1].id) {
             this.prijaveIspita?.push(e)
           }
         }

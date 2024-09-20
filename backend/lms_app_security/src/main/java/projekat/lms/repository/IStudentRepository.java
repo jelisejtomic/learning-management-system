@@ -11,6 +11,6 @@ import projekat.lms.model.Student;
 @Repository
 public interface IStudentRepository extends CrudRepository<Student, Long> {
 	
-    @Query("SELECT s FROM Student s WHERE s.korisnik.koriscnikoIme = :username")
+    @Query("SELECT s FROM Student s WHERE s.korisnik.korisnickoIme = :username")
 	Optional<Student> findByUsername(String username);
 }

@@ -11,6 +11,6 @@ import projekat.lms.model.Administrator;
 @Repository
 public interface IAdministratorRepository extends CrudRepository<Administrator, Long> {
 
-	@Query("SELECT a FROM Administrator a WHERE a.korisnik.koriscnikoIme = :username")
+	@Query("SELECT a FROM Administrator a WHERE a.korisnik.korisnickoIme = :username")
 	Optional<Administrator> findByUsername(String username);
 }

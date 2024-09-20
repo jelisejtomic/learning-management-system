@@ -7,8 +7,7 @@ import projekat.lms.generics.BaseDTO;
 
 public class RegistrovaniKorisnikDTO extends BaseDTO implements Serializable {
 	private static final long serialVersionUID = 6564050817281102873L;
-	private String koriscnikoIme;
-	private String lozinka;
+	private String korisnickoIme;
 	private String email;
 	private String ime;
 	private String prezime;
@@ -18,31 +17,22 @@ public class RegistrovaniKorisnikDTO extends BaseDTO implements Serializable {
 		super();
 	}
 
-	public RegistrovaniKorisnikDTO(Long id, Boolean deleted, String koriscnikoIme, String lozinka, String email,
-			String ime, String prezime, Set<UlogaDTO> uloge) {
+	public RegistrovaniKorisnikDTO(Long id, Boolean deleted, String korisnickoIme, String email, String ime,
+			String prezime, Set<UlogaDTO> uloge) {
 		super(id, deleted);
-		this.koriscnikoIme = koriscnikoIme;
-		this.lozinka = lozinka;
+		this.korisnickoIme = korisnickoIme;
 		this.email = email;
 		this.ime = ime;
 		this.prezime = prezime;
 		this.uloge = uloge;
 	}
 
-	public String getKoriscnikoIme() {
-		return koriscnikoIme;
+	public String getKorisnickoIme() {
+		return korisnickoIme;
 	}
 
-	public void setKoriscnikoIme(String koriscnikoIme) {
-		this.koriscnikoIme = koriscnikoIme;
-	}
-
-	public String getLozinka() {
-		return lozinka;
-	}
-
-	public void setLozinka(String lozinka) {
-		this.lozinka = lozinka;
+	public void setKorisnickoIme(String korisnickoIme) {
+		this.korisnickoIme = korisnickoIme;
 	}
 
 	public String getEmail() {
@@ -80,5 +70,4 @@ public class RegistrovaniKorisnikDTO extends BaseDTO implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
 }

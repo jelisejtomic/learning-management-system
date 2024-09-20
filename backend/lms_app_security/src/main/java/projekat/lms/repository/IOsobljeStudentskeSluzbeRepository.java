@@ -10,6 +10,6 @@ import projekat.lms.model.OsobljeStudentskeSluzbe;
 
 @Repository
 public interface IOsobljeStudentskeSluzbeRepository extends CrudRepository<OsobljeStudentskeSluzbe, Long> {
-	@Query("SELECT oss FROM OsobljeStudentskeSluzbe oss WHERE oss.korisnik.koriscnikoIme = :username")
+	@Query("SELECT oss FROM OsobljeStudentskeSluzbe oss WHERE oss.korisnik.korisnickoIme = :username")
 	Optional<OsobljeStudentskeSluzbe> findByUsername(String username);
 }
