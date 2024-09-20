@@ -94,15 +94,12 @@ export class PrijavaIspitaPopupComponent {
 
   prijaviIspit(): void {
     if (this.selectedIspitniRokId && this.studentNaGodini) {
-      // Fetch the selected ispitni rok
       const ispitniRok = this.ispitniRokovi.find(rok => rok.id === this.selectedIspitniRokId);
 
       if (ispitniRok) {
-        // Fetch existing prijave ispita
         this.prijavaIspitaService.getAll().subscribe(data => {
           this.prijaveIspita = data;
 
-          // Define the new prijava ispita
           const newPrijavaIspita: PrijavaIspita = {
             realizacijaPredmeta: this.izaberiRealizacijaPredmeta(),
             evaluacijaZnanja: undefined,
@@ -113,7 +110,6 @@ export class PrijavaIspitaPopupComponent {
 
           console.log('New prijavaIspita:', newPrijavaIspita);
 
-          // Check for duplicates
           const exists = this.prijaveIspita.some(prijava => {
             return prijava.studentNaGodini?.id === newPrijavaIspita.studentNaGodini?.id &&
               prijava.ispitniRok?.id === newPrijavaIspita.ispitniRok?.id &&
@@ -130,6 +126,10 @@ export class PrijavaIspitaPopupComponent {
           } else {
             this.prijavaIspitaService.create(newPrijavaIspita).subscribe({
               next: response => {
+                this.prijavaIspitaService.getAll().subscribe(updatedData => {
+                  // Update the service with the new list
+                  this.prijavaIspitaService.updatePrijavaIspita(updatedData);
+                });
                 console.log('Prijava ispita created:', response);
                 this.dialogRef.close();
               },
