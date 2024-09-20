@@ -1,0 +1,26 @@
+<h1>Unos ocene</h1>
+<div class="max-w-md mx-auto p-4 border rounded-lg shadow-lg bg-white">
+    <form [formGroup]="form" (ngSubmit)="onSave()">
+        <mat-form-field class="w-full mb-4">
+            <mat-label>Konacna ocena</mat-label>
+            <input matInput formControlName="konacnaOcena" type="number" min="5" max="10">
+        </mat-form-field>
+
+        <mat-form-field class="w-full mb-4">
+            <mat-label>Bodovi</mat-label>
+            <input matInput formControlName="bodovi" type="number" min="0" max="100">
+        </mat-form-field>
+
+        <mat-form-field class="w-full mb-4">
+            <mat-label>Bonus Bodovi</mat-label>
+            <input matInput formControlName="bonusBodovi" type="number" min="0" max="20">
+        </mat-form-field>
+
+        <div class="flex justify-between">
+            <button mat-button type="button" (click)="form.reset()" (click)="form.reset()"
+                class="bg-gray-300 hover:bg-gray-400 text-white font-semibold py-2 px-4 rounded-lg">Odustani</button>
+            <button mat-button type="submit"
+                class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg">Sačuvaj</button>
+        </div>
+    </form>
+</div>

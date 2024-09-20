@@ -8,11 +8,12 @@ import { StudentComponent } from "./student/student.component";
 import { RouterOutlet } from "@angular/router";
 import { AuthService } from "../../auth/auth.service";
 import { KeycloakProfile } from "keycloak-js";
+import { RegistrovaniKorisnikComponent } from "./registrovani-korisnik/registrovani-korisnik.component";
 
 @Component({
   selector: 'app-e-student',
   standalone: true,
-  imports: [NgSwitch, NgSwitchCase, NgIf, RouterOutlet, EStudentHeaderComponent, StudentComponent, NastavnikComponent, StudentskaSluzbaComponent, AdminComponent],
+  imports: [NgSwitch, NgSwitchCase, NgIf, RouterOutlet, EStudentHeaderComponent, RegistrovaniKorisnikComponent, StudentComponent, NastavnikComponent, StudentskaSluzbaComponent, AdminComponent],
   templateUrl: './e-student.component.html',
   styleUrl: './e-student.component.css'
 })

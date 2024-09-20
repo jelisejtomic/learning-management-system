@@ -28,7 +28,7 @@ export class IstorijaStudiranjaComponent implements OnInit {
     if (!this.student) {
       this.studentService.student$.pipe(take(1)).subscribe(student => {
         this.student = student!;
-        console.log("IstorijaStudiranjaComponent student: " + this.student.korisnik?.koriscnikoIme)
+        console.log("IstorijaStudiranjaComponent student: " + this.student.korisnik?.korisnickoIme)
 
         if (this.student.pohadjanjaPredmeta) {
           this.prikazIstorije = [];

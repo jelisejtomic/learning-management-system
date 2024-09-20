@@ -28,7 +28,7 @@ export class NastavnikPredmetComponent implements AfterViewInit, OnInit {
     if (!this.nastavnik) {
       this.nastavnikService.nastavnik$.pipe(take(1)).subscribe(nastavnik => {
         this.nastavnik = nastavnik!;
-        console.log("NastavnikPredmetComponent username: " + this.nastavnik.korisnik?.koriscnikoIme)
+        console.log("NastavnikPredmetComponent username: " + this.nastavnik.korisnik?.korisnickoIme)
       });
     }
     this.getRealizacije();

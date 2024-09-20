@@ -1,33 +1,34 @@
 <div class="flex justify-center">
-    <div class="w-full max-w-4xl">
+    <div class="w-full max-w-4xl" *ngIf="realizacijaPredmeta && realizacijaPredmeta.predmet">
         <div class="text-center mb-4">
-            <span class="text-lg font-semibold">Predmet: {{predmet.naziv}} ({{predmet.akronim}})</span>
+            <span class="text-lg font-semibold">Predmet: {{realizacijaPredmeta.predmet.naziv}}
+                ({{realizacijaPredmeta.predmet.akronim}})</span>
         </div>
 
         <div>
             <mat-tab-group class="w-full">
                 <mat-tab label="Osnovne informacije">
                     <div class="w-full max-w-3xl">
-                        <div>ESPB: {{predmet.espb}}</div>
-                        <div>Obavezan: {{ predmet.obavezan ? 'Da' : 'Ne' }}</div>
+                        <div>ESPB: {{realizacijaPredmeta.predmet.espb}}</div>
+                        <div>Obavezan: {{ realizacijaPredmeta.predmet.obavezan ? 'Da' : 'Ne' }}</div>
                     </div>
                 </mat-tab>
                 <mat-tab label="Cilj">
                     <div class="w-full max-w-3xl">
-                        <div *ngFor="let ishod of predmet.silabus">
+                        <div *ngFor="let ishod of realizacijaPredmeta.predmet.silabus">
                             <div *ngFor="let cilj of ishod.obrazovniCiljevi">{{ cilj.opis }}</div>
                         </div>
                     </div>
                 </mat-tab>
                 <mat-tab label="Silabus">
                     <div class="w-full max-w-3xl">
-                        <div *ngFor="let ishod of predmet.silabus">{{ ishod.opis }}</div>
+                        <div *ngFor="let ishod of realizacijaPredmeta.predmet.silabus">{{ ishod.opis }}</div>
                     </div>
                 </mat-tab>
                 <mat-tab label="Nastavni materijal">
                     <div class="w-full max-w-3xl">
                         <!-- FIXME: nastavniMaterijali -->
-                        <div *ngFor="let ishod of predmet.silabus">
+                        <div *ngFor="let ishod of realizacijaPredmeta.predmet.silabus">
                             <table *ngIf="ishod.nastavniMaterijal && ishod.nastavniMaterijal.length > 0"
                                 class="min-w-full border-collapse border border-gray-200">
                                 <thead>
@@ -46,6 +47,9 @@
                             </table>
                         </div>
                     </div>
+                </mat-tab>
+                <mat-tab label="Prijave ispita">
+                    <app-prijave-ispita [realizacijaPredmeta]="realizacijaPredmeta"></app-prijave-ispita>
                 </mat-tab>
             </mat-tab-group>
 

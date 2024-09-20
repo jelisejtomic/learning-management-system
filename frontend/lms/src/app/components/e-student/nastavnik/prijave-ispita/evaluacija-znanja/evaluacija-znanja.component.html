@@ -1,0 +1,69 @@
+<div *ngIf="evaluacijeZnanja.length > 0">
+    <h1>Evaluacije Znanja</h1>
+    <table mat-table [dataSource]="evaluacijeZnanja" class="mat-elevation-z8 mb-4">
+        <ng-container matColumnDef="datum">
+            <th mat-header-cell *matHeaderCellDef> Datum </th>
+            <td mat-cell *matCellDef="let evaluacija"> {{ evaluacija.vremePocetka | date:'shortDate' }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="vremeOd">
+            <th mat-header-cell *matHeaderCellDef> Od </th>
+            <td mat-cell *matCellDef="let evaluacija"> {{ evaluacija.vremePocetka | date:'HH:mm' }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="vremeDo">
+            <th mat-header-cell *matHeaderCellDef> Do </th>
+            <td mat-cell *matCellDef="let evaluacija"> {{ evaluacija.vremeKraja | date:'HH:mm' }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="mestoOdrzavanja">
+            <th mat-header-cell *matHeaderCellDef> Sala </th>
+            <td mat-cell *matCellDef="let evaluacija"> {{ evaluacija.mestoOdrzavanja }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="minBodovi">
+            <th mat-header-cell *matHeaderCellDef> Minimum </th>
+            <td mat-cell *matCellDef="let evaluacija"> {{ evaluacija.minBodovi }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="maxBodovi">
+            <th mat-header-cell *matHeaderCellDef> Maksimum </th>
+            <td mat-cell *matCellDef="let evaluacija"> {{ evaluacija.maxBodovi }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="tipEvaluacije">
+            <th mat-header-cell *matHeaderCellDef> Tip </th>
+            <td mat-cell *matCellDef="let evaluacija"> {{ evaluacija.tipEvaluacije.naziv }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="ishod">
+            <th mat-header-cell *matHeaderCellDef> Ishod </th>
+            <td mat-cell *matCellDef="let evaluacija"> {{ evaluacija.ishod?.opis}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="polaganja">
+            <th mat-header-cell *matHeaderCellDef> Polaganja </th>
+            <td mat-cell *matCellDef="let evaluacija">
+                <div *ngIf="evaluacija.polaganja && evaluacija.polaganja.length > 0">
+                    <button mat-button (click)="openPolaganjeDialog(evaluacija.polaganja)">Prikaži</button>
+                </div>
+                <div>
+                    <button mat-button *ngIf="!evaluacija.polaganja || evaluacija.polaganja.length == 0"
+                        (click)="openDodajPolaganjeDialog(evaluacija)">
+                        Dodaj
+                    </button>
+                </div>
+
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>
+
+<div *ngIf="prijavaIspita">
+    <app-unos-ocene [student]="prijavaIspita.studentNaGodini!.student!"
+        [realizacijaPredmeta]="prijavaIspita.realizacijaPredmeta!">
+    </app-unos-ocene>
+</div>

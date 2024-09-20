@@ -8,40 +8,39 @@ import jakarta.persistence.ManyToMany;
 import projekat.lms.generics.BaseEntity;
 
 @Entity
-public class RegistrovaniKorisnik extends BaseEntity{
+public class RegistrovaniKorisnik extends BaseEntity {
 	@Column(nullable = false, unique = true)
-	private String koriscnikoIme;
-	
+	private String korisnickoIme;
+
+//	@Column(nullable = false)
+//	private String lozinka;
+
 	@Column(nullable = false)
-	private String lozinka;
 	private String email;
-	
-	@Column(columnDefinition = "TEXT")
+
+	@Column(nullable = false, columnDefinition = "TEXT")
 	private String ime;
-	@Column(columnDefinition = "TEXT")
+
+	@Column(nullable = false, columnDefinition = "TEXT")
 	private String prezime;
-	
-	@ManyToMany //!FIXME
+
+	@ManyToMany
 	private Set<Uloga> uloge;
 
 	public RegistrovaniKorisnik() {
 		super();
 	}
-	
-	
 
-	public RegistrovaniKorisnik(Long id, Boolean deleted, String koriscnikoIme, String lozinka, String email,
-			String ime, String prezime, Set<Uloga> uloge) {
+	public RegistrovaniKorisnik(Long id, Boolean deleted, String korisnickoIme, String email, String ime,
+			String prezime, Set<Uloga> uloge) {
 		super(id, deleted);
-		this.koriscnikoIme = koriscnikoIme;
-		this.lozinka = lozinka;
+		this.korisnickoIme = korisnickoIme;
+//		this.lozinka = lozinka;
 		this.email = email;
 		this.ime = ime;
 		this.prezime = prezime;
 		this.uloge = uloge;
 	}
-
-
 
 	public Set<Uloga> getUloge() {
 		return uloge;
@@ -51,21 +50,21 @@ public class RegistrovaniKorisnik extends BaseEntity{
 		this.uloge = uloge;
 	}
 
-	public String getKoriscnikoIme() {
-		return koriscnikoIme;
+	public String getKorisnickoIme() {
+		return korisnickoIme;
 	}
 
-	public void setKoriscnikoIme(String koriscnikoIme) {
-		this.koriscnikoIme = koriscnikoIme;
+	public void setKorisnickoIme(String korisnickoIme) {
+		this.korisnickoIme = korisnickoIme;
 	}
 
-	public String getLozinka() {
-		return lozinka;
-	}
-
-	public void setLozinka(String lozinka) {
-		this.lozinka = lozinka;
-	}
+//	public String getLozinka() {
+//		return lozinka;
+//	}
+//
+//	public void setLozinka(String lozinka) {
+//		this.lozinka = lozinka;
+//	}
 
 	public String getEmail() {
 		return email;

@@ -12,6 +12,6 @@ export interface RealizacijaPredmeta extends Base {
     predmet?: Predmet;
     terminiNastave?: TerminNastave[];
     obavestenja?: Obavestenje[];
-    evaluacijaZnanja?: EvaluacijaZnanja[];
+    evaluacijeZnanja?: EvaluacijaZnanja[];
     prijaveIspita?: PrijavaIspita[];
 }

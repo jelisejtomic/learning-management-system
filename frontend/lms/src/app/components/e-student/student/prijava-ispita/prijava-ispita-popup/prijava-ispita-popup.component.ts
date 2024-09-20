@@ -22,37 +22,37 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-prijava-ispita-popup',
   standalone: true,
-  imports: [NgFor, NgIf, FormsModule, MatFormFieldModule,MatSelectModule,MatButtonModule, MatSnackBarModule],
+  imports: [NgFor, NgIf, FormsModule, MatFormFieldModule, MatSelectModule, MatButtonModule, MatSnackBarModule],
   templateUrl: './prijava-ispita-popup.component.html',
   styleUrl: './prijava-ispita-popup.component.css'
 })
 export class PrijavaIspitaPopupComponent {
   @Input() student!: Student;
-  ispitniRokovi : IspitniRok[] = [];
-  prijaveIspita! : PrijavaIspita[];
+  ispitniRokovi: IspitniRok[] = [];
+  prijaveIspita!: PrijavaIspita[];
   filteredIspitniRokovi: IspitniRok[] = [];
-  realizacijePredmeta? : RealizacijaPredmeta[];
-  currentDate : Date = new Date();
-  studentNaGodini? : StudentNaGodini;
+  realizacijePredmeta?: RealizacijaPredmeta[];
+  currentDate: Date = new Date();
+  studentNaGodini?: StudentNaGodini;
   selectedIspitniRokId?: number;
-  selectedPredmet? : Predmet;
-  selectedRealizacijaPredmeta? : RealizacijaPredmeta;
+  selectedPredmet?: Predmet;
+  selectedRealizacijaPredmeta?: RealizacijaPredmeta;
 
   constructor(public dialogRef: MatDialogRef<PrijavaIspitaPopupComponent>,
-            private dataService : DataService,
-            private ispitniRokService : IspitniRokService,
-            private studentService: StudentService,
-            private prijavaIspitaService: PrijavaIspitaService,
-            private realizacijaPredmetaService: RealizacijaPredmetaService,
-            private snackBar: MatSnackBar
-    ) {}
+    private dataService: DataService,
+    private ispitniRokService: IspitniRokService,
+    private studentService: StudentService,
+    private prijavaIspitaService: PrijavaIspitaService,
+    private realizacijaPredmetaService: RealizacijaPredmetaService,
+    private snackBar: MatSnackBar
+  ) { }
 
   ngOnInit() {
     if (!this.student) {
       this.studentService.student$.pipe(take(1)).subscribe(student => {
         this.student = student!;
         this.studentNaGodini = this.student?.studentNaGodinama![this.student?.studentNaGodinama!.length - 1]
-        console.log("StudentPredmetComponent student: " + this.student.korisnik?.koriscnikoIme)
+        console.log("StudentPredmetComponent student: " + this.student.korisnik?.korisnickoIme)
       });
     }
     this.dialogRef.updateSize('65%', '40%');
@@ -62,25 +62,25 @@ export class PrijavaIspitaPopupComponent {
         krajRoka: new Date(rok.krajRoka)
       }));
       this.filterIspitniRokovi();
-      })
+    })
 
-    this.realizacijaPredmetaService.getAll().subscribe(data =>{
+    this.realizacijaPredmetaService.getAll().subscribe(data => {
       this.realizacijePredmeta = data
-  })
+    })
     this.getData();
     this.izaberiRealizacijaPredmeta;
   }
 
-  izaberiRealizacijaPredmeta() : RealizacijaPredmeta | undefined{
-    for(let r of this.realizacijePredmeta!){
-      if(r.predmet?.id == this.selectedPredmet?.id){
+  izaberiRealizacijaPredmeta(): RealizacijaPredmeta | undefined {
+    for (let r of this.realizacijePredmeta!) {
+      if (r.predmet?.id == this.selectedPredmet?.id) {
         return this.selectedRealizacijaPredmeta = r
       }
     }
     return undefined;
   }
 
-  getData(){
+  getData() {
     this.selectedPredmet = this.dataService.getData();
   }
 
@@ -116,8 +116,8 @@ export class PrijavaIspitaPopupComponent {
           // Check for duplicates
           const exists = this.prijaveIspita.some(prijava => {
             return prijava.studentNaGodini?.id === newPrijavaIspita.studentNaGodini?.id &&
-                   prijava.ispitniRok?.id === newPrijavaIspita.ispitniRok?.id &&
-                   prijava.realizacijaPredmeta?.id === newPrijavaIspita.realizacijaPredmeta?.id;
+              prijava.ispitniRok?.id === newPrijavaIspita.ispitniRok?.id &&
+              prijava.realizacijaPredmeta?.id === newPrijavaIspita.realizacijaPredmeta?.id;
           });
 
           if (exists) {

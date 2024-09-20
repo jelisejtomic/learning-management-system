@@ -11,6 +11,6 @@ import projekat.lms.model.RegistrovaniKorisnik;
 @Repository
 public interface IRegistrovaniKorisnikRepository extends CrudRepository<RegistrovaniKorisnik, Long> {
 
-	@Query("SELECT rk FROM RegistrovaniKorisnik rk WHERE rk.koriscnikoIme = :username")
+	@Query("SELECT rk FROM RegistrovaniKorisnik rk WHERE rk.korisnickoIme = :username")
 	Optional<RegistrovaniKorisnik> findByUsername(String username);
 }

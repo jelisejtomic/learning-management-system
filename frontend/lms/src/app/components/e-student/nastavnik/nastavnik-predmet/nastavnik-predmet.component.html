@@ -3,34 +3,36 @@
         <table mat-table [dataSource]="dataSource">
             <ng-container matColumnDef="predmet">
                 <th mat-header-cell *matHeaderCellDef> Predmet </th>
-                <td mat-cell *matCellDef="let realizacija">
-                    <a [routerLink]="['/nastavnik/predmeti', realizacija.realizacijaPredmeta?.predmet?.id]"
+                <td mat-cell *matCellDef="let nastavnikNaRealizaciji">
+                    <a [routerLink]="['/nastavnik/predmeti', nastavnikNaRealizaciji.realizacijaPredmeta?.id]"
                         class="text-blue-600 hover:text-blue-800 transition-colors duration-300">
-                        {{ realizacija.realizacijaPredmeta?.predmet?.naziv }}
+                        {{ nastavnikNaRealizaciji.realizacijaPredmeta?.predmet?.naziv }}
                     </a>
                 </td>
             </ng-container>
 
             <ng-container matColumnDef="brojCasova">
                 <th mat-header-cell *matHeaderCellDef> Broj časova </th>
-                <td mat-cell *matCellDef="let realizacija"> {{realizacija.brojCasova}} </td>
+                <td mat-cell *matCellDef="let nastavnikNaRealizaciji"> {{nastavnikNaRealizaciji.brojCasova}} </td>
             </ng-container>
 
             <ng-container matColumnDef="godinaIzvodjenja">
                 <th mat-header-cell *matHeaderCellDef> Godina izvodjenja </th>
-                <td mat-cell *matCellDef="let realizacija"> {{realizacija.realizacijaPredmeta?.godinaIzvodjenja}} </td>
+                <td mat-cell *matCellDef="let nastavnikNaRealizaciji">
+                    {{nastavnikNaRealizaciji.realizacijaPredmeta?.godinaIzvodjenja}} </td>
             </ng-container>
 
             <ng-container matColumnDef="tipNastave">
                 <th mat-header-cell *matHeaderCellDef> Tip nastave </th>
-                <td mat-cell *matCellDef="let realizacija"> {{realizacija.tipNastave?.naziv}} </td>
+                <td mat-cell *matCellDef="let nastavnikNaRealizaciji"> {{nastavnikNaRealizaciji.tipNastave?.naziv}}
+                </td>
             </ng-container>
 
             <ng-container matColumnDef="silabus">
                 <th mat-header-cell *matHeaderCellDef> Silabus</th>
-                <td mat-cell *matCellDef="let realizacija">
+                <td mat-cell *matCellDef="let nastavnikNaRealizaciji">
                     <div class="w-full flex">
-                        <a routerLink="{{realizacija['silabus']}}"
+                        <a routerLink="{{nastavnikNaRealizaciji['silabus']}}"
                             class="bg-[#8f7a99] text-center text-white px-4 py-2 rounded-full font-bold hover:bg-purple-800 transition-colors duration-200 grow">Uredi</a>
                     </div>
                 </td>

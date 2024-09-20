@@ -2,8 +2,7 @@ import { Base } from "./base";
 import { Uloga } from "./uloga";
 
 export interface RegistrovaniKorisnik extends Base {
-    koriscnikoIme?: string;
-    lozinka?: string;
+    korisnickoIme?: string;
     email?: string;
     ime?: string;
     prezime?: string;

@@ -29,6 +29,9 @@ import { AdminSifarnikaComponent } from './components/e-student/admin/admin-sifa
 import { AdminStudijskihProgramaComponent } from './components/e-student/admin/admin-studijskih-programa/admin-studijskih-programa.component';
 import { AdminNastavnikaOsobljaComponent } from './components/e-student/admin/admin-nastavnika-osoblja/admin-nastavnika-osoblja.component';
 import { PredmetDetaljiComponent } from './components/predmet-detalji/predmet-detalji.component';
+import { RegistrovaniKorisnikComponent } from './components/e-student/registrovani-korisnik/registrovani-korisnik.component';
+import { RegistrovaniKorisnikPodesavanjaComponent } from './components/e-student/registrovani-korisnik/registrovani-korisnik-podesavanja/registrovani-korisnik-podesavanja.component';
+import { EvaluacijaZnanjaComponent } from './components/e-student/nastavnik/prijave-ispita/evaluacija-znanja/evaluacija-znanja.component';
 
 export const routes: Routes = [
     { path: "", component: HomeComponent },
@@ -38,7 +41,17 @@ export const routes: Routes = [
 
     {
         path: "e-student", component: EStudentComponent,
-        data: { roles: ["ROLE_STUDENT", "ROLE_TEACHER", "ROLE_STAFF", "ROLE_ADMIN"] },
+        data: { roles: ["ROLE_USER", "ROLE_STUDENT", "ROLE_TEACHER", "ROLE_STAFF", "ROLE_ADMIN"] },
+        canActivate: [AuthGuard],
+    },
+
+    {
+        path: "registrovani-korisnik",
+        component: RegistrovaniKorisnikComponent,
+        children: [
+            { path: "podesavanja", component: RegistrovaniKorisnikPodesavanjaComponent }
+        ],
+        data: { roles: ["ROLE_USER"] },
         canActivate: [AuthGuard],
     },
 
@@ -62,6 +75,7 @@ export const routes: Routes = [
             { path: "predmeti", component: NastavnikPredmetComponent },
             { path: "podesavanja", component: NastavnikPodesavanjaComponent },
             { path: 'predmeti/:id', component: PredmetDetaljiComponent },
+            { path: 'evaluacije/:realizacijaPredmetaId/:prijavaIspitaId', component: EvaluacijaZnanjaComponent },
         ],
         data: { roles: ["ROLE_TEACHER"] },
         canActivate: [AuthGuard],

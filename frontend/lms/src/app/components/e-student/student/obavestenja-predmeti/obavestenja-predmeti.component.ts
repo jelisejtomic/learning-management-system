@@ -19,7 +19,7 @@ export class ObavestenjaPredmetiComponent implements OnInit {
     if (!this.student) {
       this.studentService.student$.pipe(take(1)).subscribe(student => {
         this.student = student!;
-        console.log("ObavestenjaPredmetiComponent student: " + this.student.korisnik?.koriscnikoIme)
+        console.log("ObavestenjaPredmetiComponent student: " + this.student.korisnik?.korisnickoIme)
       });
     }
   }

@@ -1,0 +1,16 @@
+<div>
+    <h2 mat-dialog-title class="text-center">Polaganja</h2>
+    <mat-dialog-content>
+        <div *ngFor="let polaganje of data.polaganja">
+            <p>Polaganje: {{polaganje.id}}</p>
+            <p>Student: {{ polaganje.studentNaGodini?.student?.korisnik?.ime }} {{
+                polaganje.studentNaGodini?.student?.korisnik?.prezime }}</p>
+            <p>Bodovi: {{ polaganje.bodovi }}</p>
+            <p>Napomena: {{ polaganje.napomena }}</p>
+            <!-- <p>Ispit: {{ polaganje.ispit ? 'Da' : 'Ne' }}</p> -->
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-button (click)="onNoClick()">Zatvori</button>
+    </mat-dialog-actions>
+</div>

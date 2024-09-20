@@ -1,0 +1,20 @@
+<h2 mat-dialog-title class="text-center">Dodaj Polaganje</h2>
+<div mat-dialog-content class="text-center">
+    <mat-form-field class="w-full mb-4">
+        <mat-label>Bodovi</mat-label>
+        <input matInput [(ngModel)]="data.bodovi" type="number" name="bodovi" min="0"
+            [max]="data.evaluacijaZnanja.maxBodovi ?? 100" required>
+    </mat-form-field>
+
+    <mat-form-field class="w-full mb-4">
+        <mat-label>Napomena</mat-label>
+        <input matInput [(ngModel)]="data.napomena" name="napomena">
+    </mat-form-field>
+
+    <!-- <mat-checkbox [(ngModel)]="data.ispit" name="ispit">Ispit</mat-checkbox> -->
+</div>
+
+<div mat-dialog-actions class="justify-center">
+    <button mat-button (click)="onNoClick()">Otkaži</button>
+    <button mat-button (click)="dodajPolaganje()">Dodaj</button>
+</div>

@@ -28,7 +28,7 @@ export class StudentPredmetComponent implements AfterViewInit, OnInit {
     if (!this.student) {
       this.studentService.student$.pipe(take(1)).subscribe(student => {
         this.student = student!;
-        console.log("StudentPredmetComponent student: " + this.student.korisnik?.koriscnikoIme)
+        console.log("StudentPredmetComponent student: " + this.student.korisnik?.korisnickoIme)
       });
     }
     this.processStudentData();

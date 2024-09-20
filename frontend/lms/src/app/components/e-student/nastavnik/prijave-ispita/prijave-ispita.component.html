@@ -1,0 +1,29 @@
+<div *ngIf="filteredPrijave.length > 0">
+    <table class="min-w-full border-collapse border border-gray-200">
+        <thead>
+            <tr>
+                <th class="border border-gray-300 px-4 py-2">Broj indeksa</th>
+                <th class="border border-gray-300 px-4 py-2">Ime i prezime</th>
+                <th class="border border-gray-300 px-4 py-2">Vreme prijave</th>
+                <th class="border border-gray-300 px-4 py-2">Unos ocene</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let prijava of filteredPrijave">
+                <td class="border border-gray-300 px-4 py-2">{{ prijava.studentNaGodini?.brojIndeksa }}</td>
+                <td class="border border-gray-300 px-4 py-2">{{ prijava.studentNaGodini?.student?.korisnik?.ime }} {{
+                    prijava.studentNaGodini?.student?.korisnik?.prezime}}</td>
+                <td class="border border-gray-300 px-4 py-2">{{ prijava.vremePrijave | date:'dd.MM.yyyy, HH:mm'}}</td>
+                <td class="border border-gray-300 px-4 py-2 text-center">
+                    <button [routerLink]="['/nastavnik/evaluacije', realizacijaPredmeta.id, prijava.id]"
+                        class="bg-[#8f7a99] text-white px-4 py-2 rounded-full
+                                                font-bold hover:bg-purple-800 transition-colors duration-200 grow">Oceni</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div *ngIf="filteredPrijave.length == 0">
+    <span>Nema studenata koji su prijavili ispit</span>
+</div>
