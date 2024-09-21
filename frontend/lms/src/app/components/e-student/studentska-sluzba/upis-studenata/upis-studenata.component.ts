@@ -5,7 +5,6 @@ import { RegistrovaniKorisnik } from '../../../../models/registrovani-korisnik';
 import { StudentService } from '../../../../services/student.service';
 import { NastavnikService } from '../../../../services/nastavnik.service';
 import { AdministratorService } from '../../../../services/administrator.service';
-import { BrowserModule } from '@angular/platform-browser';
 import { NgFor } from '@angular/common';
 import { UlogaService } from '../../../../services/uloga.service';
 import { Uloga } from '../../../../models/uloga';
@@ -14,6 +13,7 @@ import { StudentNaGodiniService } from '../../../../services/student-na-godini.s
 import { GodinaStudija } from '../../../../models/godina-studija';
 import { Student } from '../../../../models/student';
 import { StudentNaGodini } from '../../../../models/student-na-godini';
+import { OsobljeStudentskeSluzbeService } from '../../../../services/osoblje-studentske-sluzbe.service';
 
 @Component({
   selector: 'app-upis-studenta',
@@ -41,8 +41,9 @@ export class UpisStudenataComponent implements OnInit {
     private ulogaService: UlogaService,
     private godinaStudijaService: GodinaStudijaService,
     private studentNaGodiniService: StudentNaGodiniService,
+    private osobljeStudentskeSluzbeService: OsobljeStudentskeSluzbeService,
     private adminService: AdministratorService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.getKorisnici();
@@ -85,7 +86,7 @@ export class UpisStudenataComponent implements OnInit {
 
   filterStudenti(): void {
     const existingStudentIds = new Set(this.studentiNaGodini.map(existing => existing.student?.id));
-    this.filteredStudenti = this.studenti.filter(student => 
+    this.filteredStudenti = this.studenti.filter(student =>
       !existingStudentIds.has(student.id)
     );
   }
@@ -97,19 +98,22 @@ export class UpisStudenataComponent implements OnInit {
       this.studentService.getAll().subscribe(studentiData => {
         this.adminService.getAll().subscribe(adminiData => {
           this.nastavnikService.getAll().subscribe(nastavniciData => {
-            this.filterKorisniciWithoutRoles(studentiData, adminiData, nastavniciData);
+            this.osobljeStudentskeSluzbeService.getAll().subscribe(studentskaSluzbaData => {
+              this.filterKorisniciWithoutRoles(studentiData, adminiData, nastavniciData, studentskaSluzbaData);
+            })
           });
         });
       });
     });
   }
 
-  filterKorisniciWithoutRoles(studenti: any[], admini: any[], nastavnici: any[]) {
+  filterKorisniciWithoutRoles(studenti: any[], admini: any[], nastavnici: any[], studentskaSluzba: any[]) {
     this.korisniciWithoutRoles = this.korisnici.filter(korisnik => {
       const hasRole =
         studenti.some(student => student.korisnik.id === korisnik.id) ||
         admini.some(admin => admin.korisnik.id === korisnik.id) ||
-        nastavnici.some(nastavnik => nastavnik.korisnik.id === korisnik.id);
+        nastavnici.some(nastavnik => nastavnik.korisnik.id === korisnik.id) ||
+        studentskaSluzba.some(staff => staff.korisnik.id === korisnik.id)
 
       return !hasRole;
     });
@@ -120,18 +124,18 @@ export class UpisStudenataComponent implements OnInit {
     if (this.studentForm.valid) {
       const newStudent = this.studentForm.value;
       const selectedKorisnik: RegistrovaniKorisnik = newStudent.korisnik;
-      
+
       const studentRole = this.uloge.find(role => role.naziv === 'ROLE_STUDENT');
-      
+
       if (studentRole) {
         if (!selectedKorisnik.uloge) {
           selectedKorisnik.uloge = [];
         }
         selectedKorisnik.uloge.push(studentRole);
-        
+
       }
-      if(selectedKorisnik.id){
-        this.korisniciService.update(selectedKorisnik.id, selectedKorisnik).subscribe(data =>{
+      if (selectedKorisnik.id) {
+        this.korisniciService.update(selectedKorisnik.id, selectedKorisnik).subscribe(data => {
           console.log("updated" + data)
         })
       }
@@ -155,5 +159,5 @@ export class UpisStudenataComponent implements OnInit {
       );
     }
   }
-  }
-  
+}
+

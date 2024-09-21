@@ -4,8 +4,14 @@
             <div class="w-full p-2 rounded-lg border-solid border-violet-950/25 border-[1px] shadow-md">
                 <div class="bg-gray-700 w-full py-3 px-3 text-white">
                     <div class="text-xs text-white/75">AOP</div>
-                    <div><b>{{user?.korisnik?.ime}} {{user?.korisnik?.prezime}}
-                            <span *ngIf="id">({{id}})</span></b>
+                    <div>
+                        <b *ngIf="hasKorisnik(user)">
+                            {{ user.korisnik?.ime }} {{ user.korisnik?.prezime }}
+                        </b>
+                        <b *ngIf="!hasKorisnik(user)">
+                            {{ user?.ime }} {{ user?.prezime }}
+                        </b>
+                        <span *ngIf="id">({{id}})</span>
                     </div>
                 </div>
 

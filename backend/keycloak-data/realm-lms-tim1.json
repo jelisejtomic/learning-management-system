@@ -525,28 +525,6 @@
     "notBefore" : 0,
     "groups" : [ "/TEACHERS", "/USERS" ]
   }, {
-    "id" : "8597f105-c7da-4c39-9f9e-de526b880a10",
-    "username" : "milos11",
-    "firstName" : "Milos",
-    "lastName" : "Babic",
-    "email" : "milos@lmsmail.com",
-    "emailVerified" : false,
-    "createdTimestamp" : 1726664736016,
-    "enabled" : true,
-    "totp" : false,
-    "credentials" : [ {
-      "id" : "51f7279d-55ed-41fa-989f-c200e5e17a68",
-      "type" : "password",
-      "createdDate" : 1726664736109,
-      "secretData" : "{\"value\":\"tWTNrPAgiL+JOZ3mjC0U6kFzvxGw8CS7fec6BlVCzvk=\",\"salt\":\"5MgFpoOQitq9/Z7VMi/F9g==\",\"additionalParameters\":{}}",
-      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
-    } ],
-    "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ ],
-    "realmRoles" : [ "default-roles-lms-tim1" ],
-    "notBefore" : 0,
-    "groups" : [ ]
-  }, {
     "id" : "47bb46ff-ab4c-43f8-b99b-325916ee24d2",
     "username" : "nikola008",
     "firstName" : "Nikola",
@@ -608,6 +586,29 @@
     },
     "notBefore" : 0,
     "groups" : [ ]
+  }, {
+    "id" : "7f90333a-a705-4527-8b13-00aaa5855707",
+    "username" : "staff",
+    "firstName" : "Nikola",
+    "lastName" : "Jovanović",
+    "email" : "nikolaj@lmsmail.com",
+    "emailVerified" : false,
+    "createdTimestamp" : 1726350566676,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "0fe36660-bee5-48e4-b9f9-a4e6dce9faab",
+      "type" : "password",
+      "userLabel" : "My password",
+      "createdDate" : 1726350576641,
+      "secretData" : "{\"value\":\"esZpExFo/R/yq7eb+IEdtSncZpBjkbP7L77D4j4VwNI=\",\"salt\":\"W1682QYJpAgGCKaoHyZ7PA==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-lms-tim1" ],
+    "notBefore" : 0,
+    "groups" : [ "/STAFF", "/USERS" ]
   }, {
     "id" : "2d457fa6-c114-4c03-9bd3-d00ac38be9c7",
     "username" : "stefan004",

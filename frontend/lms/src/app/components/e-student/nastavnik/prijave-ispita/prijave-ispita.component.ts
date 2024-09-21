@@ -16,14 +16,21 @@ export class PrijaveIspitaComponent implements OnInit {
   @Input() realizacijaPredmeta!: RealizacijaPredmeta;
   prijaveIspita: PrijavaIspita[] = [];
   filteredPrijave: PrijavaIspita[] = [];
+  daysDifference: number[] = [];
 
   constructor(private studentService: StudentService) { }
 
   ngOnInit(): void {
     this.prijaveIspita = this.realizacijaPredmeta.prijaveIspita ?? [];
 
-    this.prijaveIspita.forEach(prijava => {
+    this.prijaveIspita.forEach((prijava, index) => {
       const studentId = prijava.studentNaGodini?.student?.id;
+      const vremePrijave = new Date(prijava.vremePrijave!);
+
+      // Izračunavanje razlike u danima
+      const currentTime = new Date().getTime();
+      const prijavaTime = vremePrijave.getTime();
+      this.daysDifference[index] = (currentTime - prijavaTime) / (1000 * 3600 * 24);
 
       if (studentId) {
         this.studentService.getById(studentId).subscribe(student => {
