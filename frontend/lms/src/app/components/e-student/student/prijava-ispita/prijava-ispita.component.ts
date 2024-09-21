@@ -6,7 +6,6 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { RouterLink } from '@angular/router';
 import { Predmet } from '../../../../models/predmet';
-import { IspitniRok } from '../../../../models/ispitni-rok';
 import { MatDialogModule } from '@angular/material/dialog';
 import { PopupService } from './prijava-ispita-popup/popup.service';
 import { DataService } from '../../../../services/data.service';
@@ -41,6 +40,11 @@ export class PrijavaIspitaComponent implements OnInit {
     }
     this.processStudentData();
     this.getPrijaveIspita();
+    this.prijavaIspitaService.updatePrijavaIspita([]);
+
+    this.prijavaIspitaService.prijavaIspita$.subscribe(data => {
+      this.prijaveIspita = data;
+    });
     console.log(this.prijaveIspita)
   }
 
