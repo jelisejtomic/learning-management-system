@@ -5,7 +5,7 @@ import { RegistrovaniKorisnik } from '../../../../models/registrovani-korisnik';
 import { StudentService } from '../../../../services/student.service';
 import { NastavnikService } from '../../../../services/nastavnik.service';
 import { AdministratorService } from '../../../../services/administrator.service';
-import { NgFor } from '@angular/common';
+import { DatePipe, NgFor } from '@angular/common';
 import { UlogaService } from '../../../../services/uloga.service';
 import { Uloga } from '../../../../models/uloga';
 import { GodinaStudijaService } from '../../../../services/godina-studija.service';
@@ -18,7 +18,7 @@ import { OsobljeStudentskeSluzbeService } from '../../../../services/osoblje-stu
 @Component({
   selector: 'app-upis-studenta',
   standalone: true,
-  imports: [ReactiveFormsModule, NgFor],
+  imports: [ReactiveFormsModule, NgFor, DatePipe],
   templateUrl: './upis-studenata.component.html',
   styleUrls: ['./upis-studenata.component.css'],
 })

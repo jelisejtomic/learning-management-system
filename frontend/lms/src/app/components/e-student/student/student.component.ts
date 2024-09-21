@@ -34,7 +34,6 @@ export class StudentComponent implements OnInit {
       { text: 'Predmeti', link: '/student/predmeti', opis: "Trenutno pohađani predmeti" },
       { text: 'Prijava ispita', link: '/student/prijava-ispita', opis: "Moguće jedino u toku ispitnog roka" },
       '-', // separator
-      { text: 'Upis', link: '/student/upis' },
       { text: 'Istorija studiranja', link: '/student/istorija-studiranja' },
       { text: 'Podešavanja', link: '/student/podesavanja' },
     ];
